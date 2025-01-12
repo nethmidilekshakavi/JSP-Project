@@ -1,0 +1,95 @@
+.dashboard-btn {
+    width: 320px; /* Set button width */
+    height: 70px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    min-width: 250px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Button Hover Effect */
+.dashboard-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    opacity: 0.9;
+}
+
+/* Product Management Button */
+.btn-product {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+}
+.btn-product:hover {
+    background: linear-gradient(45deg, #0056b3, #003d80);
+}
+
+/* Category Management Button */
+.btn-category {
+    background: linear-gradient(45deg, #28a745, #218838);
+}
+.btn-category:hover {
+    background: linear-gradient(45deg, #218838, #1c7c33);
+}
+
+/* Order Management Button */
+.btn-order {
+    background: linear-gradient(45deg, #ffc107, #e0a800);
+}
+.btn-order:hover {
+    background: linear-gradient(45deg, #e0a800, #c88a00);
+}
+
+/* User Management Button */
+.btn-user {
+    background: linear-gradient(45deg, #dc3545, #c82333);
+}
+.btn-user:hover {
+    background: linear-gradient(45deg, #c82333, #a71d2a);
+}
+
+/* Layout Styles */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    color: #333;
+}
+
+/* Button Text Customization */
+.dashboard-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 0;
+    transition: all 0.3s ease;
+}
+
+/* Text Shadow */
+.dashboard-btn {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}

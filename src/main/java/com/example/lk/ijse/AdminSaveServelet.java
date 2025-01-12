@@ -57,7 +57,7 @@ public class AdminSaveServelet extends HttpServlet {
 
             if (effectdRowCount > 0){
                 resp.sendRedirect(
-                        "Admin.jsp?message=Admin saved successfully"
+                        "Admin.jsp?Message=Admin saved successfully"
                 );
             }else {
                 resp.sendRedirect(
