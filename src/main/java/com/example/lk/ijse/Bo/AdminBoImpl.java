@@ -13,7 +13,7 @@ public class AdminBoImpl implements AdminBo{
 
     @Override
     public boolean saveAdmin(Admin entity) throws IOException {
-        return studentDao.save(new AdminDto(entity.getId(),entity.getName(),entity.getEmail(),entity.getPassword(),entity.getUsername()));
+        return studentDao.save(new AdminDto(entity.getId(),entity.getName(),entity.getEmail(),entity.getPassword(),entity.getUsername(),entity.getRole()));
     }
 
 }

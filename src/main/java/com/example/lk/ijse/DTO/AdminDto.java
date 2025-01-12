@@ -13,6 +13,7 @@ public class AdminDto {
     private String email;
     private String password;
     private String username;
+    private String role;
 }
 
 

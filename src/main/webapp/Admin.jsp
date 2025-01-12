@@ -2,43 +2,48 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/signup.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Admin Management</title>
 </head>
 <body>
-
-<h1>Save Admin</h1> <br>
 
 <%
     String msg = request.getParameter("message");
     String error = request.getParameter("error");
 %>
 
-<%
-    if (msg != null){
-%>
+<% if (msg != null) { %>
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: '<%= msg %>',
+        showConfirmButton: true,
+        timer: 3000
+    });
+</script>
+<% } %>
 
-<div style="color: green"><%=msg%></div>
+<% if (error != null) { %>
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: '<%= error %>',
+        showConfirmButton: true,
+        timer: 3000
+    });
+</script>
+<% } %>
 
-<% }
-
-%>
-
-<%
-    if (error != null){
-%>
-
-<div style="color: red"><%=error%></div>
-
-<% }
-
-%>
 
 <div class="form-container">
     <h2>Admin Registration</h2>
-    <form action="Admin-save" method="POST">
+    <form action="Admin-save" method="POST" id="form">
         <div class="form-group">
-            <label for="id">Full Name</label>
+            <label for="id">ID</label>
             <input type="text" id="id" name="adminId" required>
         </div>
         <div class="form-group">
@@ -57,11 +62,22 @@
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter your username" required>
         </div>
+        <label for="role">Select Role:</label>
+        <select id="role" name="role">
+            <option value="admin">Admin</option>
+            <option value="coordinator">Coordinator</option>
+        </select>
+
+        <br><br>
         <button type="submit" class="btn">Register</button>
     </form>
+
     <div class="form-footer">
         <p>Already have an account? <a href="index.jsp">Login here</a></p>
     </div>
 </div>
+
+<script src="sweetalert2.all.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

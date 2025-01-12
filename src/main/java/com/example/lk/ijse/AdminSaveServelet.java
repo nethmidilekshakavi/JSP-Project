@@ -13,14 +13,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 
+
 @WebServlet(name = "CustomerSaveServlet",value = "/Admin-save")
 public class AdminSaveServelet extends HttpServlet {
+    AdminBo adminBo =  BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
 
-    AdminBo adminBo = (AdminBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
-
-    String DB_URL = "jdbc:mysql://localhost:3306/JSP_Project";
+    String DB_URL = "jdbc:mysql://localhost:3306/jsp_project";
     String DB_USER = "root";
     String DB_PW = "1234";
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,6 +31,7 @@ public class AdminSaveServelet extends HttpServlet {
         String email = req.getParameter("adminEmail");
         String password = req.getParameter("password");
         String username = req.getParameter("username");
+        String role = req.getParameter("role");
 
         try {
 
@@ -40,7 +42,7 @@ public class AdminSaveServelet extends HttpServlet {
                     DB_PW
             );
 
-            String sql = "INSERT INTO admin (id,full_name,email,password,username) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO users (id,name,email,password,username,role) VALUES (?,?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
 
@@ -49,6 +51,8 @@ public class AdminSaveServelet extends HttpServlet {
             preparedStatement.setString(3,email);
             preparedStatement.setString(4,password);
             preparedStatement.setString(5,username);
+            preparedStatement.setString(6,role);
+
             int effectdRowCount = preparedStatement.executeUpdate();
 
             if (effectdRowCount > 0){
@@ -64,11 +68,8 @@ public class AdminSaveServelet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             resp.sendRedirect(
-                    "Admin-save.jsp?error=fail to saved Unsuccessfully"
+                    "Admin.jsp?error=fail to saved Unsuccessfully"
             );
         }
-
-
-
     }
 }

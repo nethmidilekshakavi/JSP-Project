@@ -7,5 +7,6 @@ import com.example.lk.ijse.Entity.Admin;
 import java.io.IOException;
 
 public interface AdminDao extends CrudDao<Admin> {
+
     boolean save(AdminDto admin) throws IOException;
 }
