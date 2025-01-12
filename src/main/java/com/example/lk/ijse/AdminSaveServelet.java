@@ -2,25 +2,24 @@ package com.example.lk.ijse;
 
 import com.example.lk.ijse.Bo.AdminBo;
 import com.example.lk.ijse.Bo.BOFactory;
+import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-
-
 
 @WebServlet(name = "CustomerSaveServlet",value = "/Admin-save")
 public class AdminSaveServelet extends HttpServlet {
     AdminBo adminBo =  BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
 
-    String DB_URL = "jdbc:mysql://localhost:3306/jsp_project";
-    String DB_USER = "root";
-    String DB_PW = "1234";
+    @Resource(name = "jdbc/pool")
+    private DataSource dataSource;
 
 
     @Override
@@ -35,12 +34,8 @@ public class AdminSaveServelet extends HttpServlet {
 
         try {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(
-                    DB_URL,
-                    DB_USER,
-                    DB_PW
-            );
+            Connection connection = dataSource.getConnection();
+
 
             String sql = "INSERT INTO users (id,name,email,password,username,role) VALUES (?,?,?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -57,7 +52,7 @@ public class AdminSaveServelet extends HttpServlet {
 
             if (effectdRowCount > 0){
                 resp.sendRedirect(
-                        "Admin.jsp?Message=Admin saved successfully"
+                        "Admin.jsp?message=Admin saved successfully"
                 );
             }else {
                 resp.sendRedirect(
