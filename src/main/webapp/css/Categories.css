@@ -41,3 +41,20 @@
     margin-bottom: 30px;
     text-align: center;
 }
+
+#dashboard {
+    background-color: yellow;  /* Set background to yellow */
+    color: black;              /* Set text color to black */
+    border: 1px solid #ccc;    /* Optional: Add a light border */
+    padding: 10px 20px;        /* Add padding to make the button larger */
+    font-size: 16px;           /* Set the font size */
+    font-weight: bold;         /* Make the text bold */
+    border-radius: 5px;        /* Rounded corners */
+    cursor: pointer;          /* Change cursor to pointer */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+#dashboard:hover {
+    background-color: darkyellow;  /* Change to a darker yellow on hover */
+    transform: scale(1.05);         /* Slightly scale the button on hover */
+}
