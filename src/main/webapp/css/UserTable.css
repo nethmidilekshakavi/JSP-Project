@@ -1,0 +1,56 @@
+.table-container {
+    overflow-x: auto;
+    margin-top: 30px;
+}
+
+.user-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.user-details-table th, .user-details-table td {
+    padding: 12px;
+    text-align: center;
+    color: #fff;
+}
+
+.user-details-table th {
+    background: #9b59b6;
+    font-size: 16px;
+}
+
+.user-details-table td {
+    background: rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+}
+
+.user-details-table tr:hover td {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+button {
+    padding: 6px 12px;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+#e{
+    background-color: yellow;
+}
+#d{
+    background-color: red;
+}
+
+button:hover {
+    background: #71b7e6;
+}
+
+button:focus {
+    outline: none;
+}

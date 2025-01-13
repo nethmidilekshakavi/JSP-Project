@@ -1,4 +1,5 @@
 package com.example.lk.ijse;
+
 import com.example.lk.ijse.Entity.Admin;
 import jakarta.annotation.Resource;
 import jakarta.servlet.RequestDispatcher;
@@ -28,27 +29,29 @@ public class UsersListServelet extends HttpServlet {
 
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT * FROM users ")) {
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM users")) {
 
             while (resultSet.next()) {
                 Admin adminDto = new Admin(
-                        resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("email"),
-                        resultSet.getString("password"),
-                        resultSet.getString("username"),
-                        resultSet.getString("role")
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6)
+
                 );
                 adminList.add(adminDto);
             }
 
-            req.setAttribute("users", adminList);
+            req.setAttribute("Users", adminList);
             RequestDispatcher rd = req.getRequestDispatcher("Users-List.jsp");
             rd.forward(req, resp);
 
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendRedirect("users-list.jsp?error=Failed to retrieve users");
+            // Sending error message in the redirect
+            resp.sendRedirect("users-list.jsp?error=Failed to retrieve users. Please try again.");
         }
     }
 }

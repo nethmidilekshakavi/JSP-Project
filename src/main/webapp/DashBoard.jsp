@@ -26,13 +26,13 @@
         <img id="dashimg" src="Image/62d47950534f8f40eee92dde6f3dfb95-removebg-preview.png" alt="">
         <ul>
             <li><a href="viewProducts.jsp">Manage Products</a></li>
-            <li><a href="viewCategories.jsp">Manage Categories</a></li>
+            <li><a href="Categories.jsp">Manage Categories</a></li>
 
             <li><a href="viewOrders.jsp">View Orders</a></li>
 
             <li><a href="Users-List.jsp">Manage Users</a></li>
         </ul>
-        <a href="index.jsp"><button id="logOut">Log Out</button></a>
+        <a href="index.jsp"></a><button id="logOut">Log Out</button>
     </nav>
     <main>
         <h2>Dashboard Overview</h2>
