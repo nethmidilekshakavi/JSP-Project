@@ -16,20 +16,40 @@
     <link rel="stylesheet" href="css/DashBoard.css">
 </head>
 <body>
-<div class="container">
-    <div class="dashboard-header">
-        <h1>Admin Dashboard</h1>
-        <p>Manage your platform with ease</p>
-    </div>
+<div class="dashboard-container">
+    <nav class="sidebar">
 
-    <div class="button-container">
-        <button class="dashboard-btn btn-product">Product Management</button>
-        <button class="dashboard-btn btn-category">Category Management</button>
-        <button class="dashboard-btn btn-order">Order Management</button>
-        <button class="dashboard-btn btn-user">User Management</button>
-    </div>
+
+
+        <ul>
+            <li><a href="viewProducts.jsp">Manage Products</a></li>
+            <li><a href="viewCategories.jsp">Manage Categories</a></li>
+            <li><a href="viewOrders.jsp">View Orders</a></li>
+            <li><a href="Users-List.jsp">Manage Users</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Dashboard Overview</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Total Products</h3>
+                <p>100</p>
+            </div>
+            <div class="card">
+                <h3>Total Orders</h3>
+                <p>250</p>
+            </div>
+            <div class="card">
+                <h3>Total Users</h3>
+                <p>500</p>
+            </div>
+            <div class="card">
+                <h3>Pending Orders</h3>
+                <p>15</p>
+            </div>
+        </div>
+    </main>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
