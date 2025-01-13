@@ -19,14 +19,20 @@
 <div class="dashboard-container">
     <nav class="sidebar">
 
-
-
+        <h2 id="db">DashBoard</h2>
+<h6> Welcome to our **E-Commerce Platform**! <br> Explore products, manage your cart, and enjoy a seamless shopping experience.
+    <br> Admins can efficiently handle products, orders, <br> and users for smooth operations. Happy shopping!
+</h6>
+        <img id="dashimg" src="Image/62d47950534f8f40eee92dde6f3dfb95-removebg-preview.png" alt="">
         <ul>
             <li><a href="viewProducts.jsp">Manage Products</a></li>
             <li><a href="viewCategories.jsp">Manage Categories</a></li>
+
             <li><a href="viewOrders.jsp">View Orders</a></li>
+
             <li><a href="Users-List.jsp">Manage Users</a></li>
         </ul>
+        <a href="index.jsp"><button id="logOut">Log Out</button></a>
     </nav>
     <main>
         <h2>Dashboard Overview</h2>
@@ -49,6 +55,7 @@
             </div>
         </div>
     </main>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
