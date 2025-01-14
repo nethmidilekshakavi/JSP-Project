@@ -43,8 +43,8 @@
 }
 
 #dashboard {
-    background-color: yellow;  /* Set background to yellow */
-    color: black;              /* Set text color to black */
+    background-color: #28a745;  /* Set background to yellow */
+    color: white; /* Set text color to black */
     border: 1px solid #ccc;    /* Optional: Add a light border */
     padding: 10px 20px;        /* Add padding to make the button larger */
     font-size: 16px;           /* Set the font size */
@@ -55,11 +55,13 @@
 }
 
 .shopnow{
-    background-color: #9b59b6;
+    background-color: #0056b3;
     width: 100px;
     height: 30px;
     border: none;
-    color: black;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
     font-weight: bold;
 }
 

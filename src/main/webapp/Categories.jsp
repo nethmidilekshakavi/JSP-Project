@@ -97,7 +97,7 @@
         <div class="category-card-body p-3">
           <h5 class="category-title font-weight-bold">Footwear</h5>
           <p class="category-description text-muted">Find the latest collection of stylish footwear to complete your look.</p>
-          <a href="ElectricProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+          <a href="FootwareProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>
