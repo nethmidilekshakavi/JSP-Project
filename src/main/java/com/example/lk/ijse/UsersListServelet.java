@@ -17,7 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "UsersListServlet", value = "/users-list")
+@WebServlet(name = "UsersListServlet", value = "/Users-List")
 public class UsersListServelet extends HttpServlet {
 
     @Resource(name = "jdbc/pool")
@@ -39,7 +39,6 @@ public class UsersListServelet extends HttpServlet {
                         resultSet.getString(4),
                         resultSet.getString(5),
                         resultSet.getString(6)
-
                 );
                 adminList.add(adminDto);
             }
@@ -50,8 +49,8 @@ public class UsersListServelet extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            // Sending error message in the redirect
             resp.sendRedirect("users-list.jsp?error=Failed to retrieve users. Please try again.");
         }
     }
 }
+

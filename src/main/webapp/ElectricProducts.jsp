@@ -1,63 +1,80 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ASUS
-  Date: 1/14/2025
-  Time: 12:14 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Title</title>
-  <title>Electric Products</title>
-  <link rel="stylesheet" href="css/Electric.css"> <!-- Custom Styles -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inline Cards</title>
+  <link rel="stylesheet" href="css/Electric.css">
 </head>
 <body>
-<div class="container mt-5">
-  <h2 class="text-center mb-5">Electric Products</h2>
-  <div class="row">
-    <!-- Product Card 1 -->
-    <div class="col-md-4 mb-4">
-      <div class="product-card">
-        <img src="Image/Categories/Eeletronic/6b07dc8a2d28374ff5d01ba6dc148703.jpg" alt="Product 1">
-        <div class="product-details">
-          <h5 class="product-title">Electric Kettle</h5>
-          <p class="product-description">High-quality electric kettle for boiling water quickly and efficiently.</p>
-          <p class="product-price">$29.99</p>
-          <button class="buy-btn" onclick="navigateToOrderPage('Electric Kettle', 29.99)">Buy Now</button>
-        </div>
-      </div>
+<div class="content">
+  <div class="card-container">
+    <div class="card">
+      <img src="Image/Categories/Eeletronic/a8337f50ffaf22a9f4c350ed63362ec8.jpg" alt="Item 3">
+      <h3>Item 1</h3>
+      <p class="description">A creamy latte with a smooth finish.</p>
+      <p class="price">$20.00</p>
+      <button onclick="addToCart('Item 3', 20)">Order Now</button>
+    </div>
+    <div class="card">
+      <img src="Image/Categories/Eeletronic/6b07dc8a2d28374ff5d01ba6dc148703.jpg" alt="Item 1">
+      <h3>Item 1</h3>
+      <p class="description">A delicious coffee to start your day.</p>
+      <p class="price">$10.00</p>
+      <button onclick="addToCart('Item 1', 10)">Order Now</button>
+    </div>
+    <div class="card">
+      <img src="Image/Categories/Eeletronic/5dba612dd9931919daf3b784533a83df.jpg" alt="Item 2">
+      <h3>Item 2</h3>
+      <p class="description">A refreshing iced coffee for hot days.</p>
+      <p class="price">$15.00</p>
+      <button onclick="addToCart('Item 2', 15)">Order Now</button>
+    </div>
+    <div class="card">
+      <img src="Image/Categories/Eeletronic/f30582afd1b9213faca85ee312a77164.jpg" alt="Item 3">
+      <h3>Item 3</h3>
+      <p class="description">A creamy latte with a smooth finish.</p>
+      <p class="price">$20.00</p>
+      <button onclick="addToCart('Item 3', 20)">Order Now</button>
+    </div>
+    <div class="card">
+      <img src="Image/Categories/Eeletronic/225df0cf45c4d1bfc5d9a31c1de0772a.jpg" alt="Item 3">
+      <h3>Item 2</h3>
+      <p class="description">A creamy latte with a smooth finish.</p>
+      <p class="price">$20.00</p>
+      <button onclick="addToCart('Item 3', 20)">Order Now</button>
+    </div>
+    <div class="card">
+      <img src="Image/Categories/Eeletronic/a2911d64b84936d16e01da5627f7eb1c.jpg" alt="Item 3">
+      <h3>Item 4</h3>
+      <p class="description">A creamy latte with a smooth finish.</p>
+      <p class="price">$20.00</p>
+      <button onclick="addToCart('Item 3', 20)">Order Now</button>
+    </div>
+    <div class="card">
+      <img src="Image/Categories/Eeletronic/557b6cbe0b85cbd2cf4040dda07abcb1.jpg" alt="Item 3">
+      <h3>Item 4</h3>
+      <p class="description">A creamy latte with a smooth finish.</p>
+      <p class="price">$20.00</p>
+      <button onclick="addToCart('Item 3', 20)">Order Now</button>
+    </div>
+    <div class="card">
+      <img src="Image/Categories/Eeletronic/dbccb776620d025ab9b9fe5218b64a83.jpg" alt="Item 3">
+      <h3>Item 5</h3>
+      <p class="description">A creamy latte with a smooth finish.</p>
+      <p class="price">$20.00</p>
+      <button onclick="addToCart('Item 3', 20)">Order Now</button>
+    </div>
+    <div class="card">
+      <img src="Image/Categories/Eeletronic/7b56cb5ec005d502daac10808a086de0.jpg" alt="Item 3">
+      <h3>Item 6</h3>
+      <p class="description">A creamy latte with a smooth finish.</p>
+      <p class="price">$20.00</p>
+      <button onclick="addToCart('Item 3', 20)">Order Now</button>
     </div>
 
-    <!-- Product Card 2 -->
-    <div class="col-md-4 mb-4">
-      <div class="product-card">
-        <img src="https://via.placeholder.com/300x200" alt="Product 2">
-        <div class="product-details">
-          <h5 class="product-title">Electric Blender</h5>
-          <p class="product-description">Blend your favorite beverages with ease using this powerful blender.</p>
-          <p class="product-price">$59.99</p>
-          <button class="buy-btn" onclick="navigateToOrderPage('Electric Blender', 59.99)">Buy Now</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Product Card 3 -->
-    <div class="col-md-4 mb-4">
-      <div class="product-card">
-        <img src="https://via.placeholder.com/300x200" alt="Product 3">
-        <div class="product-details">
-          <h5 class="product-title">Electric Heater</h5>
-          <p class="product-description">Stay warm during winter with this efficient electric heater.</p>
-          <p class="product-price">$89.99</p>
-          <button class="buy-btn" onclick="navigateToOrderPage('Electric Heater', 89.99)">Buy Now</button>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -54,6 +54,14 @@
     transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
 }
 
+.shopnow{
+    background-color: #9b59b6;
+    width: 100px;
+    height: 40px;
+    border: none;
+}
+
+
 #dashboard:hover {
     background-color: darkyellow;  /* Change to a darker yellow on hover */
     transform: scale(1.05);         /* Slightly scale the button on hover */

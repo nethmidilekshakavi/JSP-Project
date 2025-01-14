@@ -1,45 +1,51 @@
-.product-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px; /* Add some padding for spacing */
+    background-color: #f4f4f4;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping to the next line */
+    gap: 20px; /* Space between cards */
+    justify-content: flex-start; /* Align cards to the left */
+}
+
+.card {
+    flex: 1 1 calc(33.33% - 20px); /* Three cards per row with gap handling */
+    box-sizing: border-box; /* Include padding and border in width */
+    max-width: calc(33.33% - 20px); /* Restrict max width for each card */
     padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s ease;
 }
 
-.product-card img {
-    width: 200px;
-    height: 200px;
-    border-radius: 10px;
-    margin-bottom: 15px;
+
+.card h3 {
+    margin: 0 0 10px;
 }
 
-.product-card:hover {
-    transform: scale(1.05);
+.card p {
+    font-size: 14px;
+    color: #666;
 }
-
-.product-title {
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-.product-price {
-    color: #28a745;
-    font-size: 1.5em;
-    margin: 10px 0;
-}
-
-.buy-btn {
-    background-color: yellow;
-    color: black;
+button {
+    padding: 8px 12px;
     border: none;
-    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: #fff;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 1em;
-    font-weight: bold;
 }
 
-.buy-btn:hover {
-    background-color: darkorange;
+button:hover {
+    background-color: #218838;
+}
+.card>img{
+    width: 150px;
+    height:150px;
 }

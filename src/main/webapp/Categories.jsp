@@ -62,7 +62,8 @@
         <div class="category-card-body">
           <h5 class="category-title">Electronics</h5>
           <p>Explore the latest gadgets and electronics for all your tech needs.</p>
-          <a href="ElectricProducts.jsp" class="btn btn-primary">Shop Now</a>
+          <a href="ElectricProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+
         </div>
       </div>
     </div>
@@ -79,7 +80,7 @@
         <div class="category-card-body">
           <h5 class="category-title">Clothing</h5>
           <p>Find the trendiest fashion for every season and occasion.</p>
-          <a href="#" class="btn btn-primary">Shop Now</a>
+          <a href="ElectricProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>
@@ -96,7 +97,7 @@
         <div class="category-card-body p-3">
           <h5 class="category-title font-weight-bold">Footwear</h5>
           <p class="category-description text-muted">Find the latest collection of stylish footwear to complete your look.</p>
-          <a href="#" class="btn btn-primary btn-lg w-100">Shop Now</a>
+          <a href="ElectricProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>
@@ -115,7 +116,7 @@
         <div class="category-card-body">
           <h5 class="category-title">Furniture</h5>
           <p>Browse through our stunning furniture collection for your home.</p>
-          <a href="#" class="btn btn-primary">Shop Now</a>
+          <a href="ElectricProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>
@@ -132,7 +133,7 @@
         <div class="category-card-body">
           <h5 class="category-title">Sports</h5>
           <p>Get the best sports gear for every athlete and enthusiast.</p>
-          <a href="#" class="btn btn-primary">Shop Now</a>
+          <a href="ElectricProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>
