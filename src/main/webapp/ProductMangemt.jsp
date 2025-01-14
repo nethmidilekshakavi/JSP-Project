@@ -1,11 +1,15 @@
 <%@ page import="com.example.lk.ijse.Entity.Category" %>
-<%@ page import="java.util.List" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.List" %><%--
+  Created by IntelliJ IDEA.
+  User: ASUS
+  Date: 1/15/2025
+  Time: 12:31 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Category Management</title>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Product Management</title>
 
   <style>
     body {
@@ -156,18 +160,28 @@
 <h1>Category Management</h1>
 
 <!-- Category Form -->
-<form action="category-save" method="post" id="form">
-  <label for="categoryId">Category ID:</label>
-  <input type="text" id="categoryId" name="categoryId" required><br><br>
+<form action="product-save" method="post" id="form">
+  <label for="productId">Product ID:</label>
+  <input type="text" id="productId" name="pid" required><br><br>
 
-  <label for="categoryName">Category Name:</label>
-  <input type="text" id="categoryName" name="categoryName" required><br><br>
+  <label for="categoryName">Product Name:</label>
+  <input type="text" id="categoryName" name="name" required><br><br>
 
   <label for="categoryDescription">Description:</label>
-  <input type="text" id="categoryDescription" name="categoryDescription" required><br><br>
+  <input type="text" id="categoryDescription" name="desc" required><br><br>
 
-  <button type="submit" name="action" value="addCategory">Add Category</button>
+  <label for="price">Price:</label>
+  <input type="text" id="price" name="price" required><br><br>
+
+  <label for="stockqty">Stock Quantity:</label>
+  <input type="text" id="stockqty" name="qty" required><br><br>
+
+  <label for="caid">category ID:</label>
+  <input type="text" id="caid" name="cid" required><br><br>
+
+  <button type="submit" name="action" value="addCategory">Add Product</button>
 </form>
+
 
 <%
   List<Category> categoryList = (List<Category>) request.getAttribute("categories");
@@ -214,6 +228,5 @@
 
 <% } %>
 
-<script src="sweetalert2.all.min.js"></script>
 </body>
 </html>

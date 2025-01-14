@@ -16,7 +16,7 @@
             <a href="javascript:void(0);" onclick="loadPage('Users-List.jsp')"><button>User Profile Management</button></a>
             <a href="javascript:void(0);" onclick="loadPage('Cart.jsp')"><button>Shopping Cart</button></a>
             <a href="javascript:void(0);" onclick="loadPage('Categories.jsp')"><button>Products</button></a>
-            <a href="javascript:void(0);" onclick="loadPage('Categories.jsp')"><button>Product Management</button></a>
+            <a href="javascript:void(0);" onclick="loadPage('ProductMangemt.jsp')"><button>Product Management</button></a>
             <a href="javascript:void(0);" onclick="loadPage('CategoryManagemt.jsp')"><button>Category Management</button></a>
             <a href="javascript:void(0);" onclick="loadPage('Categories.jsp')"><button>User Management</button></a>
             <a href="javascript:void(0);" onclick="loadPage('order_details.jsp')"><button>View Order Placement</button></a>
