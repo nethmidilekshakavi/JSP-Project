@@ -116,7 +116,7 @@
         <div class="category-card-body">
           <h5 class="category-title">Furniture</h5>
           <p>Browse through our stunning furniture collection for your home.</p>
-          <a href="ElectricProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+          <a href="FurnitureProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>
@@ -133,7 +133,7 @@
         <div class="category-card-body">
           <h5 class="category-title">Sports</h5>
           <p>Get the best sports gear for every athlete and enthusiast.</p>
-          <a href="ElectricProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+          <a href="SportsProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>
