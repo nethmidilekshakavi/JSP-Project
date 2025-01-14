@@ -44,6 +44,8 @@
     }
 %>
 
+<img id="loginImg2" src="Image/b37a66a9eeabbcd3e900ced1b4830532-removebg-preview.png" alt="">
+
 <div class="login-container">
     <form class="login-form" action="login" method="POST">
         <h2>Welcome Back</h2>

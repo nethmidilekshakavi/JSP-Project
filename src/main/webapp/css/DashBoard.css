@@ -1,3 +1,4 @@
+/* Body styling */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #edf1fc, #e6f4ff);
@@ -6,11 +7,13 @@ body {
     box-sizing: border-box;
 }
 
+/* Dashboard Container styling */
 .dashboard-container {
     display: flex;
     height: 100vh;
 }
 
+/* Sidebar styling */
 .sidebar {
     width: 15%;
     background: linear-gradient(135deg, #1b3a67, #9b59b6);
@@ -41,17 +44,20 @@ body {
     background: #1b3a67;
 }
 
+/* Main content area styling */
 main {
     flex: 1;
     padding: 30px;
     background: #f5f8fd;
 }
 
+/* Heading style */
 h2 {
     font-size: 28px;
     margin-bottom: 20px;
 }
 
+/* Cards grid styling */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -82,10 +88,13 @@ h2 {
     margin-top: 10px;
 }
 
-#dashimg{
+/* Sidebar image styling */
+#dashimg {
     width: 230px;
     height: 200px;
 }
+
+/* Log out button styling */
 #logOut {
     background-color: #ff4d4d; /* Soft red */
     color: white;
@@ -104,4 +113,81 @@ h2 {
 
 #logOut:active {
     background-color: #e60000; /* Even darker red when clicked */
+}
+
+/* User access styling */
+.user-access {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-access h3 {
+    font-size: 28px;
+    color: #4CAF50;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.user-access button {
+    background-color: #9b59b6; /* Purple color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover effect for User Access buttons */
+.user-access button:hover {
+    background-color: #8e44ad; /* Darker purple when hovered */
+    transform: translateY(-2px); /* Slightly raise the button */
+}
+
+/* Focus effect for buttons */
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/*
+Admin Access*/
+.sidebar button {
+    background-color: #3498db; /* Bright blue color */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%; /* Makes the button take the full width of its container */
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover Effect */
+.sidebar button:hover {
+    background-color: #2980b9; /* Darker blue for hover effect */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Active Effect */
+.sidebar button:active {
+    background-color: #1d5e86; /* Even darker blue for active state */
+}
+
+/* Log Out Button Styling */
+#logOut {
+    background-color: #e74c3c; /* Red color for the logout button */
+}
+
+#logOut:hover {
+    background-color: #c0392b; /* Darker red when hovered */
 }

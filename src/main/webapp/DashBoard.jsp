@@ -24,14 +24,15 @@
     <br> Admins can efficiently handle products, orders, <br> and users for smooth operations. Happy shopping!
 </h6>
         <img id="dashimg" src="Image/62d47950534f8f40eee92dde6f3dfb95-removebg-preview.png" alt="">
-        <ul>
-            <li><a href="viewProducts.jsp">Manage Products</a></li>
-            <li><a href="Categories.jsp">Manage Categories</a></li>
 
-            <li><a href="viewOrders.jsp">View Orders</a></li>
 
-            <li><a href="Users-List.jsp">Manage Users</a></li>
-        </ul>
+        <div class="admin-Access">
+            <a href=""><button>Product Management</button></a>
+            <a href=""><button>Category Management</button></a>
+            <a href=""><button>Order Management</button></a>
+            <a href=""><button>User Management</button></a>
+        </div>
+
         <a href="index.jsp"></a><button id="logOut">Log Out</button>
     </nav>
     <main>
@@ -49,11 +50,22 @@
                 <h3>Total Users</h3>
                 <p>500</p>
             </div>
-            <div class="card">
-                <h3>Pending Orders</h3>
-                <p>15</p>
-            </div>
         </div>
+
+        <%--Users--%>
+
+        <br><br>
+
+        <div class="user-access">
+            <h3>Welcome to the User Dashboard, You Have Access to the Following Features:</h3>
+            <a href="Users-List.jsp"><button>User Profile Management</button></a>
+            <a href="order_details.jsp"><button>View Order Placement</button></a>
+            <a href="Cart.jsp"><button>Shopping Cart</button></a>
+            <a href="Categories.jsp"><button>Product Management</button></a>
+        </div>
+
+
+    <%--Admin--%>
     </main>
 
 </div>

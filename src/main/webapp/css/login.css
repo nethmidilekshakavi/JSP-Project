@@ -10,7 +10,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image:url("../Image/d5bc76c659c1b8ba0ccd64523de9b274.jpg");
+    background: linear-gradient(to top, #71b7e6, #9b59b6);
+    background-size: cover;
 }
 
 .login-container {
@@ -88,4 +89,12 @@ body {
 .signup-link a {
     color: #9b59b6;
     text-decoration: none;
+}
+#loginImg2 {
+    float: left; /* Align the image to the left */
+    margin-left: -40%; /* Move 20% further to the left */
+    margin-right: 15px; /* Space between the image and text */
+    width: 800px; /* Adjust the size */
+    height: auto; /* Maintain aspect ratio */
+    transform: rotatey(180deg);
 }
