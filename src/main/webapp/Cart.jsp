@@ -1,19 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ASUS
-  Date: 1/14/2025
-  Time: 8:34 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Cart</title>
+  <title>Cart</title>
   <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
 <div class="cart-container">
   <h1>Your Shopping Cart</h1>
+
+
+
   <table class="cart-table">
     <thead>
     <tr>
@@ -25,7 +21,7 @@
     </tr>
     </thead>
     <tbody>
-    <!-- Example of looping cart items from backend -->
+    <!-- Loop through cart items dynamically -->
     <c:forEach var="item" items="${cartItems}">
       <tr>
         <td>${item.productName}</td>
@@ -42,6 +38,7 @@
     </c:forEach>
     </tbody>
   </table>
+
   <div class="cart-summary">
     <p>Total Items: ${totalItems}</p>
     <p>Grand Total: ${grandTotal}</p>

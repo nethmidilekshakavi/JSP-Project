@@ -25,7 +25,6 @@
     <%--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>--%>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <a href="DashBoard.jsp"><button id="dashboard">DashBoard</button></a>
       <ul class="navbar-nav ml-auto">
       <%--  <li class="nav-item">
           <a class="nav-link active" href="#">Home</a>
@@ -52,7 +51,7 @@
   <div class="row">
     <!-- Category Card 1 -->
     <div class="col-md-4 mb-4">
-      <div class="category-card">
+      <div class="category-card" id="01">
         <img src="Image/Categories/Eeletronic/a8337f50ffaf22a9f4c350ed63362ec8.jpg" alt="Category 1">
         <img src="Image/Categories/Eeletronic/557b6cbe0b85cbd2cf4040dda07abcb1.jpg" alt="Category 1">
         <img src="Image/Categories/Eeletronic/a2911d64b84936d16e01da5627f7eb1c.jpg" alt="Category 1">
@@ -62,7 +61,7 @@
         <div class="category-card-body">
           <h5 class="category-title">Electronics</h5>
           <p>Explore the latest gadgets and electronics for all your tech needs.</p>
-          <a href="ElectricProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+          <a href="ElectricProducts.jsp" class="btn btn-primary" onclick="openPopup('ClothingProducts.jsp')"><button class="shopnow" name="Category">Shop Now</button></a>
 
         </div>
       </div>
@@ -70,7 +69,7 @@
 
     <!-- Category Card 2 -->
     <div class="col-md-4 mb-4">
-      <div class="category-card">
+      <div class="category-card" id="02">
         <img src="Image/Categories/clothes/97a8b26b43a1dabc9d4b227dedb781ef.jpg" alt="Category 2">
         <img src="Image/Categories/clothes/123b8c354ba4f81d2f2bba92ed701178.jpg" alt="Category 2">
         <img src="Image/Categories/clothes/629c5c3dcca16da8552d29148adceebd.jpg" alt="Category 2">
@@ -86,7 +85,7 @@
     </div>
 
     <!-- Category Card 3 -->
-    <div class="col-md-4 mb-4">
+    <div class="col-md-4 mb-4" id="03">
       <div class="category-card border rounded shadow-sm">
         <img src="Image/Categories/Footwear/4ba07e052ded0e7289325931da5fb066.jpg" alt="Category 3">
         <img src="Image/Categories/Footwear/34bee783ff5048af69e1898a672d2866.jpg" alt="Category 3">
@@ -105,7 +104,7 @@
 
 
     <!-- Category Card 4 -->
-    <div class="col-md-4 mb-4">
+    <div class="col-md-4 mb-4" id="04">
       <div class="category-card">
         <img src="Image/Categories/Furniture/0dae0a9c97cc66e845e4dd1c49395462.jpg" alt="Category 4">
         <img src="Image/Categories/Furniture/3ec58fd41bb26d66150e8b63c8b03d0d.jpg" alt="Category 4">
@@ -122,7 +121,7 @@
     </div>
 
     <!-- Category Card 5 -->
-    <div class="col-md-4 mb-4">
+    <div class="col-md-4 mb-4" id="5">
       <div class="category-card">
         <img src="Image/Categories/Sports/5aeaa009e2ddbcc1bbe0febf7968d39b.jpg" alt="Category 5">
         <img src="Image/Categories/Sports/57dcb7942290828ddd76af5d612be9eb.jpg" alt="Category 5">
@@ -145,6 +144,13 @@
 <footer class="bg-dark text-white text-center py-3">
   <p> 2025 E-Commerce. All rights reserved.</p>
 </footer>
+
+<script src="js/jquery-3.7.1.min.js"></script>
+<script>
+  function openPopup(url) {
+    window.open(url, 'popupWindow', 'width=800,height=600,scrollbars=yes,resizable=yes');
+  }
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>

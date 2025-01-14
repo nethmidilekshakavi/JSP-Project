@@ -4,45 +4,54 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>User Table</title>
+  <title>User List</title>
 </head>
 <body>
-<%
-List <AdminDto> DataList =(List<AdminDto>) request.getAttribute("Users");
-  if (DataList != null && !DataList.isEmpty()){
+
+<div class="container">
+  <h1>User List</h1>
+
+  <%
+    List<AdminDto> DataList = (List<AdminDto>) request.getAttribute("Users");
+    if (DataList != null && !DataList.isEmpty()) {
   %>
-  <table class="table table-bordered" border="1">
+  <table class="user-table">
     <thead>
     <tr>
-      <td>ID</td>
-      <td>Name</td>
-      <td>Email</td>
-      <td>Password</td>
-      <td>Username</td>
-      <td>Role</td>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Username</th>
+      <th>Role</th>
     </tr>
     </thead>
-    <tbody id="customer-Table">
-
+    <tbody>
     <%
-      for(AdminDto adminDto : DataList){
+      for(AdminDto admin : DataList) {
+        System.out.println(admin.getId());
     %>
     <tr>
-      <td><%=adminDto.getId()%></td>
-      <td><%=adminDto.getName()%></td>
-      <td><%=adminDto.getEmail()%></td>
-      <td><%=adminDto.getPassword()%></td>
-      <td><%=adminDto.getUsername()%></td>
-      <td><%=adminDto.getRole()%></td>
+      <td><%=admin.getId()%></td>
+      <td><%=admin.getName()%></td>
+      <td><%=admin.getEmail()%></td>
+      <td><%=admin.getPassword()%></td>
+      <td><%=admin.getUsername()%></td>
+      <td><%=admin.getRole()%></td>
     </tr>
     <%
       }
-
     %>
     </tbody>
   </table>
-    <%
+  <%
+  } else {
+  %>
+  <p>No users available.</p>
+  <%
     }
-%>
+  %>
+</div>
+
 </body>
 </html>

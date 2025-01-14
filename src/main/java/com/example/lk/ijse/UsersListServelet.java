@@ -1,5 +1,6 @@
 package com.example.lk.ijse;
 
+import com.example.lk.ijse.DTO.AdminDto;
 import com.example.lk.ijse.Entity.Admin;
 import jakarta.annotation.Resource;
 import jakarta.servlet.RequestDispatcher;
@@ -17,7 +18,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "UsersListServlet", value = "/Users-List")
+@WebServlet(name = "UsersListServlet", value = "/users")
 public class UsersListServelet extends HttpServlet {
 
     @Resource(name = "jdbc/pool")
@@ -25,32 +26,43 @@ public class UsersListServelet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Admin> adminList = new ArrayList<>();
+
+        List<AdminDto> adminList = new ArrayList<>();
 
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM users")) {
 
             while (resultSet.next()) {
-                Admin adminDto = new Admin(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6)
+                AdminDto admin = new AdminDto(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("email"),
+                        resultSet.getString("password"),
+                        resultSet.getString("username"),
+                        resultSet.getString("role")
                 );
-                adminList.add(adminDto);
+                System.out.println(admin.getName());
+                System.out.println(admin.getEmail());
+                adminList.add(admin);
             }
 
             req.setAttribute("Users", adminList);
             RequestDispatcher rd = req.getRequestDispatcher("Users-List.jsp");
             rd.forward(req, resp);
 
+            System.out.println(adminList);
+
         } catch (Exception e) {
             e.printStackTrace();
             resp.sendRedirect("users-list.jsp?error=Failed to retrieve users. Please try again.");
         }
     }
+
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    }
 }
+
 

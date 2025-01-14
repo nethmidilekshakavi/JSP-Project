@@ -19,7 +19,7 @@
             <h3>Short & Baggy Shirt</h3>
             <p class="description">Comfortable and stylish baggy shirt perfect for casual wear.</p>
             <p class="price">Rs.3000.00</p>
-            <a href=""><button>Order Now</button></a>
+            <a href="Cart.jsp"><button>Order Now</button></a>
         </div>
         <div class="card">
             <img src="Image/Categories/clothes/629c5c3dcca16da8552d29148adceebd.jpg" alt="Baby Skirt">

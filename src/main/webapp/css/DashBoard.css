@@ -113,18 +113,21 @@ h2 {
 
 #logOut:active {
     background-color: #e60000; /* Even darker red when clicked */
+    color: white;
+    width: 200px;
+    height: 40px;
+    padding: 10px 20px;
+    border: none;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 /* User access styling */
-.user-access {
-    text-align: center;
-    background-color: #f0f0f0;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
 
-.user-access h3 {
+.admin-Access h3 {
     font-size: 28px;
     color: #4CAF50;
     font-family: 'Arial', sans-serif;
@@ -132,20 +135,22 @@ h2 {
     margin-bottom: 20px;
 }
 
-.user-access button {
+.admin-Access button {
     background-color: #9b59b6; /* Purple color */
     color: white;
+    width: 200px;
+    height: 40px;
     padding: 10px 20px;
     border: none;
+    font-size: 12px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
     margin: 10px;
     transition: background-color 0.3s, transform 0.2s;
 }
 
 /* Hover effect for User Access buttons */
-.user-access button:hover {
+.admin-Access button:hover {
     background-color: #8e44ad; /* Darker purple when hovered */
     transform: translateY(-2px); /* Slightly raise the button */
 }
@@ -156,38 +161,10 @@ button:focus {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-/*
-Admin Access*/
-.sidebar button {
-    background-color: #3498db; /* Bright blue color */
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    margin: 10px 0;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 100%; /* Makes the button take the full width of its container */
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-/* Hover Effect */
-.sidebar button:hover {
-    background-color: #2980b9; /* Darker blue for hover effect */
-    transform: scale(1.05); /* Slightly enlarge the button on hover */
-}
-
-/* Active Effect */
-.sidebar button:active {
-    background-color: #1d5e86; /* Even darker blue for active state */
-}
-
-/* Log Out Button Styling */
-#logOut {
-    background-color: #e74c3c; /* Red color for the logout button */
-}
-
-#logOut:hover {
-    background-color: #c0392b; /* Darker red when hovered */
+.dynamic-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
 }
