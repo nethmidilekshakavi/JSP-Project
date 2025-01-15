@@ -99,7 +99,7 @@
   <a href="ProductUpdate.jsp">
     <button type="button" class="btn-update" style="background-color: orange; width: 300px; display: block; margin: 10px auto;">Update</button>
   </a>
-  <a href="CategoryDelete.jsp">
+  <a href="ProductDelete.jsp">
     <button type="button" class="btn-delete" style="background-color: red; width: 300px; display: block; margin: 10px auto;">Delete</button>
   </a>
 </div>
