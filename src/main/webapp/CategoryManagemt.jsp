@@ -78,13 +78,6 @@
 </div>
 
 
-
-
-
-
-
-
-
 <%
   List<Category> categoryList = (List<Category>) request.getAttribute("categories");
   if (categoryList != null && !categoryList.isEmpty()) {

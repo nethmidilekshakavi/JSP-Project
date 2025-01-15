@@ -45,7 +45,7 @@ public class CategoryUpdate extends HttpServlet {
 
             if (effectdRowCount > 0){
                 resp.sendRedirect(
-                        "CatorgoryUpdate.jsp?message=Customer Update successfully"
+                        "CatorgoryUpdate.jsp?message=Category Update successfully"
                 );
             }else {
                 resp.sendRedirect(

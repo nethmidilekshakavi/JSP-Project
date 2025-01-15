@@ -1,10 +1,20 @@
-<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.ResultSet" %><%--
+  Created by IntelliJ IDEA.
+  User: ASUS
+  Date: 1/15/2025
+  Time: 9:58 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Product Management</title>
-  <link rel="stylesheet" href="css/CatgoryManagemt.css">
-
+  <title>Product Update</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="css/CategoryUpdatePage.css">
 
   <style>
     body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 0; }
@@ -16,10 +26,11 @@
     button { background-color: #28a745; color: white; padding: 8px 16px; font-size: 14px; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease; }
     button:hover { background-color: #218838; }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="js/jquery-3.7.1.min.js"></script>
+
 </head>
 <body>
+
+<h1>Product Update</h1>
 
 <%
   String msg = request.getParameter("message");
@@ -48,10 +59,9 @@
 </script>
 <% } %>
 
-<h1>Product Management</h1>
-
 <!-- Product Form -->
-<form action="product-save" method="post">
+<form action="product-Update
+" method="post">
   <label for="productId">Product ID:</label>
   <input type="text" id="productId" name="pid" required><br>
 
@@ -90,22 +100,11 @@
     %>
   </select>
 
-  <button type="submit">Add Product</button>
+  <button type="submit" style="background-color: yellow">Update Product</button>
 </form>
-<div class="button-set" id="button-set">
-  <a href="">
-    <button type="button" class="btn-view" style="background-color:#71b7e6; width: 300px; display: block; margin: 10px auto;">View Table</button>
-  </a>
-  <a href="ProductUpdate.jsp">
-    <button type="button" class="btn-update" style="background-color: orange; width: 300px; display: block; margin: 10px auto;">Update</button>
-  </a>
-  <a href="CategoryDelete.jsp">
-    <button type="button" class="btn-delete" style="background-color: red; width: 300px; display: block; margin: 10px auto;">Delete</button>
-  </a>
-</div>
 
-
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.7.1.min.js"></script>
 <script>
   $(document).ready(function() {
     function getCategories() {
@@ -132,6 +131,5 @@
     getCategories();
   });
 </script>
-
 </body>
 </html>
