@@ -62,7 +62,7 @@
   <br><br>
   <a href="CatorgoryUpdate.jsp"><button type="submit" name="action" value="update" class="btn-update">Update</button></a>
   <br><br>
-  <a href=""><button type="submit" name="action" value="delete" class="btn-delete">Delete</button></a>
+  <a href="CategoryDelete.jsp"><button type="submit" name="action" value="delete" class="btn-delete">Delete</button></a>
 </div>
 
 
