@@ -71,6 +71,11 @@
         <p class="signup-link">
             Don't have an account? <a href="Admin.jsp">Sign up</a>
         </p>
+
+        <br>
+
+        <a href="UserChangePassWord.jsp">User Change Password</a>
+
     </form>
 </div>
 

@@ -65,7 +65,7 @@
         <label for="role">Select Role:</label>
         <select id="role" name="role">
             <option value="admin">Admin</option>
-            <option value="coordinator">Coordinator</option>
+            <option value="Customer">Customer</option>
         </select>
 
         <br><br>

@@ -55,7 +55,7 @@
       font-size: 1.1em;
     }
     th {
-      background-color: #4CAF50;
+      background-color: #9b59b6;
       color: white;
       font-weight: bold;
     }
