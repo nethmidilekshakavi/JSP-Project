@@ -12,8 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @WebServlet(name = "CategoryManagement", value = "/category-save")
 public class CategoryManagement extends HttpServlet {
@@ -57,35 +56,6 @@ public class CategoryManagement extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             resp.sendRedirect("CategoryManagemt.jsp?error=An error occurred while saving the category");
-        }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Category> categoryList = new ArrayList<>();
-
-        try (Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT * FROM categories";
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-
-            while (resultSet.next()) {
-                Category category = new Category(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3)
-                );
-                categoryList.add(category);
-            }
-
-            req.setAttribute("categories", categoryList);
-
-            RequestDispatcher rd = req.getRequestDispatcher("CategoryManagemt.jsp");
-            rd.forward(req, resp);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            resp.sendRedirect("CategoryManagemt.jsp?error=Failed to load categories");
         }
     }
 
