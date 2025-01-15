@@ -1,4 +1,4 @@
-package com.example.lk.ijse;
+package com.example.lk.ijse.Category;
 
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
@@ -42,18 +42,18 @@ public class CategoryDelete extends HttpServlet {
 
             if (effectdRowCount > 0){
                 resp.sendRedirect(
-                        "CategoryDelete.jsp?message=Customer Update successfully"
+                        "CategoryDelete.jsp?message=Category Delete successfully"
                 );
             }else {
                 resp.sendRedirect(
-                        "CategoryDelete.jsp?error=fail to Update Unsuccessfully"
+                        "CategoryDelete.jsp?error=fail to Delete Unsuccessfully"
                 );
             }
 
         } catch (Exception e) {
             // Log the exception and redirect with an error message
             e.printStackTrace();  // For debugging
-            resp.sendRedirect("CategoryDelete.jsp?error=An error occurred while updating the category");
+            resp.sendRedirect("CategoryDelete.jsp?error=An error occurred while deleting the category");
         }
 
     }

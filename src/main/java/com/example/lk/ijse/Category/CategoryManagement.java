@@ -1,4 +1,4 @@
-package com.example.lk.ijse;
+package com.example.lk.ijse.Category;
 
 import com.example.lk.ijse.Entity.Category;
 import jakarta.annotation.Resource;
