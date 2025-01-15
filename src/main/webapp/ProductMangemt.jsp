@@ -1,5 +1,9 @@
 <%@ page import="com.example.lk.ijse.Entity.Category" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 1/15/2025
@@ -124,6 +128,61 @@
       display: inline-block;
       margin-right: 10px;
     }
+
+    /* Container Styling */
+
+    /* Form Group Styling */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    /* Dropdown Select Styling */
+    #staticCategory {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.3s ease-in-out;
+    }
+
+    #staticCategory:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    /* Add Hover and Active State */
+    #staticCategory option {
+      padding: 10px;
+      background: #fff;
+      color: #333;
+    }
+
+    #staticCategory:hover,
+    #staticCategory:active {
+      cursor: pointer;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+
+      #staticCategory {
+        font-size: 14px;
+        padding: 8px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -160,7 +219,7 @@
 <h1>Category Management</h1>
 
 <!-- Category Form -->
-<form action="product-save" method="post" id="form">
+<form action="product-save" method="get" id="form">
   <label for="productId">Product ID:</label>
   <input type="text" id="productId" name="pid" required><br><br>
 
@@ -176,57 +235,68 @@
   <label for="stockqty">Stock Quantity:</label>
   <input type="text" id="stockqty" name="qty" required><br><br>
 
-  <label for="caid">category ID:</label>
-  <input type="text" id="caid" name="cid" required><br><br>
+  <div class="container">
+    <div class="form-group">
+      <label for="staticCategory"><b>Static Categories</b></label>
+      <select id="staticCategory" class="form-control">
+        <option>Select</option>
+        <%
+          try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
+            Statement statement = con.createStatement();
+            String sql = "SELECT * FROM categories";
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+        %>
+        <option value="<%= resultSet.getInt("category_id") %>">
+          <%= resultSet.getString("category_id") %>
+        </option>
+        <%
+            }
+            resultSet.close();
+            statement.close();
+            con.close();
+          } catch (Exception e) {
+            System.out.println(("Error loading categories: " + e.getMessage()));
+          }
+        %>
+      </select>
+    </div>
+  </div>
 
   <button type="submit" name="action" value="addCategory">Add Product</button>
 </form>
 
+<script src="js/jquery-3.7.1.min.js"></script>
 
-<%
-  List<Category> categoryList = (List<Category>) request.getAttribute("categories");
-  if (categoryList != null && !categoryList.isEmpty()) {
-%>
+<script>
+  function getCategory() {
+    $.ajax({
+      type: "GET",
+      url: "get_Category.jsp",
+      dataType: "JSON",
+      success: function(data) {
+        console.log(data);
+        var categoryDropdown = $('#dynamicCategory');
+        categoryDropdown.empty().append('<option>Please Select</option>');
+        for (var i = 0; i < data.length; i++) {
+          categoryDropdown.append($('<option/>', {
+            value: data[i].category_id,
+            text: data[i].category_name
+          }));
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error("Error: " + error);
+      }
+    });
+  }
 
-<!-- Category Table -->
-<h2>Existing Categories</h2>
-<table class="category-table">
-  <thead>
-  <tr>
-    <th>Category ID</th>
-    <th>Category Name</th>
-    <th>Description</th>
-    <th>Actions</th>
-  </tr>
-  </thead>
-  <tbody id="Category_Table">
-
-  <%
-    for(Category category : categoryList){
-  %>
-  <tr>
-    <td><%=category.getCategory_id()%></td>
-    <td><%=category.getCategory_name()%></td>
-    <td><%=category.getDesc()%></td>
-    <td>
-      <form action="categoryManager" method="post" style="display:inline;">
-        <input type="hidden" name="categoryId" value="${category.categoryId}">
-        <button type="submit" name="action" value="editCategory">Edit</button>
-      </form>
-      <form action="categoryManager" method="post" style="display:inline;">
-        <input type="hidden" name="categoryId" value="${category.categoryId}">
-        <button type="submit" name="action" value="deleteCategory">Delete</button>
-      </form>
-    </td>
-  </tr>
-  <%
-    }
-  %>
-
-  </tbody>
-</table>
-
-<% } %>
+  // Trigger category loading on page load
+  getCategory();
+</script>
 
 </body>
 </html>
