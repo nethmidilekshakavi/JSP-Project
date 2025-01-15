@@ -109,35 +109,17 @@ button:hover {
     display: inline-block;
     margin-right: 10px;
 }
-#button-set {
+
+#img {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    gap: 10px; /* Adds space between the images */
+    justify-content: center; /* Centers the images horizontally */
+    flex-wrap: wrap; /* Allows wrapping to the next line if there are many images */
 }
 
-#button-set a button {
-    width: 60%;
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-}
-
-.btn-view {
-    background-color: #4CAF50;
-    background-size: 60%;
-    color: white;
-}
-
-.btn-update {
-    background-color: #f4b400;
-    color: white;
-}
-
-.btn-delete {
-    background-color: #f44336;
-    color: white;
+#img img {
+    width: 200px; /* Set image width */
+    height: 200px; /* Set image height */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 5px; /* Optional: Rounded corners for images */
 }

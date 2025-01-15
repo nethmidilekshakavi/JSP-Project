@@ -55,15 +55,23 @@
   <input type="text" id="categoryDescription" name="categoryDescription" required><br><br>
 
   <button type="submit" name="action" value="addCategory">Add Category</button>
+  <a href=""><button type="submit" name="action" value="viewTable" class="btn-view" style="background-color:#71b7e6">View Table</button></a>
+  <a href="CatorgoryUpdate.jsp"><button type="submit" name="action" value="update" class="btn-update" style="background-color: orange">Update</button></a>
+  <a href="CategoryDelete.jsp"><button type="submit" name="action" value="delete" class="btn-delete" style="background-color: red">Delete</button></a>
 </form>
 
-<div id="button-set" class="button-set">
-  <a href=""><button type="submit" name="action" value="viewTable" class="btn-view">View Table</button></a>
-  <br><br>
-  <a href="CatorgoryUpdate.jsp"><button type="submit" name="action" value="update" class="btn-update">Update</button></a>
-  <br><br>
-  <a href="CategoryDelete.jsp"><button type="submit" name="action" value="delete" class="btn-delete">Delete</button></a>
+<div id="img">
+  <img src="Image/Categories/clothes/a23c134ebdc47581fa854c248633a8f5.jpg" alt="">
+  <img src="Image/Categories/Footwear/248c1bb6beb29fa0c9f7f00ec4d8881a.jpg" alt="">
+  <img src="Image/Categories/Furniture/3ec58fd41bb26d66150e8b63c8b03d0d.jpg" alt="">
+  <img src="Image/Categories/Eeletronic/dbccb776620d025ab9b9fe5218b64a83.jpg" alt="">
+  <img src="Image/Categories/Sports/61fa1cfd34c4379f2765f241dbcf8381.jpg" alt="">
 </div>
+
+
+
+
+
 
 
 
