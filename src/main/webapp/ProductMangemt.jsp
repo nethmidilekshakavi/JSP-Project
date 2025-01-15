@@ -93,7 +93,7 @@
   <button type="submit">Add Product</button>
 </form>
 <div class="button-set" id="button-set">
-  <a href="">
+  <a href="ProductList.jsp">
     <button type="button" class="btn-view" style="background-color:#71b7e6; width: 300px; display: block; margin: 10px auto;">View Table</button>
   </a>
   <a href="ProductUpdate.jsp">

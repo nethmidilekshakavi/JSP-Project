@@ -1,10 +1,17 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.example.lk.ijse.Entity.Admin" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %><%--
+  Created by IntelliJ IDEA.
+  User: ASUS
+  Date: 1/15/2025
+  Time: 11:04 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.sql.*" %>
 <html>
 <head>
-  <title>User List</title>
+  <title>Category List</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
@@ -67,15 +74,14 @@
 </head>
 <body>
 <div class="container">
-  <h1>User List</h1>
+  <h1>Category List</h1>
   <table class="user-table" align="center">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Username</th>
-      <th>Role</th>
+      <th>Category ID</th>
+      <th>Category Name</th>
+      <th>Description</th>
+
     </tr>
     </thead>
     <tbody>
@@ -84,23 +90,21 @@
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM users");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM categories");
         if(rs.next()) {
           do {
     %>
     <tr>
-      <td><%= rs.getInt("id") %></td>
-      <td><%= rs.getString("name") %></td>
-      <td><%= rs.getString("email") %></td>
-      <td><%= rs.getString("username") %></td>
-      <td><%= rs.getString("role") %></td>
+      <td><%= rs.getInt("category_id") %></td>
+      <td><%= rs.getString("category_name") %></td>
+      <td><%= rs.getString("description") %></td>
     </tr>
     <%
       } while (rs.next());
     } else {
     %>
     <tr>
-      <td colspan="6" class="no-data">No users available.</td>
+      <td colspan="6" class="no-data">No Category available.</td>
     </tr>
     <%
         }
