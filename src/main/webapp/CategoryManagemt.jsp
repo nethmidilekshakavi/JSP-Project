@@ -55,10 +55,19 @@
   <input type="text" id="categoryDescription" name="categoryDescription" required><br><br>
 
   <button type="submit" name="action" value="addCategory">Add Category</button>
-  <a href=""><button type="submit" name="action" value="viewTable" class="btn-view" style="background-color:#71b7e6">View Table</button></a>
-  <a href="CatorgoryUpdate.jsp"><button type="submit" name="action" value="update" class="btn-update" style="background-color: orange">Update</button></a>
-  <a href="CategoryDelete.jsp"><button type="submit" name="action" value="delete" class="btn-delete" style="background-color: red">Delete</button></a>
 </form>
+
+<div class="button-set" id="button-set">
+  <a href="">
+    <button type="button" class="btn-view" style="background-color:#71b7e6; width: 300px; display: block; margin: 10px auto;">View Table</button>
+  </a>
+  <a href="CatorgoryUpdate.jsp">
+    <button type="button" class="btn-update" style="background-color: orange; width: 300px; display: block; margin: 10px auto;">Update</button>
+  </a>
+  <a href="CategoryDelete.jsp">
+    <button type="button" class="btn-delete" style="background-color: red; width: 300px; display: block; margin: 10px auto;">Delete</button>
+  </a>
+</div>
 
 <div id="img">
   <img src="Image/Categories/clothes/a23c134ebdc47581fa854c248633a8f5.jpg" alt="">

@@ -118,8 +118,8 @@ button:hover {
 }
 
 #img img {
-    width: 200px; /* Set image width */
-    height: 200px; /* Set image height */
+    width: 150px; /* Set image width */
+    height: 150px; /* Set image height */
     object-fit: cover; /* Ensures the image covers the area without distortion */
     border-radius: 5px; /* Optional: Rounded corners for images */
 }
