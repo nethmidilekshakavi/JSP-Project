@@ -8,7 +8,6 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="css/CatgoryManagemt.css">
 
-
 </head>
 <body>
 
@@ -43,7 +42,7 @@
 
 <h1>Category Management</h1>
 
-<!-- Category Form -->
+ <!-- Category Form -->
 <form action="category-save" method="post" id="form">
   <label for="categoryId">Category ID:</label>
   <input type="text" id="categoryId" name="categoryId" required><br><br>

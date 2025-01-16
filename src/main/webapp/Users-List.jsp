@@ -6,6 +6,8 @@
 <head>
   <title>User List</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/CategoryUpdatePage.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     /* Basic styling for the page */
     body {
@@ -85,9 +87,38 @@
         font-size: 0.9em;
       }
     }
+
+
+    .btn-delete { padding: 10px 20px; font-size: 1em; color: #fff; background-color: #dc3545; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); } .btn-delete:hover { background-color: #c82333; transform: scale(1.05); } .btn-delete:active { background-color: #bd2130; transform: scale(1); }
+
+    .toggle-button {
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      background-color: #f44336;
+      color: white;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .toggle-button.active {
+      background-color: #4caf50; /* Green for active */
+      color: white;
+    }
+
+    .toggle-button:hover {
+      background-color: #555; /* Hover effect */
+      color: #f1f1f1;
+    }
+
+
+
   </style>
 </head>
 <body>
+
 
 <div class="container">
   <h1>User List</h1>
@@ -100,6 +131,8 @@
       <th>Password</th>
       <th>Username</th>
       <th>Role</th>
+      <th>Action</th>
+
     </tr>
     </thead>
     <tbody>
@@ -109,6 +142,10 @@
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM users");
+
+
+
+
         if(rs.next()) {
           do {
     %>
@@ -119,6 +156,8 @@
       <td><%= rs.getString("password") %></td>
       <td><%= rs.getString("username") %></td>
       <td><%= rs.getString("role") %></td>
+      <td><button id="toggle-btn-1" class="toggle-button" onclick="('#delete')">Activate</button></td>
+
     </tr>
     <%
       } while (rs.next());
@@ -138,8 +177,23 @@
     %>
     </tbody>
   </table>
+
+
+
 </div>
 
+<form action="user-delete" method="post" id="ud" >
+  <label for="categoryId">Category ID:</label>
+  <input type="text" id="categoryId" name="id" required><br><br>
+
+  <button type="submit" style="background-color: red" >Delete Category</button>
+</form>
+<script src="js/jquery-3.7.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+
+
+
+</script>
 </body>
 </html>
