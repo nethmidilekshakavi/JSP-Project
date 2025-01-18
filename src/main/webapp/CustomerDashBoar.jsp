@@ -1,3 +1,7 @@
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.DriverManager" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +72,7 @@
             background-color: #ff9800;
             border: none;
             border-radius: 4px;
-            color: white;
+            color: #71b7e6;
             cursor: pointer;
             transition: background 0.3s;
         }
@@ -213,6 +217,33 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
 
+        /* CSS for Select Category Button */
+        button {
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            color: #fff; /* White text color */
+            background: linear-gradient(135deg, #8e44ad, #71b7e6);
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 20px; /* Add padding */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Add smooth transitions for hover effects */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        button:focus {
+            outline: none; /* Remove focus outline */
+            box-shadow: 0 0 5px #007bff; /* Add subtle box shadow when focused */
+        }
+
+        button:active {
+            background-color: #004085; /* Even darker blue when active */
+            transform: scale(1); /* Reset scale when active */
+        }
 
     </style>
 
@@ -221,29 +252,15 @@
 <nav class="navbar">
     <div class="logo">RFashion</div>
     <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#products">Products</a></li>
+        <li><a href="CustomerDashBoar.jsp">Home</a></li>
         <li><a href="#about">About Us</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="login.jsp">Login</a></li>
-        <li><a href="signup.jsp">Sign Up</a></li>
+        <li><a href="index.jsp">Login</a></li>
+        <li><a href="Admin.jsp">Sign Up</a></li>
     </ul>
-    <form class="category-select" action="category.jsp" method="get">
-        <select name="category">
-            <option value="" disabled selected>Select Category</option>
-            <option value="women">Women</option>
-            <option value="men">Men</option>
-            <option value="kids">Kids & Baby</option>
-            <option value="dresses">Dresses</option>
-            <option value="tops">Tops</option>
-            <option value="accessories">Accessories</option>
-            <option value="shoes">Shoes & Bags</option>
-            <option value="home-living">Home & Living</option>
-            <option value="sports-outdoor">Sports & Outdoor</option>
-            <option value="beauty-health">Beauty & Health</option>
-        </select>
-        <button type="submit">Go</button>
-    </form>
+
+    <a href="Categories.jsp"><button>Select Category</button></a>
+
 </nav>
 
 
