@@ -14,57 +14,46 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-@WebServlet(name = "CustomerSaveServlet",value = "/Admin-save")
+@WebServlet(name = "AdminSaveServlet", value = "/Admin-save")
 public class AdminSaveServelet extends HttpServlet {
-    AdminBo adminBo =  BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
+    AdminBo adminBo = BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
 
     @Resource(name = "jdbc/pool")
     private DataSource dataSource;
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int id = Integer.parseInt(req.getParameter("adminId"));
+        int id = 0;
         String name = req.getParameter("adminName");
         String email = req.getParameter("adminEmail");
         String password = req.getParameter("password");
         String username = req.getParameter("username");
-        String role = req.getParameter("role");
+        String role = "Customer";
 
-        try {
+        try (Connection connection = dataSource.getConnection()) {
 
-            Connection connection = dataSource.getConnection();
-
-
-            String sql = "INSERT INTO users (id,name,email,password,username,role) VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO users (user_id , username, password, email, name,role) VALUES (?, ?, ?, ?, ? ,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, password);
+            preparedStatement.setString(4, email);
+            preparedStatement.setString(5, name);
+            preparedStatement.setString(6, role);
 
-            preparedStatement.setInt(1,id);
-            preparedStatement.setString(2,name);
-            preparedStatement.setString(3,email);
-            preparedStatement.setString(4,password);
-            preparedStatement.setString(5,username);
-            preparedStatement.setString(6,role);
+            int affectedRowCount = preparedStatement.executeUpdate();
 
-            int effectdRowCount = preparedStatement.executeUpdate();
-
-            if (effectdRowCount > 0){
-                resp.sendRedirect(
-                        "Admin.jsp?message=Admin saved successfully"
-                );
-            }else {
-                resp.sendRedirect(
-                        "Admin.jsp?error=fail to saved Unsuccessfully"
-                );
+            if (affectedRowCount > 0) {
+                resp.sendRedirect("Admin.jsp?message=Customer saved successfully");
+            } else {
+                resp.sendRedirect("Admin.jsp?error=Failed to save unsuccessfully");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendRedirect(
-                    "Admin.jsp?error=fail to saved Unsuccessfully"
-            );
+            resp.sendRedirect("Admin.jsp?error=Failed to save unsuccessfully");
         }
     }
 }

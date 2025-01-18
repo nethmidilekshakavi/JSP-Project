@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -38,14 +37,9 @@
 </script>
 <% } %>
 
-
 <div class="form-container">
     <h2>Admin Registration</h2>
     <form action="Admin-save" method="POST" id="form">
-        <div class="form-group">
-            <label for="id">ID</label>
-            <input type="text" id="id" name="adminId" required>
-        </div>
         <div class="form-group">
             <label for="fullName">Full Name</label>
             <input type="text" id="fullName" name="adminName" placeholder="Enter your full name" required>
@@ -62,16 +56,8 @@
             <label for="username">Username</label>
             <input type="text" id="username" name="username" placeholder="Enter your username" required>
         </div>
-        <label for="role">Select Role:</label>
-        <select id="role" name="role">
-            <option value="admin">Admin</option>
-            <option value="Customer">Customer</option>
-        </select>
-
-        <br><br>
         <button type="submit" class="btn">Register</button>
     </form>
-
     <div class="form-footer">
         <p>Already have an account? <a href="index.jsp">Login here</a></p>
     </div>
