@@ -79,7 +79,7 @@
         <div class="category-card-body">
           <h5 class="category-title">Clothing</h5>
           <p>Find the trendiest fashion for every season and occasion.</p>
-          <a href="ClothingProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+          <a href="Products/ClothingProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -28,7 +30,12 @@
     </nav>
 
     <main id="main-content">
-        <h2>Dashboard Overview</h2>
+        <h2 class="welcome-message">Discover the Future of Shopping with Us!</h2>
+
+
+
+        <div class="container1" style="color: #9b59b6">  <div class="date-time"> <% Date now = new Date(); SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEE, MMMM dd, yyyy 'at' HH:mm:ss"); String formattedDate = dateFormatter.format(now); %> <p>Current Date and Time: <%= formattedDate %></p> </div> </div>
+
         <div class="cards">
             <div class="card">
                 <h3>Total Products</h3>
@@ -43,6 +50,10 @@
                 <p>500</p>
             </div>
         </div>
+
+        <img id="pic01" src="Image/UserImg/4a046660d1f9d52cb92a2a4786f2fc3c-removebg-preview.png" alt="">
+
+
     </main>
 </div>
 

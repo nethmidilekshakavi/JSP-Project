@@ -94,7 +94,9 @@ body {
     float: left; /* Align the image to the left */
     margin-left: -40%; /* Move 20% further to the left */
     margin-right: 15px; /* Space between the image and text */
-    width: 800px; /* Adjust the size */
+    width: 400px; /* Adjust the size */
     height: auto; /* Maintain aspect ratio */
     transform: rotatey(180deg);
+    position: absolute;
+
 }

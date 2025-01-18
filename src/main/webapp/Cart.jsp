@@ -1,3 +1,7 @@
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -6,37 +10,57 @@
 </head>
 <body>
 
+<label>User ID:</label>
+<input id="userId"></input>
+
 <label for="options1">Choose a Category:</label>
 <select id="options1">
-  <option value="option1">Electronic Items</option>
-  <option value="option2">Clothes</option>
-  <option value="option3">Footwear</option>
-  <option value="option4">Furniture</option>
-  <option value="option4">Sports</option>
-</select>
-<label for="options2">Product:</label>
-<select id="options2">
-  <option value="option1">Option 1</option>
-  <option value="option2">Option 2</option>
-  <option value="option3">Option 3</option>
-  <option value="option4">Option 4</option>
+  <option value="">Select</option>
+  <%
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
+      Statement stmt = con.createStatement();
+      ResultSet rs = stmt.executeQuery("SELECT category_id, category_name FROM categories");
+      while (rs.next()) {
+  %>
+  <option value="<%= rs.getInt("category_id") %>"><%= rs.getString("category_name") %></option>
+  <%
+      }
+      rs.close();
+      stmt.close();
+      con.close();
+    } catch (Exception e) {
+      System.out.println("Error loading categories: " + e.getMessage());
+    }
+  %>
 </select>
 
-<label for="options3">Qty:</label>
-<select id="options3">
-  <option value="option1">Option 1</option>
-  <option value="option2">Option 2</option>
-  <option value="option3">Option 3</option>
-  <option value="option4">Option 4</option>
+<label for="options2">Product:</label>
+<select id="options2">
+  <%
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
+      Statement stmt = con.createStatement();
+      ResultSet rs = stmt.executeQuery("SELECT category_id, category_name FROM products");
+      while (rs.next()) {
+  %>
+  <option value="<%= rs.getInt("category_id") %>"><%= rs.getString("category_name") %></option>
+  <%
+      }
+      rs.close();
+      stmt.close();
+      con.close();
+    } catch (Exception e) {
+      System.out.println("Error loading categories: " + e.getMessage());
+    }
+  %>
 </select>
-<br><br>
-<label for="options4">Price:</label>
-<select id="options4">
-  <option value="option1">Option 1</option>
-  <option value="option2">Option 2</option>
-  <option value="option3">Option 3</option>
-  <option value="option4">Option 4</option>
-</select>
+
+<label>Quantity:</label>
+<input id="getqty"></input>
+
 
 <label>Quantity:</label>
 <input id="getqty"></input>

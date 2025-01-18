@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inline Cards</title>
+  <title>Electric Items</title>
   <link rel="stylesheet" href="../css/Electric.css">
 </head>
 <body>
