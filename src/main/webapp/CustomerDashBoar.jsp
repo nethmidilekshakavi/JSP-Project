@@ -23,7 +23,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 2rem;
-            background-color: #333;
+            background-color: #1b3a67;
             color: white;
         }
 
@@ -244,6 +244,12 @@
             background-color: #004085; /* Even darker blue when active */
             transform: scale(1); /* Reset scale when active */
         }
+        #home img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;  /* This ensures the image maintains its aspect ratio and fits well */
+        }
+
 
     </style>
 
@@ -267,6 +273,7 @@
 <header id="home" class="home-section">
     <h1>Welcome to RFashion</h1>
     <p>Your one-stop shop for all your needs!</p>
+    <%--<img  src="Image/62d47950534f8f40eee92dde6f3dfb95-removebg-preview.png" alt="">--%>
 </header>
 
 <section class="categories">

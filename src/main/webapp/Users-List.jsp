@@ -128,13 +128,11 @@
       <th>ID</th>
       <th>Name</th>
       <th>Email</th>
-      <th>Password</th>
       <th>Username</th>
       <th>Role</th>
       <th>Action</th>
 
     </tr>
-    </thead>
     <tbody>
     <%
       try {
@@ -143,28 +141,28 @@
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM users");
 
-
-
-
         if(rs.next()) {
           do {
     %>
     <tr>
-      <td><%= rs.getInt("id") %></td>
-      <td><%= rs.getString("name") %></td>
+      <td><%= rs.getInt("user_id") %></td>
+      <td><%= rs.getString("username") %></td>
       <td><%= rs.getString("email") %></td>
-      <td><%= rs.getString("password") %></td>
       <td><%= rs.getString("username") %></td>
       <td><%= rs.getString("role") %></td>
-      <td><button id="toggle-btn-1" class="toggle-button" onclick="('#delete')">Activate</button></td>
-
+      <td>
+        <form action="user-delete" method="post" style="display:inline;">
+          <input type="hidden" name="name" value="<%= rs.getInt("user_id") %>">
+          <button type="submit" class="toggle-button">Delete</button>
+        </form>
+      </td>
     </tr>
     <%
       } while (rs.next());
     } else {
     %>
     <tr>
-      <td colspan="7" class="no-data">No users available.</td>
+      <td colspan="6" class="no-data">No users available.</td>
     </tr>
     <%
         }
@@ -176,6 +174,7 @@
       }
     %>
     </tbody>
+
   </table>
 
 
@@ -183,10 +182,10 @@
 </div>
 
 <form action="user-delete" method="post" id="ud" >
-  <label for="categoryId">Category ID:</label>
-  <input type="text" id="categoryId" name="id" required><br><br>
+  <label for="username">User name:</label>
+  <input type="text" id="username" name="name" required><br><br>
 
-  <button type="submit" style="background-color: red" >Delete Category</button>
+  <button type="submit" style="background-color: red" >Delete User</button>
 </form>
 <script src="js/jquery-3.7.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

@@ -49,6 +49,39 @@
   </div>
 
   <div class="row">
+
+    <div class="col-md-4 mb-4">
+      <div class="category-card" id="02">
+        <img src="Image/Categories/clothes/97a8b26b43a1dabc9d4b227dedb781ef.jpg" alt="Category 2">
+        <img src="Image/Categories/clothes/123b8c354ba4f81d2f2bba92ed701178.jpg" alt="Category 2">
+        <img src="Image/Categories/clothes/629c5c3dcca16da8552d29148adceebd.jpg" alt="Category 2">
+        <img src="Image/Categories/clothes/d67eb3bcd67023a489e3f316ed33ddf8.jpg" alt="Category 2">
+        <img src="Image/Categories/clothes/dfc155d44e2b8e6e51239347ba9e88d1.jpg" alt="Category 2">
+        <img src="Image/Categories/clothes/efd928dd2416229891c1cc6c9d1e0e01.jpg" alt="Category 2">
+        <div class="category-card-body">
+          <h5 class="category-title">Clothing</h5>
+          <p>Find the trendiest fashion for every season and occasion.</p>
+          <a href="Products/ClothingProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4" id="6">
+      <div class="category-card">
+        <img src="Image/Categories/Bags/a7a367408ae9b806d95b2602b4acd237.jpg" alt="Category 5">
+        <img src="Image/Categories/Bags/387377d5f9d27bc85c806bf3a0f39cf7.jpg" alt="Category 5">
+        <img src="Image/Categories/Bags/9af40e5f05999eae9c6e5e8b5f5e166d.jpg" alt="Category 5">
+        <img src="Image/Categories/Bags/5715e1e933f95779e0b6943305158ea1.jpg" alt="Category 5">
+        <img src="Image/Categories/Bags/7066757d4d7b36f79f89f9da626401b0.jpg" alt="Category 5">
+        <img src="Image/Categories/Bags/5c4f554d13f7cc4a932a4af1ed43e004.jpg" alt="Category 5">
+        <div class="category-card-body">
+          <h5 class="category-title">Bags</h5>
+          <p>Discover our stylish and versatile collection of bags for every occasion.</p>
+          <a href="Products/Bags.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+        </div>
+      </div>
+    </div>
+
     <!-- Category Card 1 -->
     <div class="col-md-4 mb-4">
       <div class="category-card" id="01">
@@ -68,21 +101,7 @@
     </div>
 
     <!-- Category Card 2 -->
-    <div class="col-md-4 mb-4">
-      <div class="category-card" id="02">
-        <img src="Image/Categories/clothes/97a8b26b43a1dabc9d4b227dedb781ef.jpg" alt="Category 2">
-        <img src="Image/Categories/clothes/123b8c354ba4f81d2f2bba92ed701178.jpg" alt="Category 2">
-        <img src="Image/Categories/clothes/629c5c3dcca16da8552d29148adceebd.jpg" alt="Category 2">
-        <img src="Image/Categories/clothes/d67eb3bcd67023a489e3f316ed33ddf8.jpg" alt="Category 2">
-        <img src="Image/Categories/clothes/dfc155d44e2b8e6e51239347ba9e88d1.jpg" alt="Category 2">
-        <img src="Image/Categories/clothes/efd928dd2416229891c1cc6c9d1e0e01.jpg" alt="Category 2">
-        <div class="category-card-body">
-          <h5 class="category-title">Clothing</h5>
-          <p>Find the trendiest fashion for every season and occasion.</p>
-          <a href="Products/ClothingProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
-        </div>
-      </div>
-    </div>
+
 
     <!-- Category Card 3 -->
     <div class="col-md-4 mb-4" id="03">

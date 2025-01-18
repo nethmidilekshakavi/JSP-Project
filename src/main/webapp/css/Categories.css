@@ -29,7 +29,8 @@
     color: #555;
 }
 .category-card-body .btn {
-    background-color: #007bff;
+    background: linear-gradient(to top, #71b7e6, #9b59b6);
+
     color: white;
     border: none;
     border-radius: 5px;

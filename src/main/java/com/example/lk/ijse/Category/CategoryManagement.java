@@ -1,8 +1,5 @@
 package com.example.lk.ijse.Category;
-
-import com.example.lk.ijse.Entity.Category;
 import jakarta.annotation.Resource;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,18 +21,17 @@ public class CategoryManagement extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            // Get category details from form
+
             int id = Integer.parseInt(req.getParameter("categoryId"));
             String name = req.getParameter("categoryName");
             String desc = req.getParameter("categoryDescription");
 
-            // Validate inputs (optional, but good practice)
             if (name == null || name.isEmpty() || desc == null || desc.isEmpty()) {
                 resp.sendRedirect("CategoryManagemt.jsp?error=Category name and description are required");
                 return;
             }
 
-            // Establish connection
+
             try (Connection connection = dataSource.getConnection()) {
                 String sql = "INSERT INTO categories(category_id, category_name, description) VALUES (?, ?, ?)";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {

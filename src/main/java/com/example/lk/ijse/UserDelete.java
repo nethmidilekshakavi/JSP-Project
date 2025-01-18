@@ -22,22 +22,19 @@ public class UserDelete extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int id = Integer.parseInt(req.getParameter("id"));
-
+        String name = req.getParameter("name");
 
         try {
             // Get database connection from the DataSource
             Connection connection = dataSource.getConnection();
 
             // SQL query to update category details
-            String sql = "DELETE FROM users WHERE id = ?";
+            String sql = "DELETE FROM users WHERE username = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            // Set parameters for the prepared statement
 
-            preparedStatement.setInt(1, id);
+            preparedStatement.setString(1, name);
 
-            // Execute update and check the number of affected rows
             int effectdRowCount = preparedStatement.executeUpdate();
 
             if (effectdRowCount > 0){

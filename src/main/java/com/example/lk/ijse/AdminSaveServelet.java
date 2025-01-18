@@ -1,13 +1,12 @@
 package com.example.lk.ijse;
 
-import com.example.lk.ijse.Bo.AdminBo;
-import com.example.lk.ijse.Bo.BOFactory;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -16,7 +15,6 @@ import java.sql.PreparedStatement;
 
 @WebServlet(name = "AdminSaveServlet", value = "/Admin-save")
 public class AdminSaveServelet extends HttpServlet {
-    AdminBo adminBo = BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
 
     @Resource(name = "jdbc/pool")
     private DataSource dataSource;
@@ -33,12 +31,17 @@ public class AdminSaveServelet extends HttpServlet {
 
         try (Connection connection = dataSource.getConnection()) {
 
-            String sql = "INSERT INTO users (user_id , username, password, email, name,role) VALUES (?, ?, ?, ?, ? ,?)";
+
+            String sql = "INSERT INTO users (user_id, username, password, email, name, role) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
 
             preparedStatement.setInt(1, id);
             preparedStatement.setString(2, username);
-            preparedStatement.setString(3, password);
+            preparedStatement.setString(3, hashedPassword);  // Set hashed password
             preparedStatement.setString(4, email);
             preparedStatement.setString(5, name);
             preparedStatement.setString(6, role);
@@ -46,7 +49,7 @@ public class AdminSaveServelet extends HttpServlet {
             int affectedRowCount = preparedStatement.executeUpdate();
 
             if (affectedRowCount > 0) {
-                resp.sendRedirect("Admin.jsp?message=Customer saved successfully");
+                resp.sendRedirect("Admin.jsp?message=Admin saved successfully");
             } else {
                 resp.sendRedirect("Admin.jsp?error=Failed to save unsuccessfully");
             }

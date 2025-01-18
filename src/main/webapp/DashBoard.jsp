@@ -18,9 +18,9 @@
         <img id="dashimg" src="Image/62d47950534f8f40eee92dde6f3dfb95-removebg-preview.png" alt="Dashboard Logo">
 
         <div class="admin-Access">
-            <a href="javascript:void(0);" onclick="loadPage('UserProfile.jsp')"><button>User Profile Management</button></a>
-            <a href="javascript:void(0);" onclick="loadPage('Cart.jsp')"><button>Shopping Cart</button></a>
-            <a href="javascript:void(0);" onclick="loadPage('Categories.jsp')"><button>Products</button></a>
+            <%--<a href="javascript:void(0);" onclick="loadPage('UserProfile.jsp')"><button>User Profile Management</button></a>--%>
+            <%--<a href="javascript:void(0);" onclick="loadPage('Cart.jsp')"><button>Shopping Cart</button></a>--%>
+            <%--<a href="javascript:void(0);" onclick="loadPage('Categories.jsp')"><button>Products</button></a>--%>
             <a href="javascript:void(0);" onclick="loadPage('ProductMangemt.jsp')"><button>Product Management</button></a>
             <a href="javascript:void(0);" onclick="loadPage('CategoryManagemt.jsp')"><button>Category Management</button></a>
             <a href="javascript:void(0);" onclick="loadPage('Users-List.jsp')"><button>User Management</button></a>
