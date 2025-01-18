@@ -14,7 +14,7 @@
       <h3>Headphone</h3>
       <p class="description">A creamy latte with a smooth finish.</p>
       <p class="price">Rs.3000.00</p>
-      <a href=""><button>Order Now</button></a>
+      <a href="../Cart.jsp"><button>Order Now</button></a>
     </div>
     <div class="card">
       <img src="../Image/Categories/Eeletronic/6b07dc8a2d28374ff5d01ba6dc148703.jpg" alt="Item 1">

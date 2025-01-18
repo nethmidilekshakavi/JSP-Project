@@ -10,99 +10,75 @@
 </head>
 <body>
 
-<label>User ID:</label>
-<input id="userId"></input>
-
-<label for="options1">Choose a Category:</label>
-<select id="options1">
-  <option value="">Select</option>
-  <%
-    try {
-      Class.forName("com.mysql.cj.jdbc.Driver");
-      Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
-      Statement stmt = con.createStatement();
-      ResultSet rs = stmt.executeQuery("SELECT category_id, category_name FROM categories");
-      while (rs.next()) {
-  %>
-  <option value="<%= rs.getInt("category_id") %>"><%= rs.getString("category_name") %></option>
-  <%
-      }
-      rs.close();
-      stmt.close();
-      con.close();
-    } catch (Exception e) {
-      System.out.println("Error loading categories: " + e.getMessage());
-    }
-  %>
-</select>
-
-<label for="options2">Product:</label>
-<select id="options2">
-  <%
-    try {
-      Class.forName("com.mysql.cj.jdbc.Driver");
-      Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
-      Statement stmt = con.createStatement();
-      ResultSet rs = stmt.executeQuery("SELECT category_id, category_name FROM products");
-      while (rs.next()) {
-  %>
-  <option value="<%= rs.getInt("category_id") %>"><%= rs.getString("category_name") %></option>
-  <%
-      }
-      rs.close();
-      stmt.close();
-      con.close();
-    } catch (Exception e) {
-      System.out.println("Error loading categories: " + e.getMessage());
-    }
-  %>
-</select>
-
-<label>Quantity:</label>
-<input id="getqty"></input>
-
-
-<label>Quantity:</label>
-<input id="getqty"></input>
-
 <div class="cart-container">
   <h1>Your Shopping Cart</h1>
 
+  <div class="cart-items">
+    <!-- Cart item dynamically populated -->
+    <div class="cart-item">
 
-  <table class="cart-table">
-    <thead>
-    <tr>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Total</th>
-      <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Loop through cart items dynamically -->
-    <c:forEach var="item" items="${cartItems}">
-      <tr>
-        <td>${item.productName}</td>
-        <td>${item.quantity}</td>
-        <td>${item.price}</td>
-        <td>${item.totalPrice}</td>
-        <td>
-          <form action="cart" method="post">
-            <input type="hidden" name="productId" value="${item.productId}">
-            <button type="submit" name="action" value="remove">Remove</button>
-          </form>
-        </td>
-      </tr>
-    </c:forEach>
-    </tbody>
-  </table>
+      <!-- Image Section -->
+      <div class="image-section">
+        <img src="<%= request.getParameter("product_image") %>" alt="Product Image">
+      </div>
+
+
+      <!-- Product Details Section -->
+      <div class="item-details">
+        <h2><%= request.getParameter("product_name") %></h2>
+        <p>Category: <span>Clothing</span></p>
+        <p>Price: Rs.<%= request.getParameter("product_price") %></p>
+        <div class="quantity">
+          <label for="quantity">Quantity: </label>
+          <input type="number" id="quantity" name="quantity" value="1" min="1">
+        </div>
+        <button class="remove-btn">Remove</button>
+      </div>
+    </div>
+  </div>
 
   <div class="cart-summary">
-    <p>Total Items: ${totalItems}</p>
-    <p>Grand Total: ${grandTotal}</p>
-    <a href="Order.jsp" class="btn-checkout">Proceed to Checkout</a>
+    <h3>Cart Summary</h3>
+    <p>Total: <span id="total-price">Rs.<%= request.getParameter("product_price") %></span></p>
+    <button class="checkout-btn">Proceed to Checkout</button>
   </div>
 </div>
+
+<script src="js/jquery-3.7.1.min.js"></script>
+<script>
+  // Function to preview the selected image
+  function previewImage(event) {
+    const previewContainer = document.getElementById('image-preview');
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        // Create an image element and display it
+        const imgElement = document.createElement('img');
+        imgElement.src = e.target.result;
+        previewContainer.innerHTML = '';  // Clear the previous preview
+        previewContainer.appendChild(imgElement);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      previewContainer.innerHTML = '<span>No image selected</span>';
+    }
+  }
+
+  // Function to handle the image upload (you can replace with actual server-side logic)
+  function uploadImage() {
+    const fileInput = document.getElementById('image-upload');
+    const file = fileInput.files[0];
+
+    if (file) {
+      // Here, you can send the file to the server using AJAX or a form submission
+      alert('Image uploaded successfully (this is a demo).');
+    } else {
+      alert('Please select an image to upload.');
+    }
+  }
+</script>
+
 </body>
 </html>

@@ -19,6 +19,7 @@ public class AdminSaveServelet extends HttpServlet {
     @Resource(name = "jdbc/pool")
     private DataSource dataSource;
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -28,6 +29,8 @@ public class AdminSaveServelet extends HttpServlet {
         String password = req.getParameter("password");
         String username = req.getParameter("username");
         String role = "Customer";
+
+
 
         try (Connection connection = dataSource.getConnection()) {
 

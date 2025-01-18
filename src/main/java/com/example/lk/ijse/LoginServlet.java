@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 
                     if ("admin".equalsIgnoreCase(role)) {
                         resp.sendRedirect("DashBoard.jsp?message=Login successful");
-                    } else if ("Customer".equalsIgnoreCase(role)) {
+                    } else if ("customer".equalsIgnoreCase(role)) {
                         resp.sendRedirect("CustomerDashBoar.jsp?message=Login successful");
                     }
                 } else {

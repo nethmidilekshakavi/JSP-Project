@@ -19,14 +19,27 @@
             <h3>Short & Baggy Shirt</h3>
             <p class="description">Comfortable and stylish baggy shirt perfect for casual wear.</p>
             <p class="price">Rs.3000.00</p>
-            <a href="../Cart.jsp"><button>Order Now</button></a>
+
+            <!-- Passing product details using a form -->
+            <form action="../Cart.jsp" method="POST">
+                <input type="hidden" name="product_name" value="Short & Baggy Shirt">
+                <input type="hidden" name="product_price" value="Rs.3000.00">
+                <input type="hidden" name="product_image" value="../Image/Categories/clothes/efd928dd2416229891c1cc6c9d1e0e01.jpg">
+                <button type="submit">Order Now</button>
+            </form>
         </div>
+
         <div class="card">
             <img src="../Image/Categories/clothes/629c5c3dcca16da8552d29148adceebd.jpg" alt="Baby Skirt">
             <h3>Baby Skirt</h3>
             <p class="description">Adorable and soft baby skirt for everyday comfort.</p>
             <p class="price">Rs.4500.00</p>
-            <a href="../Cart.jsp"><button>Order Now</button></a>
+            <form action="../Cart.jsp" method="POST">
+                <input type="hidden" name="product_name" value="Baby Skirt">
+                <input type="hidden" name="product_price" value="Rs.4500.00">
+                <input type="hidden" name="product_image"  value="../Image/Categories/clothes/629c5c3dcca16da8552d29148adceebd.jpg">
+                <button type="submit">Order Now</button>
+            </form>
         </div>
         <div class="card">
             <img src="../Image/Categories/clothes/d67eb3bcd67023a489e3f316ed33ddf8.jpg" alt="Shirt Baggy">
