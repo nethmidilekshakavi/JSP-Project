@@ -90,6 +90,9 @@
     %>
   </select>
 
+  <label for="productImage">Product Image:</label>
+  <input type="file" id="productImage" name="productImage" accept="image/*" required><br>
+
   <button type="submit">Add Product</button>
 </form>
 <div class="button-set" id="button-set">

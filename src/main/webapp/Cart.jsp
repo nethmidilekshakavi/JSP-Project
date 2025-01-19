@@ -1,7 +1,4 @@
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -18,32 +15,38 @@
     <div class="cart-item">
 
       <!-- Image Section -->
+      <%
+        String productImage = request.getParameter("product_image");
+      %>
       <div class="image-section">
-        <img src="<%= request.getParameter("product_image") %>" alt="Product Image">
+        <img src="<%= productImage %>" alt="Product Image" style="width: 200px;">
       </div>
 
-
+      <br><br>
       <!-- Product Details Section -->
       <div class="item-details">
         <h2><%= request.getParameter("product_name") %></h2>
+        <br><br>
         <p>Category: <span>Clothing</span></p>
-        <p>Price: Rs.<%= request.getParameter("product_price") %></p>
+        <br>
+        <p>Price: Rs.<%= request.getParameter("product_price") %></p> <br><br>
         <div class="quantity">
           <label for="quantity">Quantity: </label>
           <input type="number" id="quantity" name="quantity" value="1" min="1">
         </div>
+        <h3><%= request.getParameter("product_stock") %></h3>
+        <br>
         <button class="remove-btn">Remove</button>
       </div>
-    </div>
-  </div>
-
+    </div
   <div class="cart-summary">
     <h3>Cart Summary</h3>
     <p>Total: <span id="total-price">Rs.<%= request.getParameter("product_price") %></span></p>
     <button class="checkout-btn">Proceed to Checkout</button>
   </div>
-</div>
 
+  </div>
+</div>
 <script src="js/jquery-3.7.1.min.js"></script>
 <script>
   // Function to preview the selected image

@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.example.lk.ijse.getProductStockFromDB" %>
+
 <html>
 <head>
     <title>Clothing Products</title>
@@ -14,34 +16,39 @@
 <body>
 <div class="content">
     <div class="card-container">
+
         <div class="card">
-            <img src="../Image/Categories/clothes/efd928dd2416229891c1cc6c9d1e0e01.jpg" alt="Short & Baggy Shirt">
+            <img src= "../Image/Categories/clothes/efd928dd2416229891c1cc6c9d1e0e01.jpg" alt="Short & Baggy Shirt">
             <h3>Short & Baggy Shirt</h3>
             <p class="description">Comfortable and stylish baggy shirt perfect for casual wear.</p>
-            <p class="price">Rs.3000.00</p>
+            <p class="price">Rs.3600.00</p>
 
-            <!-- Passing product details using a form -->
+            <!-- Pass product details using a form -->
             <form action="../Cart.jsp" method="POST">
                 <input type="hidden" name="product_name" value="Short & Baggy Shirt">
-                <input type="hidden" name="product_price" value="Rs.3000.00">
+                <input type="hidden" name="product_price" value="Rs.3600.00">
+                <input type="hidden" name="product_stock" value="30">
                 <input type="hidden" name="product_image" value="../Image/Categories/clothes/efd928dd2416229891c1cc6c9d1e0e01.jpg">
                 <button type="submit">Order Now</button>
             </form>
         </div>
 
+
         <div class="card">
-            <img src="../Image/Categories/clothes/629c5c3dcca16da8552d29148adceebd.jpg" alt="Baby Skirt">
-            <h3>Baby Skirt</h3>
-            <p class="description">Adorable and soft baby skirt for everyday comfort.</p>
-            <p class="price">Rs.4500.00</p>
-            <form action="../Cart.jsp" method="POST">
-                <input type="hidden" name="product_name" value="Baby Skirt">
-                <input type="hidden" name="product_price" value="Rs.4500.00">
-                <input type="hidden" name="product_image"  value="../Image/Categories/clothes/629c5c3dcca16da8552d29148adceebd.jpg">
-                <button type="submit">Order Now</button>
-            </form>
-        </div>
-        <div class="card">
+                <img src="../Image/Categories/clothes/629c5c3dcca16da8552d29148adceebd.jpg" alt="Baby Skirt">
+                <h3>Baby Skirt</h3>
+                <p class="description">Adorable and soft baby skirt for everyday comfort.</p>
+                <p class="price">Rs.4500.00</p>
+                <form action="../Cart.jsp" method="POST">
+                    <input type="hidden" name="product_name" value="Baby Skirt">
+                    <input type="hidden" name="product_price" value="4500.00">
+                    <input type="hidden" name="product_stock" value="20">
+                    <input type="hidden" name="product_image" value="../Image/Categories/clothes/629c5c3dcca16da8552d29148adceebd.jpg">
+                    <button type="submit">Order Now</button>
+                </form>
+            </div>
+
+            <div class="card">
             <img src="../Image/Categories/clothes/d67eb3bcd67023a489e3f316ed33ddf8.jpg" alt="Shirt Baggy">
             <h3>Shirt Baggy</h3>
             <p class="description">Trendy baggy shirt for a relaxed and modern look.</p>

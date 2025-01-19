@@ -28,9 +28,10 @@ public class ProductManagementSave extends HttpServlet {
             double price = Double.parseDouble(req.getParameter("price"));
             int qty = Integer.parseInt(req.getParameter("qty"));
             int cid = Integer.parseInt(req.getParameter("cid"));
+            String img =req.getParameter("productImage");
 
-            String sql = "INSERT INTO products (product_id, product_name, description, price, stock_quantity, category_id) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO products (product_id, product_name, description, price, stock_quantity, category_id,product_img) " +
+                    "VALUES (?, ?, ?, ?, ?, ? ,?)";
 
             try (Connection connection = dataSource.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -40,6 +41,7 @@ public class ProductManagementSave extends HttpServlet {
                 preparedStatement.setDouble(4, price);
                 preparedStatement.setInt(5, qty);
                 preparedStatement.setInt(6, cid);
+                preparedStatement.setString(7,img);
 
                 int affectedRowCount = preparedStatement.executeUpdate();
                 if (affectedRowCount > 0) {

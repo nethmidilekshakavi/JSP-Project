@@ -1,7 +1,4 @@
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %><%--
+<%@ page import="java.sql.*" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 1/15/2025
@@ -85,6 +82,7 @@
       <th>Price</th>
       <th>Stock Quantity</th>
       <th>Category ID</th>
+      <th>Product Image</th>
 
     </tr>
     </thead>
@@ -95,17 +93,34 @@
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM products");
-        if(rs.next()) {
+
+
+
+        if (rs.next()) {
           do {
+            int stockQuantity = rs.getInt("stock_quantity");
     %>
     <tr>
       <td><%= rs.getInt("product_id") %></td>
       <td><%= rs.getString("product_name") %></td>
       <td><%= rs.getString("description") %></td>
       <td><%= rs.getDouble("price") %></td>
-      <td><%= rs.getInt("stock_quantity") %></td>
+      <td><%= stockQuantity %></td>
       <td><%= rs.getInt("category_id") %></td>
+      <td>
+        <img src="<%= rs.getString("product_img") %>" alt="Product Image" style="width: 100px; height: auto;">
+      </td>
+      <%--<td>
+        <% if (stockQuantity > 0) { %>
+&lt;%&ndash;
+        <button type="submit" class="btn btn-primary" name="add_to_cart">Add to Cart</button>
+&ndash;%&gt;
+        <% } else { %>
+        <span class="text-danger">Out of Stock</span>
+        <% } %>
+      </td>--%>
     </tr>
+
     <%
       } while (rs.next());
     } else {
@@ -123,7 +138,11 @@
       }
     %>
     </tbody>
+
   </table>
+
+
+
 </div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
