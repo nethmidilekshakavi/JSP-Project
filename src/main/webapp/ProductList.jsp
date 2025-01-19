@@ -110,7 +110,7 @@
       <td>
         <img src="<%= rs.getString("product_img") %>" alt="Product Image" style="width: 100px; height: auto;">
       </td>
-      <%--<td>
+  <%--    <td>
         <% if (stockQuantity > 0) { %>
 &lt;%&ndash;
         <button type="submit" class="btn btn-primary" name="add_to_cart">Add to Cart</button>
