@@ -45,7 +45,7 @@
 
       <!-- Product Details -->
       <div class="item-details">
-        <h2><%= request.getParameter("product_name") %></h2>
+        <h2 id="product-name">Product Name</h2>
         <p>Price: Rs.<%= request.getParameter("product_price") %></p>
 
 
@@ -109,9 +109,11 @@
 
     if (productPrice !== undefined && productQuantity !== undefined) {
       // Set product name
+      $('#product-name').text(selectedOption.text());
 
       // Set product price
       $('.item-details p:contains("Price")').text("Price: Rs." + productPrice);
+
 
     }
 
