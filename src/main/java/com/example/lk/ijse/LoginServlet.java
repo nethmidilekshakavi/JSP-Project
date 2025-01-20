@@ -24,12 +24,16 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        String userId = req.getParameter("userid");
+
+
+
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PW);
 
-            String query = "SELECT password, role FROM users WHERE username = ?";
+            String query = "SELECT password, role , user_id FROM users WHERE username = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
 
@@ -42,6 +46,8 @@ public class LoginServlet extends HttpServlet {
                     HttpSession session = req.getSession();
                     session.setAttribute("username", username);
                     session.setAttribute("role", role);
+                    session.setAttribute("user_id", userId);
+
 
                     if ("admin".equalsIgnoreCase(role)) {
                         resp.sendRedirect("DashBoard.jsp?message=Login successful");

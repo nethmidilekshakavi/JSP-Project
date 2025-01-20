@@ -1,4 +1,4 @@
-package com.example.lk.ijse;
+package com.example.lk.ijse.product;
 
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServlet;

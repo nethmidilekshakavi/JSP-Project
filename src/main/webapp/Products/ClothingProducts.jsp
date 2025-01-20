@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.example.lk.ijse.getProductStockFromDB" %>
+<%@ page import="com.example.lk.ijse.product.getProductStockFromDB" %>
 
 <html>
 <head>
@@ -17,7 +17,7 @@
 <div class="content">
     <div class="card-container">
 
-        <%@ page import="com.example.lk.ijse.getProductStockFromDB" %>
+        <%@ page import="com.example.lk.ijse.product.getProductStockFromDB" %>
 
         <%@ page import="java.sql.*" %>
         <%@ page import="javax.sql.DataSource" %>
