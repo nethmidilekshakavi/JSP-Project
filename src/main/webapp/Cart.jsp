@@ -66,7 +66,7 @@
 
     <div class="cart-summary">
       <h3>Cart Summary</h3>
-      <p>Total: <span id="total-price">Rs.<%= request.getParameter("product_price") %></span></p>
+      <p><span id="total-price" style="font-weight: bold; font-size: 30px; color: red;">Rs.<%= request.getParameter("product_price") %></span></p>
       <button class="checkout-btn">Add to Cart</button>
       <img src="Image/b37a66a9eeabbcd3e900ced1b4830532-removebg-preview.png" alt="">
     </div>
