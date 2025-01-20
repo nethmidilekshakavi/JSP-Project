@@ -100,19 +100,48 @@
 
 <script>
 
+
   function showProductDetails() {
     var selectedOption = $('#product option:selected');
     var productPrice = selectedOption.data('price');
     var productQuantity = selectedOption.data('quantity');
+    var productImage = selectedOption.data('image');
 
     if (productPrice !== undefined && productQuantity !== undefined) {
-      $('.item-details h2').text(selectedOption.text());
-      $('#product-price').text(productPrice);
+      // Set product name
+
+      // Set product price
+      $('.item-details p:contains("Price")').text("Price: Rs." + productPrice);
+
+    }
+
+    if (productPrice !== undefined && productQuantity !== undefined) {
+      var initialQuantity = 1; // Set initial quantity to 1
+      var totalPrice = productPrice * initialQuantity;
+
+      // Display product details
+      $('#product-name').text(selectedOption.text());
+      $('#product-price').text("Rs. " + productPrice);
       $('#stock-quantity').text(productQuantity);
       $('.quantity input').attr("max", productQuantity);
-      $('#total-price').text("Rs." + productPrice);
+      $('.quantity input').val(initialQuantity); // Set default quantity to 1
+      $('#product-image').attr("src", productImage || "default-image.jpg");
+      $('#total-price').text("Total Price: Rs. " + totalPrice);
+
+      // Handle quantity change
+      $('.quantity input').on('input', function () {
+        var enteredQuantity = $(this).val();
+        if (enteredQuantity > productQuantity) {
+          alert("Quantity exceeds available stock!");
+          $(this).val(productQuantity); // Reset to max quantity if exceeded
+          enteredQuantity = productQuantity;
+        }
+        var updatedTotalPrice = productPrice * enteredQuantity;
+        $('#total-price').text("Total Price: Rs. " + updatedTotalPrice);
+      });
     }
   }
+
 
 
 </script>
