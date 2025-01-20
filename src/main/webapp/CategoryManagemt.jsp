@@ -8,6 +8,40 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="css/CatgoryManagemt.css">
 
+  <style>
+    /* Modal Styles */
+    #addCategoryModal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
@@ -42,19 +76,28 @@
 
 <h1>Category Management</h1>
 
- <!-- Category Form -->
-<form action="category-save" method="post" id="form">
-  <label for="categoryId">Category ID:</label>
-  <input type="text" id="categoryId" name="categoryId" required><br><br>
+<%--
+<button type="button" class="btn-view" style="background-color:#71b7e6; width: 300px; display: block; margin: 10px auto;" onclick="showModal()">Add Category</button>
+--%>
 
-  <label for="categoryName">Category Name:</label>
-  <input type="text" id="categoryName" name="categoryName" required><br><br>
+<%--<div id="addCategoryModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>--%>
+    <!-- Category Form -->
+    <form action="category-save" method="post" id="form">
+      <label for="categoryId">Category ID:</label>
+      <input type="text" id="categoryId" name="categoryId" required><br><br>
 
-  <label for="categoryDescription">Description:</label>
-  <input type="text" id="categoryDescription" name="categoryDescription" required><br><br>
+      <label for="categoryName">Category Name:</label>
+      <input type="text" id="categoryName" name="categoryName" required><br><br>
 
-  <button type="submit" name="action" value="addCategory">Add Category</button>
-</form>
+      <label for="categoryDescription">Description:</label>
+      <input type="text" id="categoryDescription" name="categoryDescription" required><br><br>
+
+      <button type="submit" name="action" value="addCategory">Add Category</button>
+    </form>
+<%--  </div>
+</div>--%>
 
 <div class="button-set" id="button-set">
   <a href="CategoryList.jsp">
@@ -75,7 +118,6 @@
   <img src="Image/Categories/Eeletronic/dbccb776620d025ab9b9fe5218b64a83.jpg" alt="">
   <img src="Image/Categories/Sports/61fa1cfd34c4379f2765f241dbcf8381.jpg" alt="">
 </div>
-
 
 <%
   List<Category> categoryList = (List<Category>) request.getAttribute("categories");
@@ -111,6 +153,23 @@
 </table>
 <% } %>
 
+<script>
+  function showModal() {
+    var modal = document.getElementById('addCategoryModal');
+    modal.style.display = 'block';
+  }
+  function closeModal() {
+    var modal = document.getElementById('addCategoryModal');
+    modal.style.display = 'none';
+  }
+
+  window.onclick = function(event) {
+    var modal = document.getElementById('addCategoryModal');
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 

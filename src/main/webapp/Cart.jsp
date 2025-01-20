@@ -3,104 +3,80 @@
 <html>
 <head>
   <title>Dynamic Product Loading</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="css/cart.css">
-
- <style>
-   body {
-     font-family: Arial, sans-serif;
-     background-color: #f4f4f9;
-     margin: 0;
-     padding: 0;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     height: 100vh;
-   }
-
-   form {
-     background-color: #ffffff;
-     padding: 15px;
-     margin: 20px auto;
-     width: 60%;
-     max-width: 500px;
-     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-     border-radius: 8px;
-     display: flex;
-     flex-direction: column;
-   }
-
-   label {
-     font-size: 14px;
-     color: #333;
-     margin-bottom: 5px;
-   }
-
-   select {
-     width: 100%;
-     padding: 8px;
-     font-size: 14px;
-     border-radius: 5px;
-     border: 1px solid #ddd;
-     margin-bottom: 15px;
-     box-sizing: border-box;
-     background-color: #f9f9f9;
-   }
-
-   select:focus {
-     border-color: #007bff;
-     outline: none;
-     background-color: #e9f1ff;
-   }
-
-   button {
-     background-color: #28a745;
-     color: white;
-     padding: 8px 16px;
-     font-size: 14px;
-     border: none;
-     border-radius: 5px;
-     cursor: pointer;
-     transition: background-color 0.3s ease;
-     align-self: flex-end;
-   }
-
-   button:hover {
-     background-color: #218838;
-   }
-
- </style>
-
 </head>
 <body>
 
-<form> <label for="cid">Category:</label>
-  <select id="cid" name="cid" required onchange="loadProducts()">
-    <option value="">Select</option> <% try { Class.forName("com.mysql.cj.jdbc.Driver");
-      Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
-      Statement stmt = con.createStatement();
-      ResultSet rs = stmt.executeQuery("SELECT category_id, category_name FROM categories");
-      while (rs.next()) { %> <option value="<%= rs.getInt("category_id") %>"><%= rs.getString("category_id") %>
-  </option> <% } rs.close(); stmt.close(); con.close(); }
-  catch (Exception e) { e.printStackTrace(); } %>
-  </select> <br><br>
+<form id="form">
+  <div class="cart-container">
+    <!-- Left Side (Form Section) -->
+    <div class="form-section">
+      <h1>Your Shopping Cart</h1>
 
-  <label for="product">Select Product:</label>
-  <select id="product" name="product">
-    <option value="">Select a product</option>
-  </select>
- </form>
+      <label for="cid">Category:</label>
+      <select class="form-select" aria-label="Disabled select example" id="cid" name="cid" required onchange="loadProducts()">
+        <option selected>Category:</option>
+        <%
+          try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT category_id , category_name FROM categories");
+            while (rs.next()) {
+        %>
+        <option value="<%= rs.getInt("category_id") %>"><%= rs.getString("category_name") %></option>
+        <%
+            }
+            rs.close();
+            stmt.close();
+            con.close();
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+        %>
+      </select>
+      <br>
 
-<%--
-  <div class="cart-summary">
-    <h3>Cart Summary</h3>
-    <p>Total: <span id="total-price">Rs.<%= request.getParameter("product_price") %></span></p>
-    <button class="checkout-btn">Proceed to Checkout</button>
+      <label for="product">Select Product:</label>
+      <select class="form-select" aria-label="Disabled select example" id="product" name="product" required onchange="showProductDetails()">
+        <option selected>Select Product:</option>
+      </select>
+
+      <!-- Product Details -->
+      <div class="item-details">
+        <h2><%= request.getParameter("product_name") %></h2>
+        <p>Price: Rs.<%= request.getParameter("product_price") %></p>
+
+
+        <label>Stock Quantity:</label>
+        <p id="stock-quantity"></p>
+
+        <div class="quantity">
+          <label for="quantity">Quantity: </label>
+          <input type="number" id="quantity" name="quantity" value="1" min="1">
+        </div>
+
+        <div class="image-section">
+          <img src="<%= request.getParameter("product_image") %>" alt="Product Image">
+        </div>
+        <button class="remove-btn">Remove</button>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <h3>Cart Summary</h3>
+      <p>Total: <span id="total-price">Rs.<%= request.getParameter("product_price") %></span></p>
+      <button class="checkout-btn">Add to Cart</button>
+      <img src="Image/b37a66a9eeabbcd3e900ced1b4830532-removebg-preview.png" alt="">
+    </div>
   </div>
---%>
+</form>
+
 
 
 <script src="js/jquery-3.7.1.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
   function loadProducts() {
     var categoryId = $('#cid').val();
@@ -122,6 +98,24 @@
   }
 </script>
 
+<script>
+
+  function showProductDetails() {
+    var selectedOption = $('#product option:selected');
+    var productPrice = selectedOption.data('price');
+    var productQuantity = selectedOption.data('quantity');
+
+    if (productPrice !== undefined && productQuantity !== undefined) {
+      $('.item-details h2').text(selectedOption.text());
+      $('#product-price').text(productPrice);
+      $('#stock-quantity').text(productQuantity);
+      $('.quantity input').attr("max", productQuantity);
+      $('#total-price').text("Rs." + productPrice);
+    }
+  }
+
+
+</script>
 
 </body>
 </html>
