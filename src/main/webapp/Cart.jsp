@@ -45,12 +45,14 @@
 
       <!-- Product Details -->
       <div class="item-details">
-        <h2 id="product-name">Product Name</h2>
-        <p>Price: Rs.<%= request.getParameter("product_price") %></p>
+        <h2 id="product-name" style="font-size: 25px">Product Name</h2>
+        <p style="font-size: 30px"><strong>Price: Rs.<%= request.getParameter("product_price") %></strong></p>
 
+        <br>
 
         <label>Stock Quantity:</label>
         <p id="stock-quantity"></p>
+
 
         <div class="quantity">
           <label for="quantity">Quantity: </label>
@@ -60,15 +62,15 @@
         <div class="image-section">
           <img src="<%= request.getParameter("product_image") %>" alt="Product Image">
         </div>
-        <button class="remove-btn">Remove</button>
+
       </div>
     </div>
 
     <div class="cart-summary">
       <h3>Cart Summary</h3>
-      <p><span id="total-price" style="font-weight: bold; font-size: 30px; color: red;">Rs.<%= request.getParameter("product_price") %></span></p>
+      <p><span id="total-price" style="font-weight: bold; font-size: 30px; color: red;">Rs.<%= request.getParameter("product_price") %></span></p> <button class="remove-btn">Remove</button>
       <button class="checkout-btn">Add to Cart</button>
-      <img src="Image/b37a66a9eeabbcd3e900ced1b4830532-removebg-preview.png" alt="">
+      <img  style="height: 450px" src="Image/b37a66a9eeabbcd3e900ced1b4830532-removebg-preview.png" alt="">
     </div>
   </div>
 </form>
