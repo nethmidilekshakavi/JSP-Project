@@ -2,83 +2,68 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Cart</title>
+  <title>Dynamic Product Loading</title>
   <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
-
 <div class="cart-container">
-  <h1>Your Shopping Cart</h1>
+  <h1>Select Category and Product</h1>
 
-  <div class="cart-items">
-    <!-- Cart item dynamically populated -->
-    <div class="cart-item">
+  <label for="cid">Category:</label>
+  <select id="cid" name="cid" onchange="loadProducts()" required>
+    <option value="">Select</option>
+    <%
+      try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT category_id, category_name FROM categories");
+        while (rs.next()) {
+    %>
+    <option value="<%= rs.getInt("category_id") %>"><%= rs.getString("category_id") %></option>
+    <%
+        }
+        rs.close();
+        stmt.close();
+        con.close();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    %>
+  </select>
 
-      <!-- Image Section -->
-      <%
-        String productImage = request.getParameter("product_image");
-      %>
-      <div class="image-section">
-        <img src="<%= productImage %>" alt="Product Image" style="width: 200px;">
-      </div>
+  <br><br>
 
-      <br><br>
-      <!-- Product Details Section -->
-      <div class="item-details">
-        <h2><%= request.getParameter("product_name") %></h2>
-        <br><br>
-        <p>Category: <span>Clothing</span></p>
-        <br>
-        <p>Price: Rs.<%= request.getParameter("product_price") %></p> <br><br>
-        <div class="quantity">
-          <label for="quantity">Quantity: </label>
-          <input type="number" id="quantity" name="quantity" value="1" min="1">
-        </div>
-        <h3><%= request.getParameter("product_stock") %></h3>
-        <br>
-        <button class="remove-btn">Remove</button>
-      </div>
-    </div
+  <label for="product">Select Product:</label>
+  <select id="product" name="product">
+    <option value="">Select a product</option>
+  </select>
+
   <div class="cart-summary">
     <h3>Cart Summary</h3>
     <p>Total: <span id="total-price">Rs.<%= request.getParameter("product_price") %></span></p>
     <button class="checkout-btn">Proceed to Checkout</button>
   </div>
-
-  </div>
 </div>
-<script src="js/jquery-3.7.1.min.js"></script>
+
 <script>
-  // Function to preview the selected image
-  function previewImage(event) {
-    const previewContainer = document.getElementById('image-preview');
-    const file = event.target.files[0];
+  // AJAX function to load products based on selected category
+  function loadProducts() {
+    const categoryId = document.getElementById("cid").value;
+    const productDropdown = document.getElementById("product");
 
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        // Create an image element and display it
-        const imgElement = document.createElement('img');
-        imgElement.src = e.target.result;
-        previewContainer.innerHTML = '';  // Clear the previous preview
-        previewContainer.appendChild(imgElement);
+    // Clear the previous product options
+    productDropdown.innerHTML = '<option value="">Select a product</option>';
+
+    if (categoryId) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "loadProduts.jsp?product_name=" + encodeURIComponent(categoryId), true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          productDropdown.innerHTML += xhr.responseText;
+        }
       };
-      reader.readAsDataURL(file);
-    } else {
-      previewContainer.innerHTML = '<span>No image selected</span>';
-    }
-  }
-
-  // Function to handle the image upload (you can replace with actual server-side logic)
-  function uploadImage() {
-    const fileInput = document.getElementById('image-upload');
-    const file = fileInput.files[0];
-
-    if (file) {
-      // Here, you can send the file to the server using AJAX or a form submission
-      alert('Image uploaded successfully (this is a demo).');
-    } else {
-      alert('Please select an image to upload.');
+      xhr.send();
     }
   }
 </script>

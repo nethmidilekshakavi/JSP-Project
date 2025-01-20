@@ -1,4 +1,5 @@
 package com.example.lk.ijse.product;
+import com.example.lk.ijse.Entity.Products;
 import jakarta.annotation.Resource;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -55,6 +56,8 @@ public class ProductManagementSave extends HttpServlet {
             resp.sendRedirect("ProductMangemt.jsp?error=An error occurred while saving the product");
         }
     }
+
+
 }
 
 
