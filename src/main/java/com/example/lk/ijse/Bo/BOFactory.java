@@ -2,6 +2,7 @@ package com.example.lk.ijse.Bo;
 
 
 import com.example.lk.ijse.Bo.impl.CategoryBoImpl;
+import com.example.lk.ijse.Bo.impl.ProductBoImpl;
 import com.example.lk.ijse.Bo.impl.userBoImpl;
 
 public class BOFactory {
@@ -13,7 +14,7 @@ public class BOFactory {
     }
 
     public enum BOTypes{
-       ADMIN,CATEGORY
+       ADMIN,CATEGORY,PRODUCT
     }
 
     //Object creation logic for BO objects
@@ -25,6 +26,8 @@ public class BOFactory {
             }
             case CATEGORY:
                 return new CategoryBoImpl();
+            case PRODUCT:
+                return new ProductBoImpl();
 
         }
         return null;

@@ -1,6 +1,7 @@
 package com.example.lk.ijse.Dao;
 
 import com.example.lk.ijse.Dao.impl.CategoryDaoImpl;
+import com.example.lk.ijse.Dao.impl.ProductDaoImpl;
 import com.example.lk.ijse.Dao.impl.userDaoImpl;
 
 public class DaoFactory {
@@ -14,7 +15,7 @@ public class DaoFactory {
     }
 
     public enum DAOTypes {
-        ADMIN,CATEGORIES
+        ADMIN,CATEGORIES,PRODUCTS
     }
 
     public SuperDao getDAO(DAOTypes types) {
@@ -25,6 +26,9 @@ public class DaoFactory {
                 return null;
             case CATEGORIES:
                 return new CategoryDaoImpl();
+            case PRODUCTS:
+                return new ProductDaoImpl();
+
         }
     }
 

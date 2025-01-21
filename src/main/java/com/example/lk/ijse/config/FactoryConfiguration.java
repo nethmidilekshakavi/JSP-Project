@@ -1,6 +1,8 @@
 package com.example.lk.ijse.config;
 
 
+import com.example.lk.ijse.Entity.categories;
+import com.example.lk.ijse.Entity.products;
 import com.example.lk.ijse.Entity.users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,6 +24,8 @@ public class FactoryConfiguration {
             configuration.setProperties(properties);
 
             configuration.addAnnotatedClass(users.class);
+            configuration.addAnnotatedClass(categories.class);
+            configuration.addAnnotatedClass(products.class);
 
 
             sessionFactory = configuration.buildSessionFactory();
