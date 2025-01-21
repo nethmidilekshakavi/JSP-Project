@@ -1,6 +1,8 @@
 package com.example.lk.ijse.Bo;
 
 
+import com.example.lk.ijse.Bo.impl.userBoImpl;
+
 public class BOFactory {
     private static BOFactory boFactory;
     private BOFactory(){
@@ -14,14 +16,12 @@ public class BOFactory {
     }
 
     //Object creation logic for BO objects
-    public AdminBoImpl getBO(BOTypes types){
+    public userBoImpl getBO(BOTypes types){
         switch (types) {
 
             case ADMIN: {
-                return new AdminBoImpl();
+                return new userBoImpl();
             }
-
-
 
         }
         return null;

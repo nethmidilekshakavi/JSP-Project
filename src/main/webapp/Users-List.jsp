@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.lk.ijse.Entity.Admin" %>
+<%@ page import="com.example.lk.ijse.Entity.users" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
 <html>
@@ -147,8 +147,9 @@
     <tr>
       <td><%= rs.getInt("user_id") %></td>
       <td><%= rs.getString("username") %></td>
+      <td><%= rs.getString("password") %></td>
       <td><%= rs.getString("email") %></td>
-      <td><%= rs.getString("username") %></td>
+      <td><%= rs.getString("name") %></td>
       <td><%= rs.getString("role") %></td>
       <td>
         <form action="user-delete" method="post" style="display:inline;">

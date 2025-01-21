@@ -39,7 +39,7 @@
 
 <div class="form-container">
     <h2>Admin Registration</h2>
-    <form action="Admin-save" method="POST" id="form">
+    <form action="admin-save" method="POST" id="form">
         <div class="form-group">
             <label for="fullName">Full Name</label>
             <input type="text" id="fullName" name="adminName" placeholder="Enter your full name" required>

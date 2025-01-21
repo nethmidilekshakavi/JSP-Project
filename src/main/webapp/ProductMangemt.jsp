@@ -91,7 +91,7 @@
   </select>
 
   <label for="productImage">Product Image:</label>
-  <input type="file" id="productImage" name="productImage" accept="image/*" required><br>
+  <input type="file" id="productImage" name="productImage" accept="image/*" required>
 
   <button type="submit">Add Product</button>
 </form>

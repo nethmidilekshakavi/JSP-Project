@@ -3,7 +3,7 @@
 <html>
 <head>
   <title>Product List</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -64,6 +64,7 @@
   </style>
 </head>
 <body>
+
 <div class="container">
   <h1>Product List</h1>
   <table class="user-table" align="center">
@@ -89,10 +90,9 @@
         if (rs.next()) {
           do {
             int stockQuantity = rs.getInt("stock_quantity");
-
-            // Retrieve the base64 image string from the database
-            String base64Image = rs.getString("product_img");
-
+            Blob blob = rs.getBlob("product_img");
+            byte[] byteArray = (blob != null) ? blob.getBytes(1, (int) blob.length()) : null;
+            String base64Image = (byteArray != null) ? java.util.Base64.getEncoder().encodeToString(byteArray) : null;
     %>
     <tr>
       <td><%= rs.getInt("product_id") %></td>
@@ -103,7 +103,7 @@
       <td><%= rs.getInt("category_id") %></td>
       <td>
         <% if (base64Image != null && !base64Image.isEmpty()) { %>
-        <img src="data:image/jpeg;base64,<%= base64Image %>" alt="Product Image" style="width: 100px; height: auto;">
+        <img src="data:Image/jpeg;base64,<%= base64Image %>" alt="Product Image" width="100" height="100">
         <% } else { %>
         <span>No Image</span>
         <% } %>
@@ -117,18 +117,23 @@
       <td colspan="7" class="no-data">No Products available.</td>
     </tr>
     <%
-        }
-        rs.close();
-        stmt.close();
-        con.close();
-      } catch (Exception e) {
-        e.printStackTrace();
+      }
+      rs.close();
+      stmt.close();
+      con.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    %>
+    <tr>
+      <td colspan="7" class="error-message">Error occurred while fetching data.</td>
+    </tr>
+    <%
       }
     %>
     </tbody>
   </table>
 </div>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

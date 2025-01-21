@@ -1,22 +1,16 @@
-package com.example.lk.ijse.Entity;
+package com.example.lk.ijse.DTO;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.lang.model.element.Name;
-
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
-@Entity
-public class Admin {
+public class usersDto {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String email;
@@ -24,3 +18,5 @@ public class Admin {
     private String username;
     private String role;
 }
+
+

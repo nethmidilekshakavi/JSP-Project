@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form id="form">
+<form id="form" method="post" action="Cart.jsp">
   <div class="cart-container">
     <!-- Left Side (Form Section) -->
     <div class="form-section">
@@ -69,7 +69,7 @@
     <div class="cart-summary">
       <h3>Cart Summary</h3>
       <p><span id="total-price" style="font-weight: bold; font-size: 30px; color: red;">Rs.<%= request.getParameter("product_price") %></span></p> <button class="remove-btn">Remove</button>
-      <button class="checkout-btn">Add to Cart</button>
+      <button class="checkout-btn" type="submit">Add to Cart</button>
       <img  style="height: 450px" src="Image/b37a66a9eeabbcd3e900ced1b4830532-removebg-preview.png" alt="">
     </div>
   </div>

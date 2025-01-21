@@ -11,54 +11,54 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @WebServlet("/cart")
-public class CartServlet  extends HttpServlet {
+public class CartServlet extends HttpServlet {
+
     @Resource(name = "jdbc/pool")
     private DataSource dataSource;
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        try {
-
-            int cid = 0;
+        try (Connection connection = dataSource.getConnection()) {
             HttpSession session = req.getSession();
-            int uid = (int) session.getAttribute("user_id"); //userid get in login
-            int productid = Integer.parseInt(req.getParameter("producct_id"));
-            int quentity = req.getIntHeader("quantity");
-            String time = req.getParameter(" timestamp");
-            String img = req.getParameter("img");
-            double total = req.getIntHeader("total");
 
+            // Retrieve form parameters
+            int userId = (int) session.getAttribute("user_id");
+            int productId = Integer.parseInt(req.getParameter("product")); // Assuming "product" is the name attribute in the product select dropdown
+            int quantity = Integer.parseInt(req.getParameter("quantity"));
+            String imgUrl = req.getParameter("product_image");
+            double price = Double.parseDouble(req.getParameter("product_price"));
+            double total = price * quantity;
+            Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now()); // Set current timestamp
 
-            String sql = "INSERT INTO products (cart_id ,user_id, product_id, quantity, added_at, image_url,t) " +
-                    "VALUES (?, ?, ?, ?, ?, ?,?)";
+            // SQL query to insert the cart item
+            String sql = "INSERT INTO cart (user_id, product_id, quantity, added_at, image_url, total ,price) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-            try (Connection connection = dataSource.getConnection();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setInt(1, cid);
-                preparedStatement.setInt(2, uid);
-                preparedStatement.setInt(3, productid);
-                preparedStatement.setInt(4, quentity);
-                preparedStatement.setString(5, time);
-                preparedStatement.setString(6, img);
-                preparedStatement.setDouble(7, total);
-
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setInt(1, userId);
+                preparedStatement.setInt(2, productId);
+                preparedStatement.setInt(3, quantity);
+                preparedStatement.setTimestamp(4, timestamp);
+                preparedStatement.setString(5, imgUrl);
+                preparedStatement.setDouble(6, total);
+                preparedStatement.setDouble(7, price);
 
                 int affectedRowCount = preparedStatement.executeUpdate();
                 if (affectedRowCount > 0) {
-                    resp.sendRedirect("Cart.jsp?message=Cart saved successfully");
+                    resp.sendRedirect("Cart.jsp?message=Cart item added successfully");
                 } else {
-                    resp.sendRedirect("Cart.jsp?error=Failed to save Product");
+                    resp.sendRedirect("Cart.jsp?error=Failed to add item to cart");
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();
-            resp.sendRedirect("Cart.jsp?error=An error occurred while saving the product");
+            resp.sendRedirect("Cart.jsp?error=An error occurred while adding the item to the cart");
         }
-
     }
 }

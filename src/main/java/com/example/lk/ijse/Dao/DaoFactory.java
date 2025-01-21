@@ -1,4 +1,7 @@
 package com.example.lk.ijse.Dao;
+
+import com.example.lk.ijse.Dao.impl.userDaoImpl;
+
 public class DaoFactory {
     private static DaoFactory daoFactory;
 
@@ -16,7 +19,7 @@ public class DaoFactory {
     public SuperDao getDAO(DAOTypes types) {
         switch (types) {
             case ADMIN:
-                return new AdminDaoImpl();
+                return new userDaoImpl();
             default:
                 return null;
         }
