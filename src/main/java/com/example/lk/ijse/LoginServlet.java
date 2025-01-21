@@ -7,13 +7,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-
 import java.io.IOException;
 import java.sql.*;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
-
 
     private static final String DB_URL = "jdbc:mysql://localhost:3306/jsp_project";
     private static final String DB_USER = "root";
@@ -23,36 +21,34 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        String userId = req.getParameter("userid");
-
-
-
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PW);
 
-            String query = "SELECT password, role , user_id FROM users WHERE username = ?";
+            String query = "SELECT password, role FROM users WHERE username = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
+                String storedPassword = resultSet.getString("password"); // Plain text password from database
+                String role = resultSet.getString("role");
 
-                    String role = resultSet.getString("role");
+                if (storedPassword.equals(password)) {
                     HttpSession session = req.getSession();
                     session.setAttribute("username", username);
                     session.setAttribute("role", role);
-                    session.setAttribute("user_id", userId);
-
 
                     if ("admin".equalsIgnoreCase(role)) {
                         resp.sendRedirect("DashBoard.jsp?message=Login successful");
                     } else if ("customer".equalsIgnoreCase(role)) {
-                        resp.sendRedirect("CustomerDashBoar.jsp?message=Login successful");
+                        resp.sendRedirect("CustomerDashBoard.jsp?message=Login successful");
+                    } else {
+                        resp.sendRedirect("index.jsp?error=Unauthorized role");
                     }
-                 else {
+                } else {
                     resp.sendRedirect("index.jsp?error=Invalid username or password");
                 }
             } else {
