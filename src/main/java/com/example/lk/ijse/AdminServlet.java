@@ -19,9 +19,9 @@ public class AdminServlet extends HttpServlet {
 
 
         int id = 0;
-        String name = req.getParameter("adminName");
-        String email = req.getParameter("adminEmail");
-        String password = req.getParameter("password");
+        String name = req.getParameter("username");
+        String email = req.getParameter("password");
+        String password = req.getParameter("adminEmail");
         String username = req.getParameter("username");
         String role = "Customer";
 

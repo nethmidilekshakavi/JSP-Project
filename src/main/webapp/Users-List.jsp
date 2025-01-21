@@ -147,7 +147,6 @@
     <tr>
       <td><%= rs.getInt("user_id") %></td>
       <td><%= rs.getString("username") %></td>
-      <td><%= rs.getString("password") %></td>
       <td><%= rs.getString("email") %></td>
       <td><%= rs.getString("name") %></td>
       <td><%= rs.getString("role") %></td>
