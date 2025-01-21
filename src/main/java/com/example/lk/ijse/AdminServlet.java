@@ -12,7 +12,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/admin-save")
 public class AdminServlet extends HttpServlet {
 
-    userBo userbo = BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
+    userBo userbo = (userBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

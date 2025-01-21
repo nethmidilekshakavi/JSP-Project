@@ -1,4 +1,4 @@
-<%@ page import="com.example.lk.ijse.Entity.Category" %>
+<%@ page import="com.example.lk.ijse.Entity.categories" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -120,7 +120,7 @@
 </div>
 
 <%
-  List<Category> categoryList = (List<Category>) request.getAttribute("categories");
+  List<categories> categoryList = (List<categories>) request.getAttribute("categories");
   if (categoryList != null && !categoryList.isEmpty()) {
 %>
 <table class="category-table">
@@ -133,7 +133,7 @@
   </tr>
   </thead>
   <tbody>
-  <% for (Category category : categoryList) { %>
+  <% for (categories category : categoryList) { %>
   <tr>
     <td><%= category.getCategory_id() %></td>
     <td><%= category.getCategory_name() %></td>

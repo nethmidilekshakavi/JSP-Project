@@ -18,7 +18,7 @@ public class Products {
     private double price;
     private int stock_qty;
 
-    private List<Category> registrations = new ArrayList<>();
+    private List<categories> registrations = new ArrayList<>();
 
     private String img;
 

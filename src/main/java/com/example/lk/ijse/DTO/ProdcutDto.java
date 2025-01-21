@@ -1,6 +1,6 @@
 package com.example.lk.ijse.DTO;
 
-import com.example.lk.ijse.Entity.Category;
+import com.example.lk.ijse.Entity.categories;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +19,7 @@ public class ProdcutDto {
     private double price;
     private int stock_qty;
 
-    private List<Category> registrations = new ArrayList<>();
+    private List<categories> registrations = new ArrayList<>();
 
     private String img;
 

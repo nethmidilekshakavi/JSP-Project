@@ -1,6 +1,7 @@
 package com.example.lk.ijse.Bo;
 
 
+import com.example.lk.ijse.Bo.impl.CategoryBoImpl;
 import com.example.lk.ijse.Bo.impl.userBoImpl;
 
 public class BOFactory {
@@ -12,16 +13,18 @@ public class BOFactory {
     }
 
     public enum BOTypes{
-       ADMIN
+       ADMIN,CATEGORY
     }
 
     //Object creation logic for BO objects
-    public userBoImpl getBO(BOTypes types){
+    public SuperBo getBO(BOTypes types){
         switch (types) {
 
             case ADMIN: {
                 return new userBoImpl();
             }
+            case CATEGORY:
+                return new CategoryBoImpl();
 
         }
         return null;
