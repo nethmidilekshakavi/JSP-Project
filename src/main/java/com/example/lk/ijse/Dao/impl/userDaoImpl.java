@@ -27,4 +27,23 @@ public class userDaoImpl implements UserDao {
             return false;
         }
     }
+
+
+    @Override
+    public boolean delete(int entityId) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = null;
+        try {
+            session.beginTransaction();
+            users users = session.get(users.class,entityId);
+            session.delete(users);
+            session.getTransaction().commit();
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        return false;
+    }
 }

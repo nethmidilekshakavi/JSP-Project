@@ -1,5 +1,8 @@
 package com.example.lk.ijse;
 
+import com.example.lk.ijse.Bo.BOFactory;
+import com.example.lk.ijse.Bo.custom.CategoryBo;
+import com.example.lk.ijse.Bo.custom.userBo;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,32 +18,31 @@ import java.sql.PreparedStatement;
 @WebServlet(urlPatterns = "/user-delete")
 public class UserDelete extends HttpServlet {
 
-    @Resource(name = "jdbc/pool")
-    private DataSource dataSource;
+
+    userBo userBO = (userBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        int id = Integer.parseInt(req.getParameter("id"));
+
+        boolean s = false;
+
         try {
-            int id = Integer.parseInt(req.getParameter("id"));
 
-            try (Connection connection = dataSource.getConnection()) {
-                String sql = "DELETE FROM users WHERE user_id = ?";
-                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                    preparedStatement.setInt(1, id); // Use setInt instead of setString for numeric values
+            s = userBO.deleteuser(id);
 
-                    int affectedRowCount = preparedStatement.executeUpdate();
-                    if (affectedRowCount > 0) {
-                        resp.sendRedirect("Users-List.jsp?message=User deleted successfully");
-                    } else {
-                        resp.sendRedirect("Users-List.jsp?error=Failed to delete user");
-                    }
-                }
-            }
-        } catch (NumberFormatException e) {
-            resp.sendRedirect("Users-List.jsp?error=Invalid user ID");
         } catch (Exception e) {
             e.printStackTrace();
-            resp.sendRedirect("Users-List.jsp?error=An error occurred while deleting the user");
         }
+
+
+        if (s) {
+            resp.sendRedirect("UserDelete.jsp?message=Category saved successfully");
+        } else {
+            resp.sendRedirect("UserDelete.jsp?error=Failed to save category");
+        }
+
     }
+
 }

@@ -23,18 +23,14 @@ public class UserByDeleteAcount extends HttpServlet {
             String pw = req.getParameter("password");
 
             try {
-                // Get database connection from the DataSource
                 Connection connection = dataSource.getConnection();
 
-                // SQL query to delete user based on username and password
                 String sql = "DELETE FROM users WHERE username = ? AND password = ?";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-                // Set parameters for the prepared statement
                 preparedStatement.setString(1, un);
                 preparedStatement.setString(2, pw);
 
-                // Execute update and check the number of affected rows
                 int affectedRowCount = preparedStatement.executeUpdate();
 
                 if (affectedRowCount > 0) {
@@ -46,7 +42,6 @@ public class UserByDeleteAcount extends HttpServlet {
                 preparedStatement.close();
                 connection.close();
             } catch (Exception e) {
-                // Log the exception and redirect with an error message
                 e.printStackTrace();  // For debugging
                 resp.sendRedirect("UserDelete.jsp?error=An error occurred while deleting the account");
             }

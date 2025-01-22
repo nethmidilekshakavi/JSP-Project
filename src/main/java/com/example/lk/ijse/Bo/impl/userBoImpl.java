@@ -15,4 +15,11 @@ public class userBoImpl implements userBo {
         return adminDao.save(new users(entity.getId(),entity.getUsername(),entity.getPassword(),entity.getEmail(),entity.getName(),entity.getRole()));
     }
 
+
+
+    @Override
+    public boolean deleteuser(int id) throws IOException {
+        return adminDao.delete(id);
+    }
+
 }
