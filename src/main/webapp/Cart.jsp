@@ -60,12 +60,12 @@
 
 
         <div class="quantity">
-          <label for="q uantity">Quantity: </label>
+          <label for="quantity">Quantity: </label>
           <input type="number" id="quantity" name="quantity" value="1" min="1">
         </div>
 
         <div class="image-section">
-          <img src="<%= request.getParameter("product_image") %>" alt="Product Image">
+          <img src="<%= request.getParameter("product_image") %>"  alt="Product Image">
         </div>
 
       </div>

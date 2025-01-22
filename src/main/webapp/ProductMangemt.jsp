@@ -51,7 +51,7 @@
 <h1>Product Management</h1>
 
 <!-- Product Form -->
-<form action="product-save" method="post">
+<form action="product-save" method="post" enctype="multipart/form-data">
   <label for="productId">Product ID:</label>
   <input type="text" id="productId" name="pid" required><br>
 
@@ -90,8 +90,8 @@
     %>
   </select>
 
-  <label for="productImage">Product Image:</label>
-  <input type="file" id="productImage" name="productImage" accept="image/*" required>
+  <label>Product Image:</label>
+  <input type="file" name="productImage" required>
 
   <button type="submit">Add Product</button>
 </form>

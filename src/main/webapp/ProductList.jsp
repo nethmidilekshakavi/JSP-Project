@@ -24,11 +24,6 @@
       color: #333;
       font-size: 2em;
     }
-    .error-message {
-      color: red;
-      font-size: 1.2em;
-      text-align: center;
-    }
     .no-data {
       color: #777;
       font-size: 1.2em;
@@ -56,6 +51,11 @@
     tr:hover {
       background-color: #ddd;
     }
+    img {
+      cursor: pointer;
+      width: 100px;
+      height: auto;
+    }
     @media screen and (max-width: 600px) {
       table, th, td {
         font-size: 0.9em;
@@ -67,21 +67,23 @@
 
 <div class="container">
   <h1>Product List</h1>
-  <table class="user-table" align="center">
+  <table class="table table-striped">
     <thead>
     <tr>
       <th>Product ID</th>
-      <th>Product Name</th>
+      <th>Name</th>
       <th>Description</th>
       <th>Price</th>
       <th>Stock Quantity</th>
       <th>Category ID</th>
-      <th>Product Image</th>
+      <th>Image</th>
     </tr>
     </thead>
-    <tbody id="product-table-body">
+    <tbody>
+
     <%
       try {
+        // Database connection
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
         Statement stmt = con.createStatement();
@@ -89,23 +91,20 @@
 
         if (rs.next()) {
           do {
-            int stockQuantity = rs.getInt("stock_quantity");
-            Blob blob = rs.getBlob("product_img");
-            byte[] byteArray = (blob != null) ? blob.getBytes(1, (int) blob.length()) : null;
-            String base64Image = (byteArray != null) ? java.util.Base64.getEncoder().encodeToString(byteArray) : null;
     %>
     <tr>
       <td><%= rs.getInt("product_id") %></td>
       <td><%= rs.getString("product_name") %></td>
       <td><%= rs.getString("description") %></td>
       <td><%= rs.getDouble("price") %></td>
-      <td><%= stockQuantity %></td>
+      <td><%= rs.getInt("stock_quantity") %></td>
       <td><%= rs.getInt("category_id") %></td>
       <td>
-        <% if (base64Image != null && !base64Image.isEmpty()) { %>
-        <img src="data:Image/jpeg;base64,<%= base64Image %>" alt="Product Image" width="100" height="100">
+        <% String imgFileName = rs.getString("product_img");
+          if (imgFileName != null && !imgFileName.isEmpty()) { %>
+        <img src="img/<%= imgFileName %>" alt="Product Image" onclick="showImagePopup('img/<%= imgFileName %>')">
         <% } else { %>
-        <span>No Image</span>
+        No image available
         <% } %>
       </td>
     </tr>
@@ -125,7 +124,7 @@
       e.printStackTrace();
     %>
     <tr>
-      <td colspan="7" class="error-message">Error occurred while fetching data.</td>
+      <td colspan="7" class="text-danger text-center">Error fetching products.</td>
     </tr>
     <%
       }
@@ -134,9 +133,13 @@
   </table>
 </div>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script>
+  // JavaScript function to show an image in a popup
+  function showImagePopup(imageSrc) {
+    const popup = window.open("", "_blank", "width=600,height=400");
+    popup.document.write(`<img src="${imageSrc}" style="width:100%;height:auto;">`);
+  }
+</script>
+
 </body>
 </html>
-
-
-
