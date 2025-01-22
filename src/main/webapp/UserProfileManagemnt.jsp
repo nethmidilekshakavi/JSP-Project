@@ -118,6 +118,19 @@
     .btn-change:hover {
       background-color: #45a049;
     }
+
+    button {
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      color: #fff; /* White text color */
+      background: #007bff;
+      border: none; /* Remove default border */
+      border-radius: 5px; /* Rounded corners */
+      padding: 10px 20px; /* Add padding */
+      cursor: pointer; /* Pointer cursor on hover */
+      transition: background-color 0.3s ease, transform 0.2s ease; /* Add smooth transitions for hover effects */
+    }
+
   </style>
 
 </head>
@@ -128,8 +141,11 @@
 <div class="container">
   <h1>View Your Personal Details</h1>
 
+  <a href="UserChangePassWord.jsp"><button>Update Profile</button></a>
+  <a href="UserDelete.jsp"><button>Remove Account</button></a>
+
   <form method="post" action="UserProfileManagemnt.jsp">
-    <input type="text" name="email" placeholder="Enter your Email" required>
+    <input type="text" name="username" placeholder="Enter your Username" required>
     <button type="submit">Search</button>
   </form>
 
@@ -146,12 +162,12 @@
     </thead>
     <tbody>
     <%
-      String email = request.getParameter("email");
+      String email = request.getParameter("username");
       if (email != null && !email.trim().isEmpty()) {
         try {
           Class.forName("com.mysql.cj.jdbc.Driver");
           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
-          String query = "SELECT id, name, email, password, username, role FROM users WHERE email = ?";
+          String query = "SELECT user_id, name, email, password, username, role FROM users WHERE username = ?";
           PreparedStatement pstmt = con.prepareStatement(query);
           pstmt.setString(1, email);
           ResultSet rs = pstmt.executeQuery();
@@ -159,7 +175,7 @@
           if (rs.next()) {
     %>
     <tr>
-      <td><%= rs.getInt("id") %></td>
+      <td><%= rs.getInt("user_id") %></td>
       <td><%= rs.getString("name") %></td>
       <td><%= rs.getString("email") %></td>
       <td><%= rs.getString("password") %></td>

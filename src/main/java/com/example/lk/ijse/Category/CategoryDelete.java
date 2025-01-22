@@ -25,8 +25,6 @@ public class CategoryDelete extends HttpServlet {
 
         int id = Integer.parseInt(req.getParameter("Cid"));
 
-
-
         boolean s = false;
 
         try {
@@ -39,9 +37,9 @@ public class CategoryDelete extends HttpServlet {
 
 
         if (s) {
-            resp.sendRedirect("CategoryDelete.jsp?message=Category delete successfully");
+            resp.sendRedirect("CategoryDelete.jsp?message=Category saved successfully");
         } else {
-            resp.sendRedirect("CategoryDelete.jsp?error=Failed to delete category");
+            resp.sendRedirect("CategoryDelete.jsp?error=Failed to save category");
         }
 
     }

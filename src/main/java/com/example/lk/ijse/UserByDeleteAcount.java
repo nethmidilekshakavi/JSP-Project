@@ -1,4 +1,4 @@
-package com.example.lk.ijse.Users;
+package com.example.lk.ijse;
 
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;

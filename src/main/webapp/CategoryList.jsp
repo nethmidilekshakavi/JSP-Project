@@ -69,52 +69,10 @@
       table, th, td {
         font-size: 0.9em;
       }
-
-      .toggle-button {
-        padding: 10px 20px;
-        font-size: 14px;
-        border: none;
-        border-radius: 25px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        background-color: #f44336;
-        color: white;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      }
     }
   </style>
 </head>
 <body>
-
-<%
-  String msg = request.getParameter("message");
-  String error = request.getParameter("error");
-%>
-
-<% if (msg != null) { %>
-<script>
-  Swal.fire({
-    icon: 'success',
-    title: 'Success!',
-    text: '<%= msg %>',
-    showConfirmButton: true,
-    timer: 3000
-  });
-</script>
-<% } %>
-
-<% if (error != null) { %>
-<script>
-  Swal.fire({
-    icon: 'error',
-    title: 'Error!',
-    text: '<%= error %>',
-    showConfirmButton: true,
-    timer: 3000
-  });
-</script>
-<% } %>
-
 <div class="container">
   <h1>Category List</h1>
   <table class="user-table" align="center">
@@ -123,7 +81,7 @@
       <th>Category ID</th>
       <th>Category Name</th>
       <th>Description</th>
-      <th>Action</th>
+
     </tr>
     </thead>
     <tbody>
@@ -140,12 +98,6 @@
       <td><%= rs.getInt("category_id") %></td>
       <td><%= rs.getString("category_name") %></td>
       <td><%= rs.getString("description") %></td>
-      <td>
-        <form action="category-delete" method="post" style="display:inline;" id="deleteForm_<%= rs.getInt("category_id") %>">
-          <input type="hidden" name="Cid" value="<%= rs.getInt("category_id") %>">
-          <button type="button" class="toggle-button" onclick="confirmDelete(<%= rs.getInt("category_id") %>)">Delete</button>
-        </form>
-      </td>
     </tr>
     <%
       } while (rs.next());
@@ -167,23 +119,5 @@
   </table>
 </div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script>
-  function confirmDelete(categoryId) {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'This action cannot be undone!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        document.getElementById('deleteForm_' + categoryId).submit();
-      }
-    })
-  }
-</script>
-
 </body>
 </html>

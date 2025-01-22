@@ -1,4 +1,4 @@
-package com.example.lk.ijse.Users;
+package com.example.lk.ijse;
 
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.util.HashMap;
 
 @WebServlet(urlPatterns = "/user-update")
 public class UpdatePasswordUser extends HttpServlet {

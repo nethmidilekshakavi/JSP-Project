@@ -266,6 +266,7 @@
     </ul>
 
     <a href="Categories.jsp"><button>Select Category</button></a>
+    <a href="UserProfileManagemnt.jsp"><button>See your Profile</button></a>
 
 </nav>
 
