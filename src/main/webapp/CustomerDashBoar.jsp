@@ -250,6 +250,12 @@
             object-fit: cover;  /* This ensures the image maintains its aspect ratio and fits well */
         }
 
+        #up{
+
+            right: 14%;
+            position: absolute;
+
+        }
 
     </style>
 
@@ -266,7 +272,8 @@
     </ul>
 
     <a href="Categories.jsp"><button>Select Category</button></a>
-    <a href="UserProfileManagemnt.jsp"><button>See your Profile</button></a>
+    <a id="up" href="UserProfileManagemnt.jsp"><button>See your Profile</button></a>
+
 
 </nav>
 
