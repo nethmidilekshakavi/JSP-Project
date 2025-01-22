@@ -8,15 +8,17 @@
         ps.setInt(1, Integer.parseInt(cid));
         ResultSet rs = ps.executeQuery();
 
-        boolean hasProducts = false; // To check if any products are found
+        boolean hasProducts = false;
         while (rs.next()) {
             hasProducts = true;
 %>
 <option value="<%= rs.getInt("product_id") %>"
         data-price="<%= rs.getDouble("price") %>"
-        data-quantity="<%= rs.getInt("stock_quantity") %>">
+        data-quantity="<%= rs.getInt("stock_quantity") %>"
+        data-id="<%= rs.getInt("product_id") %>">
     <%= rs.getString("product_name") %>
 </option>
+
 
 <%
     }

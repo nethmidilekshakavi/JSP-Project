@@ -46,12 +46,6 @@
 </script>
 <% } %>
 
-<form action="category-delete" method="post">
-    <label for="categoryId">Category ID:</label>
-    <input type="text" id="categoryId" name="Cid" required><br><br>
-
-    <button type="submit" style="background-color: red" >Delete Category</button>
-</form>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 

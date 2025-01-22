@@ -118,8 +118,34 @@
   </style>
 </head>
 <body>
+<%
+  String msg = request.getParameter("message");
+  String error = request.getParameter("error");
+%>
 
+<% if (msg != null) { %>
+<script>
+  Swal.fire({
+    icon: 'success',
+    title: 'Success!',
+    text: '<%= msg %>',
+    showConfirmButton: true,
+    timer: 3000
+  });
+</script>
+<% } %>
 
+<% if (error != null) { %>
+<script>
+  Swal.fire({
+    icon: 'error',
+    title: 'Error!',
+    text: '<%= error %>',
+    showConfirmButton: true,
+    timer: 3000
+  });
+</script>
+<% } %>
 <div class="container">
   <h1>User List</h1>
   <table class="user-table" align="center">
@@ -131,62 +157,48 @@
       <th>Username</th>
       <th>Role</th>
       <th>Action</th>
-
     </tr>
+    </thead>
     <tbody>
     <%
-      try {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM users");
-
-        if(rs.next()) {
-          do {
+      try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234")) {
+        String query = "SELECT * FROM users";
+        try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+          if (rs.isBeforeFirst()) {
+            while (rs.next()) {
     %>
     <tr>
       <td><%= rs.getInt("user_id") %></td>
-      <td><%= rs.getString("username") %></td>
-      <td><%= rs.getString("email") %></td>
       <td><%= rs.getString("name") %></td>
+      <td><%= rs.getString("email") %></td>
+      <td><%= rs.getString("username") %></td>
       <td><%= rs.getString("role") %></td>
       <td>
         <form action="user-delete" method="post" style="display:inline;">
-          <input type="hidden" name="name" value="<%= rs.getInt("user_id") %>">
-          <button type="submit" class="toggle-button">Delete</button>
+          <input type="hidden" name="id" value="<%= rs.getInt("user_id") %>">
+          <button type="submit" class="toggle-button" onclick="confirmDelete(<%= rs.getInt("user_id") %>)">Delete</button>
         </form>
       </td>
     </tr>
     <%
-      } while (rs.next());
+      }
     } else {
     %>
     <tr>
       <td colspan="6" class="no-data">No users available.</td>
     </tr>
     <%
+          }
         }
-        rs.close();
-        stmt.close();
-        con.close();
       } catch (Exception e) {
+        System.out.println("<tr><td colspan='6' class='error'>Error loading users</td></tr>");
         e.printStackTrace();
       }
     %>
     </tbody>
-
   </table>
-
-
-
 </div>
 
-<form action="user-delete" method="post" id="ud" >
-  <label for="username">User name:</label>
-  <input type="text" id="username" name="name" required><br><br>
-
-  <button type="submit" style="background-color: red" >Delete User</button>
-</form>
 <script src="js/jquery-3.7.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>

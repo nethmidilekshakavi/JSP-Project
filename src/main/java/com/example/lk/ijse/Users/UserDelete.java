@@ -18,39 +18,29 @@ public class UserDelete extends HttpServlet {
     @Resource(name = "jdbc/pool")
     private DataSource dataSource;
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        String name = req.getParameter("name");
-
         try {
-            // Get database connection from the DataSource
-            Connection connection = dataSource.getConnection();
+            int id = Integer.parseInt(req.getParameter("id"));
 
-            // SQL query to update category details
-            String sql = "DELETE FROM users WHERE username = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            try (Connection connection = dataSource.getConnection()) {
+                String sql = "DELETE FROM users WHERE user_id = ?";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    preparedStatement.setInt(1, id); // Use setInt instead of setString for numeric values
 
-
-            preparedStatement.setString(1, name);
-
-            int effectdRowCount = preparedStatement.executeUpdate();
-
-            if (effectdRowCount > 0){
-                resp.sendRedirect(
-                        "Users-List.jsp?message=User Delete successfully"
-                );
-            }else {
-                resp.sendRedirect(
-                        "Users-List.jsp?error=fail to Delete Unsuccessfully"
-                );
+                    int affectedRowCount = preparedStatement.executeUpdate();
+                    if (affectedRowCount > 0) {
+                        resp.sendRedirect("Users-List.jsp?message=User deleted successfully");
+                    } else {
+                        resp.sendRedirect("Users-List.jsp?error=Failed to delete user");
+                    }
+                }
             }
-
+        } catch (NumberFormatException e) {
+            resp.sendRedirect("Users-List.jsp?error=Invalid user ID");
         } catch (Exception e) {
-            // Log the exception and redirect with an error message
-            e.printStackTrace();  // For debugging
-            resp.sendRedirect("Users-List.jsp?error=An error occurred while deleting the category");
+            e.printStackTrace();
+            resp.sendRedirect("Users-List.jsp?error=An error occurred while deleting the user");
         }
     }
 }

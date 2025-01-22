@@ -28,6 +28,8 @@ public class ProductManagementSave extends HttpServlet {
             int cid = Integer.parseInt(req.getParameter("cid"));
             String img =req.getParameter("productImage");
 
+
+
             String sql = "INSERT INTO products (product_id, product_name, description, price, stock_quantity, category_id,product_img) " +
                     "VALUES (?, ?, ?, ?, ?, ? ,?)";
 

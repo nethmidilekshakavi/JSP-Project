@@ -8,59 +8,27 @@
 </head>
 <body>
 
-<form id="form" method="post" action="cartSave">
+<form id="form" method="post" action="Cart.jsp">
   <div class="cart-container">
     <!-- Left Side (Form Section) -->
     <div class="form-section">
       <h1>Your Shopping Cart</h1>
 
-      <input type="text" id="user_id" name="user_id">
-        <br>
-      <label for="cid">Category:</label>
-      <select class="form-select" aria-label="Disabled select example" id="cid" name="cid" required onchange="loadProducts()">
-        <option selected>Category:</option>
-        <%
-          try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT category_id , category_name FROM categories");
-            while (rs.next()) {
-        %>
-        <option value="<%= rs.getInt("category_id") %>"><%= rs.getString("category_name") %></option>
-        <%
-            }
-            rs.close();
-            stmt.close();
-            con.close();
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
-        %>
-      </select>
-      <br>
 
-      <label for="product">Select Product:</label>
-      <select class="form-select" aria-label="Disabled select example" id="product" name="product" required onchange="showProductDetails()">
-        <option selected>Select Product:</option>
-      </select>
 
       <!-- Product Details -->
       <div class="item-details">
-       <%-- <p><%= request.getParameter("getProduct") %></p>--%>
         <h2 id="product-name" style="font-size: 25px">Product Name</h2>
         <p style="font-size: 30px"><strong>Price: Rs.<%= request.getParameter("product_price") %></strong></p>
 
+        <br>
 
-
-        <label>Stock Quantity:</label><p id="stock-quantity"></p>
-
-
-        <p id="product_ID"></p>
+        <label>Stock Quantity:</label>
+        <p id="stock-quantity"></p>
 
 
         <div class="quantity">
-          <label for="q uantity">Quantity: </label>
+          <label for="quantity">Quantity: </label>
           <input type="number" id="quantity" name="quantity" value="1" min="1">
         </div>
 
@@ -113,7 +81,6 @@
     var productPrice = selectedOption.data('price');
     var productQuantity = selectedOption.data('quantity');
     var productImage = selectedOption.data('image');
-    var productId = selectedOption.data('id'); // Get product ID
 
     if (productPrice !== undefined && productQuantity !== undefined) {
       // Set product name
@@ -122,8 +89,7 @@
       // Set product price
       $('.item-details p:contains("Price")').text("Price: Rs." + productPrice);
 
-      // Set product ID
-      $('#product_ID').text("Product ID: " + productId); // Display product ID
+
     }
 
     if (productPrice !== undefined && productQuantity !== undefined) {
@@ -131,9 +97,11 @@
       var totalPrice = productPrice * initialQuantity;
 
       // Display product details
+      $('#product-name').text(selectedOption.text());
+      $('#product-price').text("Rs. " + productPrice);
       $('#stock-quantity').text(productQuantity);
       $('.quantity input').attr("max", productQuantity);
-      $('.quantity input').val(initialQuantity);
+      $('.quantity input').val(initialQuantity); // Set default quantity to 1
       $('#product-image').attr("src", productImage || "default-image.jpg");
       $('#total-price').text("Total Price: Rs. " + totalPrice);
 
@@ -150,7 +118,6 @@
       });
     }
   }
-
 
 
 

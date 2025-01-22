@@ -41,10 +41,10 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("username", username);
                     session.setAttribute("role", role);
 
-                    if ("admin".equalsIgnoreCase(role)) {
+                    if ("Admin".equalsIgnoreCase(role)) {
                         resp.sendRedirect("DashBoard.jsp?message=Login successful");
-                    } else if ("customer".equalsIgnoreCase(role)) {
-                        resp.sendRedirect("CustomerDashBoard.jsp?message=Login successful");
+                    } else if ("Customer".equalsIgnoreCase(role)) {
+                        resp.sendRedirect("CustomerDashBoar.jsp?message=Login successful");
                     } else {
                         resp.sendRedirect("index.jsp?error=Unauthorized role");
                     }

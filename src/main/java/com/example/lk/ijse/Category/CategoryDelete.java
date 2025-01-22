@@ -39,9 +39,9 @@ public class CategoryDelete extends HttpServlet {
 
 
         if (s) {
-            resp.sendRedirect("CategoryDelete.jsp?message=Category saved successfully");
+            resp.sendRedirect("CategoryDelete.jsp?message=Category delete successfully");
         } else {
-            resp.sendRedirect("CategoryDelete.jsp?error=Failed to save category");
+            resp.sendRedirect("CategoryDelete.jsp?error=Failed to delete category");
         }
 
     }

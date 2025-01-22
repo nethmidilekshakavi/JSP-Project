@@ -25,11 +25,13 @@
         <div class="card">
             <img src="../Image/Categories/clothes/efd928dd2416229891c1cc6c9d1e0e01.jpg" alt="Short & Baggy Shirt">
             <h3>Short & Baggy Shirt</h3>
+            <h6>Product ID : 001</h6>
             <p class="description">Comfortable and stylish baggy shirt perfect for casual wear.</p>
             <p class="price">Rs.3600.00</p>
             <form action="../Cart.jsp" method="POST">
-                <input type="hidden" name="product_name" value="Short & Baggy Shirt">
+                <input type="hidden" name="getProduct" value="Short & Baggy Shirt">
                 <input type="hidden" name="product_price" value="3600">
+                <input type="hidden" name="product_ID" value="1">
                 <input type="hidden" name="product_image" value="../Image/Categories/clothes/efd928dd2416229891c1cc6c9d1e0e01.jpg">
                 <button type="submit">Order Now</button>
             </form>
