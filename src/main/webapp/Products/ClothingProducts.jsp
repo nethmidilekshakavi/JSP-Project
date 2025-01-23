@@ -39,7 +39,7 @@
 
 
 
-        <div class="card">
+        <%--<div class="card">
                 <img src="../Image/Categories/clothes/629c5c3dcca16da8552d29148adceebd.jpg" alt="Baby Skirt">
                 <h3>Baby Skirt</h3>
                 <p class="description">Adorable and soft baby skirt for everyday comfort.</p>
@@ -103,7 +103,7 @@
             <a href="../Cart.jsp"><button>Order Now</button></a>
         </div>
     </div>
-</div>
+</div>--%>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.example.lk.ijse.img;
+package com.example.lk.ijse.product;
 
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-
 import javax.sql.DataSource;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -73,4 +72,5 @@ public class ProductManagementSave extends HttpServlet {
             resp.sendRedirect("ProductMangemt.jsp?error=An error occurred while saving the product");
         }
     }
+
 }
