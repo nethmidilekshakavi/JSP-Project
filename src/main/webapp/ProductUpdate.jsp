@@ -60,8 +60,7 @@
 <% } %>
 
 <!-- Product Form -->
-<form action="product-Update
-" method="post">
+<form action="product-update" method="post" enctype="multipart/form-data">
   <label for="productId">Product ID:</label>
   <input type="text" id="productId" name="pid" required><br>
 
@@ -99,6 +98,10 @@
       }
     %>
   </select>
+
+  <label>Product Image:</label>
+  <input type="file" name="productImage" required>
+
 
   <button type="submit" style="background-color: yellow">Update Product</button>
 </form>
