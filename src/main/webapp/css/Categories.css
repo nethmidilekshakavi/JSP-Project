@@ -34,7 +34,7 @@ body{
     color: #555;
 }
 .category-card-body .btn {
-    background: linear-gradient(to top, #71b7e6, #9b59b6);
+    background: #cccccc;
 
     color: white;
     border: none;

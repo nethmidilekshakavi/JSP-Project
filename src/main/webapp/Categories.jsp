@@ -61,7 +61,7 @@
         <div class="category-card-body">
           <h5 class="category-title">Clothing</h5>
           <p>Find the trendiest fashion for every season and occasion.</p>
-          <a href="Products/ClothingProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+          <a href="ClothingProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@
         <div class="category-card-body">
           <h5 class="category-title">Bags</h5>
           <p>Discover our stylish and versatile collection of bags for every occasion.</p>
-          <a href="Products/Bags.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+          <a href="Bags.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@
         <div class="category-card-body">
           <h5 class="category-title">Electronics</h5>
           <p>Explore the latest gadgets and electronics for all your tech needs.</p>
-          <a href="Products/ElectricProducts.jsp" class="btn btn-primary" onclick="openPopup('ClothingProducts.jsp')"><button class="shopnow" name="Category">Shop Now</button></a>
+          <a href="ElectricProducts.jsp" class="btn btn-primary" onclick="openPopup('ClothingProducts.jsp')"><button class="shopnow" name="Category">Shop Now</button></a>
 
         </div>
       </div>
@@ -115,7 +115,7 @@
         <div class="category-card-body p-3">
           <h5 class="category-title font-weight-bold">Footwear</h5>
           <p class="category-description text-muted">Find the latest collection of stylish footwear to complete your look.</p>
-          <a href="Products/FootwareProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+          <a href="FootwareProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>
@@ -134,7 +134,7 @@
         <div class="category-card-body">
           <h5 class="category-title">Furniture</h5>
           <p>Browse through our stunning furniture collection for your home.</p>
-          <a href="Products/FurnitureProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+          <a href="FurnitureProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>
@@ -151,7 +151,7 @@
         <div class="category-card-body">
           <h5 class="category-title">Sports</h5>
           <p>Get the best sports gear for every athlete and enthusiast.</p>
-          <a href="Products/SportsProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
+          <a href="SportsProducts.jsp" class="btn btn-primary"><button class="shopnow">Shop Now</button></a>
         </div>
       </div>
     </div>
