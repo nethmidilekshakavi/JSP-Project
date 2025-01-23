@@ -2,14 +2,14 @@ package com.example.lk.ijse;
 
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import javax.sql.DataSource;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@MultipartConfig
 @WebServlet(urlPatterns = "/cartSave")
 public class CartServlet extends HttpServlet {
 
@@ -28,80 +29,55 @@ public class CartServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            int uid = 1;
+            int productId = Integer.parseInt(req.getParameter("productId"));
+            String productName = req.getParameter("productName");
+            String productDescription = req.getParameter("productDescription");
+            String priceParam = req.getParameter("productPrice");
+            double productPrice = (priceParam != null && !priceParam.isEmpty()) ? Double.parseDouble(priceParam) : 0.0;
+            int qty = Integer.parseInt(req.getParameter("qty"));
+            String selectedSize = req.getParameter("selectedSize");
 
-           /* HttpSession session = req.getSession();*/
+            Part filePart = req.getPart("productImage");
+            String imageFileName = filePart.getSubmittedFileName();
 
-         /*   if (session.getAttribute("user_id") == null) {
-                resp.sendRedirect("login.jsp?error=Please log in first.");
-                return;
+            String uploadPath = getServletContext().getRealPath("/img/") + imageFileName;
+            try (FileOutputStream fos = new FileOutputStream(uploadPath);
+                 InputStream is = filePart.getInputStream()) {
+                byte[] data = new byte[is.available()];
+                is.read(data);
+                fos.write(data);
             }
-*/
 
-                int cartid = 0;
+            String sql = "INSERT INTO cart (user_id, product_id, quantity, product_size, image_url, price, total, added_at)\n" +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
+            try (Connection connection = dataSource.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-            try (Connection connection = dataSource.getConnection()) {
-               /* int userId = (int) session.getAttribute("user_id");*/
+                preparedStatement.setInt(1, uid);
+                preparedStatement.setInt(2, productId);
+                preparedStatement.setInt(3, qty);
+                preparedStatement.setString(4, selectedSize);
+                preparedStatement.setString(5, imageFileName);
+                preparedStatement.setDouble(6, productPrice);
+                preparedStatement.setDouble(7, productPrice * qty);
+                preparedStatement.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
 
-                String userid = req.getParameter("user_id");
-
-                // Validate and parse the product
-                String productStr = req.getParameter("product");
-                if (productStr == null || productStr.trim().isEmpty()) {
-                    resp.sendRedirect("Cart.jsp?error=Product ID is missing");
-                    return;
+                int rowsAffected = preparedStatement.executeUpdate();
+                if (rowsAffected > 0) {
+                    resp.sendRedirect("Cart.jsp?message=Product added to cart");
+                } else {
+                    resp.sendRedirect("Cart.jsp?error=Failed to add product to cart");
                 }
-                int productId = Integer.parseInt(productStr);
-
-                // Validate and parse the quantity
-                String quantityStr = req.getParameter("quantity");
-                if (quantityStr == null || quantityStr.trim().isEmpty()) {
-                    resp.sendRedirect("Cart.jsp?error=Quantity is missing");
-                    return;
-                }
-                int quantity = Integer.parseInt(quantityStr);
-
-                // Validate and parse the price
-                String priceStr = req.getParameter("product_price");
-                if (priceStr == null || priceStr.trim().isEmpty()) {
-                    resp.sendRedirect("Cart.jsp?error=Product price is missing");
-                    return;
-                }
-                double price = Double.parseDouble(priceStr);
-
-                // Validate and retrieve other parameters
-                String imgUrl = req.getParameter("product_image");
-
-
-
-                // Calculate total
-                double total = price * quantity;
-                Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
-
-                String sql = "INSERT INTO cart (cart_id,user_id, product_id, quantity, added_at, image_url,price, total) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
-
-                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                    preparedStatement.setInt(1,cartid);
-                    preparedStatement.setString(2, userid);
-                    preparedStatement.setInt(3, productId);
-                    preparedStatement.setInt(4, quantity);
-                    preparedStatement.setTimestamp(5, timestamp);
-                    preparedStatement.setString(6, imgUrl);
-                    preparedStatement.setDouble(7, total);
-                    preparedStatement.setDouble(8, price);
-
-                    int affectedRowCount = preparedStatement.executeUpdate();
-                    if (affectedRowCount > 0) {
-                        resp.sendRedirect("Cart.jsp?message=Cart item added successfully");
-                    } else {
-                        resp.sendRedirect("Cart.jsp?error=Failed to add item to cart");
-                    }
-                }
-            } catch (SQLException | NumberFormatException e) {
-                LOGGER.log(Level.SEVERE, "Error adding item to cart", e);
-                resp.sendRedirect("Cart.jsp?error=An error occurred while adding the item to the cart");
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp.sendRedirect("Cart.jsp?error=An unexpected error occurred");
         }
-
     }
+
+}
+
 

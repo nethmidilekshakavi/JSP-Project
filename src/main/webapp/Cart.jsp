@@ -147,17 +147,37 @@
             <p class="price">Rs.<%= productPrice %></p>
             <div class="sizes">
                 <h3>Available Sizes</h3>
-                <span>XXL</span>
-                <span>XL</span>
-                <span>L</span>
-                <span>M</span>
+                <select id="sizeSelect" onchange="updateSelectedSize()">
+                    <option value="XXL">XXL</option>
+                    <option value="XL">XL</option>
+                    <option value="L">L</option>
+                    <option value="M">M</option>
+                </select>
             </div>
+
+            <script>
+                function updateSelectedSize() {
+                    const selectedSize = document.getElementById("sizeSelect").value;
+                    document.getElementById("hiddenSize").value = selectedSize;
+                }
+            </script>
+
             <p style="font-size: 12px" class="price">Stock Quantity :<%= stock_quantity %></p>
             <p style="font-size: 12px" class="price">Product ID :<%= productId %></p>
             <label class="qty-label">QTY</label>
-            <input type="number" class="qty-input" value="1" min="1">
+            <input type="number" class="qty-input" name="qty" value="1" min="1" max="<%= stock_quantity %>">
             <br>
-            <button class="add-to-cart">Add to Cart</button>
+            <form action="cartSave" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="productId" value="<%= productId %>">
+                <input type="hidden" name="productName" value="<%= productName %>">
+                <input type="hidden" name="stock_quantity" value="<%= stock_quantity %>">
+                <input type="hidden" name="productDescription" value="<%= productDescription %>">
+                <input type="hidden" name="productPrice" value="<%= productPrice%>">
+                <input type="hidden" name="productImage" value="<%= productImage %>">
+                <input type="hidden" name="selectedSize" id="hiddenSize">
+                <input type="hidden" name="qty">
+                <button type="submit" class="add-to-cart" onclick="setSelectedSize()">Add to Cart</button>
+            </form>
             <button class="remove-item">Remove</button>
             <div class="description">
                 <p><%= productDescription %></p>
@@ -165,6 +185,19 @@
 
         </div>
     </div>
+
+
+
+
 </div>
+
+<script>
+    function setSelectedSize() {
+        const selectedSize = document.getElementById("sizeSelect").value;
+        document.getElementById("hiddenSize").value = document.getElementById("sizeSelect").value;
+
+    }
+</script>
+
 </body>
 </html>
