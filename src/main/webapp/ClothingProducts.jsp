@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background: linear-gradient(to top, #71b7e6, #9b59b6);
             margin: 0;
             padding: 0;
         }
@@ -102,7 +102,7 @@
                 <%--<h4><%= rs.getString("product_id") %></h4>--%>
                 <p><%= rs.getString("description") %></p>
                 <p class="price">Rs. <%= rs.getDouble("price") %></p>
-                <button class="order-now">Order Now</button>
+                <a href="Cart.jsp"><button class="order-now">Order Now</button></a>
             </div>
         </div>
         <%
