@@ -71,16 +71,16 @@
 <body>
 
 <div class="container">
-    <h1>Product List</h1>
+    <h1>Product List for Category 1</h1>
     <div class="row">
-
         <%
             try {
                 // Database connection
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
-                Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM products");
+                PreparedStatement stmt = con.prepareStatement("SELECT * FROM products WHERE category_id = ?");
+                stmt.setInt(1, 1); // Filtering by category_id 1
+                ResultSet rs = stmt.executeQuery();
 
                 if (rs.next()) {
                     do {
