@@ -185,7 +185,15 @@
         <%--<h4><%= rs.getString("product_id") %></h4>--%>
         <p><%= rs.getString("description") %></p>
         <p class="price">Rs. <%= rs.getDouble("price") %></p>
-        <button class="order-now">Order Now</button>
+        <form action="Cart.jsp" method="post">
+          <input type="hidden" name="productId" value="<%= rs.getInt("product_id") %>">
+          <input type="hidden" name="productName" value="<%= rs.getString("product_name") %>">
+          <input type="hidden" name="stock_quantity" value="<%= rs.getInt("stock_quantity") %>">
+          <input type="hidden" name="productDescription" value="<%= rs.getString("description") %>">
+          <input type="hidden" name="productPrice" value="<%= rs.getDouble("price") %>">
+          <input type="hidden" name="productImage" value="<%= imgFileName %>">
+          <button type="submit" class="order-now">Order Now</button>
+        </form>
       </div>
     </div>
     <%

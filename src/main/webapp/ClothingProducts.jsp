@@ -79,7 +79,7 @@
 <body>
 
 <div class="container">
-<h3>Our Fashion Collection</h3>
+    <h3>Our Fashion Collection</h3>
     <div class="row">
         <%
             try {
@@ -87,7 +87,7 @@
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
                 PreparedStatement stmt = con.prepareStatement("SELECT * FROM products WHERE category_id = ?");
-                stmt.setInt(1, 1); // Filtering by category_id 1
+                stmt.setInt(1, 1);
                 ResultSet rs = stmt.executeQuery();
 
                 if (rs.next()) {
@@ -102,7 +102,15 @@
                 <%--<h4><%= rs.getString("product_id") %></h4>--%>
                 <p><%= rs.getString("description") %></p>
                 <p class="price">Rs. <%= rs.getDouble("price") %></p>
-                <a href="Cart.jsp"><button class="order-now">Order Now</button></a>
+                <form action="Cart.jsp" method="post">
+                    <input type="hidden" name="productId" value="<%= rs.getInt("product_id") %>">
+                    <input type="hidden" name="productName" value="<%= rs.getString("product_name") %>">
+                    <input type="hidden" name="stock_quantity" value="<%= rs.getInt("stock_quantity") %>">
+                    <input type="hidden" name="productDescription" value="<%= rs.getString("description") %>">
+                    <input type="hidden" name="productPrice" value="<%= rs.getDouble("price") %>">
+                    <input type="hidden" name="productImage" value="<%= imgFileName %>">
+                    <button type="submit" class="order-now">Order Now</button>
+                </form>
             </div>
         </div>
         <%
@@ -127,4 +135,3 @@
 
 </body>
 </html>
-

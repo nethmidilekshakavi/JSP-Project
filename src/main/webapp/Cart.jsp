@@ -14,7 +14,7 @@
         }
 
         .container {
-            width: 80%;
+            width: 60%;
             margin: 20px auto;
             background-color: #fff;
             padding: 20px;
@@ -35,7 +35,7 @@
         }
 
         .product-display img {
-            width: 400px;
+            width: 300px;
             height: 300px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -130,11 +130,21 @@
 </head>
 <body>
 <div class="container">
-    <h1>Cat Pizza Taco Sweater</h1>
+    <%
+
+        String productName = request.getParameter("productName");
+        String productDescription = request.getParameter("productDescription");
+        String productImage = request.getParameter("productImage");
+        double productPrice = Double.parseDouble(request.getParameter("productPrice"));
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        int stock_quantity = Integer.parseInt(request.getParameter("stock_quantity"));
+
+    %>
+    <h1><%= productName %></h1>
     <div class="product-display">
-        <img src="image/Categories/clothes/dfc155d44e2b8e6e51239347ba9e88d1.jpg" alt="Cat Pizza Taco Sweater">
+        <img src="img/<%= productImage %>" alt="<%= productName %>">
         <div class="product-details">
-            <p class="price">Rs.240</p>
+            <p class="price">Rs.<%= productPrice %></p>
             <div class="sizes">
                 <h3>Available Sizes</h3>
                 <span>XXL</span>
@@ -142,15 +152,15 @@
                 <span>L</span>
                 <span>M</span>
             </div>
-            <p style="font-size: 12px" class="price">Stock Quantity :</p>
-            <p style="font-size: 12px" class="price">Product ID :</p>
+            <p style="font-size: 12px" class="price">Stock Quantity :<%= stock_quantity %></p>
+            <p style="font-size: 12px" class="price">Product ID :<%= productId %></p>
             <label class="qty-label">QTY</label>
             <input type="number" class="qty-input" value="1" min="1">
             <br>
             <button class="add-to-cart">Add to Cart</button>
             <button class="remove-item">Remove</button>
             <div class="description">
-                <p>Super dope Cat Pizza Taco Sweater for all cat lovers!</p>
+                <p><%= productDescription %></p>
             </div>
 
         </div>
