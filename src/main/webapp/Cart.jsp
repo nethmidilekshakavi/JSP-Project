@@ -1,3 +1,5 @@
+<%@ page import="com.example.lk.ijse.AdminServlet" %>
+<%@ page import="com.example.lk.ijse.LoginServlet" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,18 +132,43 @@
 </head>
 <body>
 <div class="container">
+
     <%
+
+        int uid = LoginServlet.useriD;
+
         String productName = request.getParameter("productName");
+        productName = (productName != null) ? productName : "Unknown Product";
+
         String productDescription = request.getParameter("productDescription");
+        productDescription = (productDescription != null) ? productDescription : "No description available";
+
         String productImage = request.getParameter("productImage");
-        double productPrice = Double.parseDouble(request.getParameter("productPrice"));
-        int productId = Integer.parseInt(request.getParameter("productId"));
-        int stock_quantity = Integer.parseInt(request.getParameter("stock_quantity"));
+        productImage = (productImage != null) ? productImage : "default.jpg";
+
+        String productPriceParam = request.getParameter("productPrice");
+        double productPrice = 0.0;
+        if (productPriceParam != null && !productPriceParam.isEmpty()) {
+            try {
+                productPrice = Double.parseDouble(productPriceParam);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid product price format.");
+            }
+        }
+
+        String productIdParam = request.getParameter("productId");
+        int productId = (productIdParam != null && !productIdParam.isEmpty()) ? Integer.parseInt(productIdParam) : 0;
+
+        String stockQuantityParam = request.getParameter("stock_quantity");
+        int stock_quantity = (stockQuantityParam != null && !stockQuantityParam.isEmpty()) ? Integer.parseInt(stockQuantityParam) : 0;
     %>
+
+
     <h1><%= productName %></h1>
     <div class="product-display">
         <img src="img/<%= productImage %>" alt="<%= productName %>">
         <div class="product-details">
+            <p class="userID">User ID  :-<%= uid %></p>
             <p class="price">Price per unit: Rs.<%= productPrice %></p>
             <div class="sizes">
                 <h3>Available Sizes</h3>
@@ -171,6 +198,7 @@
 
             <form action="cartSave" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="productId" value="<%= productId %>">
+                <input type="hidden" name="userid" value="<%= uid %>">
                 <input type="hidden" name="productName" value="<%= productName %>">
                 <input type="hidden" name="stock_quantity" value="<%= stock_quantity %>">
                 <input type="hidden" name="productDescription" value="<%= productDescription %>">
@@ -180,6 +208,8 @@
                 <input type="hidden" name="qty" id="hiddenQty">
                 <button type="submit" class="add-to-cart" onclick="setFormValues()">Add to Cart</button>
             </form>
+
+
 
             <button class="remove-item">Remove</button>
             <div class="description">
@@ -209,6 +239,7 @@
         document.getElementById("hiddenQty").value = quantity;
         updateSelectedSize();
     }
+
 </script>
 
 

@@ -4,6 +4,8 @@ import com.example.lk.ijse.Entity.users;
 import com.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import java.io.IOException;
 
 public class userDaoImpl implements UserDao {
@@ -46,4 +48,31 @@ public class userDaoImpl implements UserDao {
         }
         return false;
     }
+
+
+    @Override
+    public users searchById(int id) {
+        Session session = FactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = null;
+        users user = null;
+
+        try {
+            transaction = session.beginTransaction();
+            String hql = "FROM users WHERE id = :id";  // Ensure the parameter name is 'id'
+            Query<users> query = session.createQuery(hql, users.class);
+            query.setParameter("id", id);  // Corrected to match the parameter name in the query
+            user = query.uniqueResult();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return user;
+    }
+
+
 }

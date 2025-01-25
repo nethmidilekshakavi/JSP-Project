@@ -24,7 +24,8 @@ public class ProductManagementSave extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            int id = Integer.parseInt(req.getParameter("pid"));
+           /* int id = Integer.parseInt(req.getParameter("pid"));*/
+            int id = 0;
             String name = req.getParameter("name");
             String description = req.getParameter("desc");
             double price = Double.parseDouble(req.getParameter("price"));

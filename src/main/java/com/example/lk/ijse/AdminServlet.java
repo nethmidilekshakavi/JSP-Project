@@ -1,6 +1,7 @@
 package com.example.lk.ijse;
 import com.example.lk.ijse.Bo.BOFactory;
 import com.example.lk.ijse.Bo.custom.userBo;
+import com.example.lk.ijse.Entity.Cart;
 import com.example.lk.ijse.Entity.users;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,9 +9,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/admin-save")
 public class AdminServlet extends HttpServlet {
+
+
+
 
     userBo userbo = (userBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
 
@@ -24,9 +30,11 @@ public class AdminServlet extends HttpServlet {
         String password = req.getParameter("adminEmail");
         String username = req.getParameter("username");
         String role = "Customer";
+        List<Cart> list = new ArrayList<>();
 
 
-            users users = new users(id,name,email,password,username,role);
+
+            users users = new users(id,name,email,password,username,role,list);
 
 
             boolean s = false;

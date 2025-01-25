@@ -17,6 +17,7 @@ public class LoginServlet extends HttpServlet {
     private static final String DB_USER = "root";
     private static final String DB_PW = "1234";
 
+    public static int useriD = 0;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
@@ -26,20 +27,27 @@ public class LoginServlet extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PW);
 
-            String query = "SELECT password, role FROM users WHERE username = ?";
+            String query = "SELECT password, role , user_id FROM users WHERE username = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                String storedPassword = resultSet.getString("password"); // Plain text password from database
+                String storedPassword = resultSet.getString("password");
                 String role = resultSet.getString("role");
+                int userId = resultSet.getInt("user_id"); // Fetch the user ID
+
+                System.out.println(userId);
 
                 if (storedPassword.equals(password)) {
                     HttpSession session = req.getSession();
                     session.setAttribute("username", username);
                     session.setAttribute("role", role);
+                    session.setAttribute("userID", userId);
+
+
+                   useriD = userId;
 
                     if ("Admin".equalsIgnoreCase(role)) {
                         resp.sendRedirect("DashBoard.jsp?message=Login successful");

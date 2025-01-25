@@ -5,6 +5,7 @@ import com.example.lk.ijse.Dao.DaoFactory;
 import com.example.lk.ijse.Entity.users;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class userBoImpl implements userBo {
 
@@ -12,7 +13,7 @@ public class userBoImpl implements userBo {
 
     @Override
     public boolean saveAdmin(users entity) throws IOException {
-        return adminDao.save(new users(entity.getId(),entity.getUsername(),entity.getPassword(),entity.getEmail(),entity.getName(),entity.getRole()));
+        return adminDao.save(new users(entity.getId(),entity.getUsername(),entity.getPassword(),entity.getEmail(),entity.getName(),entity.getRole(),entity.getCarts()));
     }
 
 
@@ -21,5 +22,12 @@ public class userBoImpl implements userBo {
     public boolean deleteuser(int id) throws IOException {
         return adminDao.delete(id);
     }
+
+
+    @Override
+    public users serachbyIDS(int uid) throws SQLException, ClassNotFoundException {
+        return adminDao.searchById(uid);
+    }
+
 
 }

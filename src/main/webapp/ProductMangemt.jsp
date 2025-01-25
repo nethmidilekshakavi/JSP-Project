@@ -52,9 +52,9 @@
 
 <!-- Product Form -->
 <form action="product-save" method="post" enctype="multipart/form-data">
-  <label for="productId">Product ID:</label>
-  <input type="text" id="productId" name="pid" required><br>
-
+  <%--<label for="productId">Product ID:</label>--%>
+  <%--<input type="text" id="productId" name="pid" required><br>
+--%>
   <label for="productName">Product Name:</label>
   <input type="text" id="productName" name="name" required><br>
 

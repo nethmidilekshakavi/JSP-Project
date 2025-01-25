@@ -11,4 +11,6 @@ public interface UserDao extends CrudDao<users> {
     boolean save(users admin) throws IOException;
 
     boolean delete(int entityId) throws IOException;
+
+    users searchById(int id);
 }
