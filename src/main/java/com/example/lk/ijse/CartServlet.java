@@ -1,10 +1,4 @@
 package com.example.lk.ijse;
-
-import com.example.lk.ijse.Bo.BOFactory;
-import com.example.lk.ijse.Bo.custom.CartBo;
-import com.example.lk.ijse.Bo.custom.userBo;
-import com.example.lk.ijse.Entity.Cart;
-import com.example.lk.ijse.Entity.users;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -43,6 +37,7 @@ public class CartServlet extends HttpServlet {
             double total = productPrice * qty;
 
             Part filePart = req.getPart("productImage");
+
             String imageFileName = (filePart != null) ? generateUniqueFileName(filePart.getSubmittedFileName()) : "default.jpg";
             String uploadPath = getServletContext().getRealPath("/img/") + imageFileName;
             if (filePart != null) {
@@ -71,7 +66,7 @@ public class CartServlet extends HttpServlet {
 
                 int affectedRowCount = preparedStatement.executeUpdate();
                 if (affectedRowCount > 0) {
-                    resp.sendRedirect("Cart.jsp?message=Product saved successfully");
+                    resp.sendRedirect("OrderTable.jsp?message=Product%20saved%20successfully");
                 } else {
                     resp.sendRedirect("Cart.jsp?error=Failed to save Product");
                 }
