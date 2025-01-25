@@ -125,11 +125,14 @@
 
 <br><br>
 
-<a href="UserChangePassWord.jsp">
+<a href="OrderTable.jsp">
   <button type="button" class="btn-change" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-    Change Personal Details
+    View Your Orders
   </button>
 </a>
+<br><br>
+
+
 
 <br><br>
 

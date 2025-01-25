@@ -143,6 +143,7 @@
 
   <a href="UserChangePassWord.jsp"><button>Update Profile</button></a>
   <a href="UserDelete.jsp"><button>Remove Account</button></a>
+  <a href="OrderTable.jsp"><button>View Your Order</button></a>
 
   <form method="post" action="UserProfileManagemnt.jsp">
     <input type="text" name="username" placeholder="Enter your Username" required>
