@@ -82,23 +82,7 @@
       </div>
     </div>
 
-    <!-- Category Card 1 -->
-    <div class="col-md-4 mb-4">
-      <div class="category-card" id="01">
-        <img src="Image/Categories/Eeletronic/a8337f50ffaf22a9f4c350ed63362ec8.jpg" alt="Category 1">
-        <img src="Image/Categories/Eeletronic/557b6cbe0b85cbd2cf4040dda07abcb1.jpg" alt="Category 1">
-        <img src="Image/Categories/Eeletronic/a2911d64b84936d16e01da5627f7eb1c.jpg" alt="Category 1">
-        <img src="Image/Categories/Eeletronic/225df0cf45c4d1bfc5d9a31c1de0772a.jpg" alt="Category 1">
-        <img src="Image/Categories/Eeletronic/5dba612dd9931919daf3b784533a83df.jpg" alt="Category 1">
-        <img src="Image/Categories/Eeletronic/6b07dc8a2d28374ff5d01ba6dc148703.jpg" alt="Category 1">
-        <div class="category-card-body">
-          <h5 class="category-title">Electronics</h5>
-          <p>Explore the latest gadgets and electronics for all your tech needs.</p>
-          <a href="ElectricProducts.jsp" class="btn btn-primary" onclick="openPopup('ClothingProducts.jsp')"><button class="shopnow" name="Category">Shop Now</button></a>
 
-        </div>
-      </div>
-    </div>
 
     <!-- Category Card 2 -->
 

@@ -209,7 +209,9 @@
                 <button type="submit" class="add-to-cart" onclick="setFormValues()">Add to Cart</button>
             </form>
 
-
+            <form action="user-delete">
+                <input type="hidden" name="userid" value="<%= uid %>">
+            </form>
 
             <button class="remove-item">Remove</button>
             <div class="description">

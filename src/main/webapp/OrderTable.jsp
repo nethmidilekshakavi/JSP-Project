@@ -154,6 +154,10 @@
                 <td><input type="hidden" name="status" value="<%= rs.getString("status") %>"><%= rs.getString("status") %></td>
 
             </form>
+
+            <form action="user-delete">
+                <td><input type="hidden" name="user_id" value="<%= rs.getInt("user_id") %>"><%= uid %></td>
+            </form>
         </tr>
         <%
             } while (rs.next());

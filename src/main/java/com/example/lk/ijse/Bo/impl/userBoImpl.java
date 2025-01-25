@@ -24,6 +24,8 @@ public class userBoImpl implements userBo {
     }
 
 
+
+
     @Override
     public users serachbyIDS(int uid) throws SQLException, ClassNotFoundException {
         return adminDao.searchById(uid);
