@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ASUS
-  Date: 1/15/2025
-  Time: 10:30 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -45,12 +38,39 @@
 </script>
 <% } %>
 
-<form action="product-Delete" method="post">
+<form id="deleteForm" action="product-Delete" method="post" onsubmit="return confirmDelete()">
   <label for="ProductID">Product ID:</label>
   <input type="text" id="ProductID" name="Pid" required><br><br>
 
-  <button type="submit" style="background-color: red" >Delete Product</button>
+  <button type="submit" style="background-color: red">Delete Product</button>
 </form>
+
+<script>
+  function confirmDelete() {
+    // Show the SweetAlert confirmation popup
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Submit the form if user confirms
+        document.getElementById('deleteForm').submit();
+      } else {
+        // Prevent form submission if user cancels
+        return false;
+      }
+    });
+
+    // Prevent immediate form submission
+    return false;
+  }
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>

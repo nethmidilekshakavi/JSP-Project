@@ -80,7 +80,7 @@ h2 {
 
 .card h3 {
     font-size: 22px;
-    color: #333;
+    color: #71b7e6;
 }
 
 .card p {
@@ -195,7 +195,7 @@ button:focus {
 }
 
 #p {
-    color: #666;
+    color: #aaaaaa;
     font-family: 'Verdana, sans-serif';
     font-size: 16px;
     line-height: 1.6;

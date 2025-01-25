@@ -265,8 +265,8 @@
     <div class="logo">RFashion</div>
     <ul class="nav-links">
         <li><a href="CustomerDashBoar.jsp">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="AboutUS.jsp">About Us</a></li>
+        <li><a href="Contact.jsp">Contact</a></li>
         <li><a href="index.jsp">Login</a></li>
         <li><a href="Admin.jsp">Sign Up</a></li>
     </ul>
