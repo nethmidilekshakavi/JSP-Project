@@ -25,7 +25,7 @@
             <a href="javascript:void(0);" onclick="loadPage('ProductMangemt.jsp')"><button>Product Management</button></a>
             <a href="javascript:void(0);" onclick="loadPage('CategoryManagemt.jsp')"><button>Category Management</button></a>
             <a href="javascript:void(0);" onclick="loadPage('Users-List.jsp')"><button>User Management</button></a>
-            <a href="javascript:void(0);" onclick="loadPage('order_details.jsp')"><button>View Order Placement</button></a>
+            <a href="javascript:void(0);" onclick="loadPage('OrderDetails.jsp')"><button>View Order Placement</button></a>
             <a href="index.jsp"><button id="logOut">Log Out</button></a>
         </div>
     </nav>

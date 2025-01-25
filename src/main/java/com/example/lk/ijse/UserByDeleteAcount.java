@@ -36,13 +36,13 @@ public class UserByDeleteAcount extends HttpServlet {
             if (rs.next()) {
                 int userId = rs.getInt("user_id");
 
-               /* // Delete from order_details
+                // Delete from order_details
                 String deleteOrderDetailsQuery = "DELETE FROM order_details WHERE order_id IN (SELECT order_id FROM orders WHERE user_id = ?)";
                 try (PreparedStatement ps1 = connection.prepareStatement(deleteOrderDetailsQuery)) {
                     ps1.setInt(1, userId);
                     ps1.executeUpdate();
                 }
-*/
+
                 // Delete from orders
                 String deleteOrdersQuery = "DELETE FROM orders WHERE user_id = ?";
                 try (PreparedStatement ps2 = connection.prepareStatement(deleteOrdersQuery)) {

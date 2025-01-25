@@ -209,9 +209,8 @@
                 <button type="submit" class="add-to-cart" onclick="setFormValues()">Add to Cart</button>
             </form>
 
-
-
             <button class="remove-item">Remove</button>
+
             <div class="description">
                 <p><%= productDescription %></p>
             </div>

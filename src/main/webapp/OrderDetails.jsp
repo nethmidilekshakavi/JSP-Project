@@ -107,15 +107,16 @@
 
 
 <div class="container">
-    <h1>Cart Details</h1>
+    <h1>Order Details</h1>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Detail ID</th>
             <th>order ID</th>
             <th>user ID</th>
+            <th>Product ID</th>
+            <th>Quantity</th>
             <th>Time/Date</th>
-            <th>Statues</th>
+
         </tr>
         </thead>
         <tbody>
@@ -127,7 +128,7 @@
                 // User is logged in, proceed with the query
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
-                String query = "SELECT * FROM orders ;";
+                String query = "SELECT * FROM order_details";
                 PreparedStatement ps = con.prepareStatement(query);
 
                 ResultSet rs = ps.executeQuery();
@@ -137,11 +138,11 @@
         %>
         <tr>
             <form action="OrderDetails" method="post">
-                <td><input type="hidden" name="detailID" value="<%= rs.getInt("id") %>"><%= rs.getInt("id") %></td>
                 <td><input type="hidden" name="order_id" value="<%= rs.getInt("order_id") %>"><%= rs.getInt("order_id") %></td>
-                <td><input type="hidden" name="user_id" value="<%= rs.getInt("user_id") %>"><%= uid %></td>
+                <td><input type="hidden" name="user_id" value="<%= rs.getInt("user_id") %>"><%= rs.getInt("user_id") %></td>
+                <td><input type="hidden" name="product_id" value="<%= rs.getInt("product_id") %>"><%= rs.getInt("product_id") %></td>
+                <td><input type="hidden" name="qty" value="<%= rs.getInt("qty") %>"><%= rs.getInt("qty") %></td>
                 <td><input type="hidden" name="added_at" value="<%= rs.getString("order_date") %>"><%= rs.getString("order_date") %></td>
-                <td><input type="hidden" name="status" value="<%= rs.getString("status") %>"><%= rs.getString("status") %></td>
             </form>
         </tr>
         <%

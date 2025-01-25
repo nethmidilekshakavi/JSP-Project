@@ -121,6 +121,7 @@
             <th>Size</th>
             <th>Action</th>
             <th>Message</th>
+            <th>Remove</th>
         </tr>
         </thead>
         <tbody>
@@ -140,6 +141,7 @@
                 if (rs.next()) {
                     do {
         %>
+
         <tr>
             <form action="OrderServlet" method="post">
                 <td><input type="hidden" name="cart_id" value="<%= rs.getInt("id") %>"><%= rs.getInt("id") %></td>
@@ -153,6 +155,12 @@
                 <td><button type="submit" class="order-btn">Order Now</button></td>
                 <td><input type="hidden" name="status" value="<%= rs.getString("status") %>"><%= rs.getString("status") %></td>
             </form>
+            <td>
+                <form action="deleteCart" method="post">
+                    <input type="hidden" name="cart_id" value="<%= rs.getInt("id") %>">
+                    <button type="submit" class="remove-item">Remove</button>
+                </form>
+            </td>
 
         </tr>
         <%

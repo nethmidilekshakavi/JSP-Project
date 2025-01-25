@@ -24,32 +24,29 @@ public class OrderDetails extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try {
-            int id = 0;
             int uid = Integer.parseInt(req.getParameter("user_id"));
-            int oid = Integer.parseInt(req.getParameter("user_id"));
+            int oid = Integer.parseInt(req.getParameter("order_id"));
+            int pid = Integer.parseInt(req.getParameter("product_id"));
+            int qty = Integer.parseInt(req.getParameter("qty"));
             Timestamp time = Timestamp.valueOf(req.getParameter("added_at"));
-            String status = "Order Success!";
 
-            String sql = "INSERT INTO order_details (id, order_id,user_id , order_date, status) VALUES (?, ?, ?, ?, ?)";
+
+            String sql = "INSERT INTO order_details (order_id,user_id ,product_id,qty, order_date) VALUES (?, ?, ?, ?, ?)";
 
             // Connect to the database and execute the query
             try (Connection connection = dataSource.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setInt(1, id);
-                preparedStatement.setInt(2, oid);
-                preparedStatement.setInt(3, uid);
-                preparedStatement.setTimestamp(4, time);
-                preparedStatement.setString(5, status);
+                preparedStatement.setInt(1, oid);
+                preparedStatement.setInt(2, uid);
+                preparedStatement.setInt(3, pid);
+                preparedStatement.setInt(4, qty);
+                preparedStatement.setTimestamp(5, time);
+
 
                 // Execute the insert statement
                 int affectedRowCount = preparedStatement.executeUpdate();
 
-               /* // Update cart table status to 'success'
-                String updateCartQuery = "UPDATE cart SET status = 'Order Successfully😁' WHERE cart_id = ?";
-                PreparedStatement updatePs = connection.prepareStatement(updateCartQuery);
-                updatePs.setInt(1, cartId);
-                updatePs.executeUpdate();
-                */
+
 
                 if (affectedRowCount > 0) {
                     resp.sendRedirect("OrderTable.jsp?message=Order placed successfully");

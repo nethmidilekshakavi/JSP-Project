@@ -32,7 +32,7 @@ public class CartServlet extends HttpServlet {
             int qty = Integer.parseInt(req.getParameter("qty"));
             String selectedSize = req.getParameter("selectedSize");
             selectedSize = (selectedSize != null) ? selectedSize : "N/A";
-            String status = "Order Success";
+            String status = "Pending";
 
             Timestamp time = Timestamp.valueOf(LocalDateTime.now());
             double total = productPrice * qty;
@@ -68,7 +68,7 @@ public class CartServlet extends HttpServlet {
 
                 int affectedRowCount = preparedStatement.executeUpdate();
                 if (affectedRowCount > 0) {
-                    resp.sendRedirect("OrderTable.jsp=Product saved successfully");
+                    resp.sendRedirect("OrderTable.jsp?=Product saved successfully");
                 } else {
                     resp.sendRedirect("Cart.jsp?error=Failed to save Product");
                 }
