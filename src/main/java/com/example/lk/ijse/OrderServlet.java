@@ -51,8 +51,7 @@ public class OrderServlet extends HttpServlet {
                 // Execute the insert statement
                 int affectedRowCount = preparedStatement.executeUpdate();
 
-                // Update cart table status to 'success'
-                String updateCartQuery = "UPDATE cart SET status = 'Order Successfully😁' WHERE cart_id = ?";
+                String updateCartQuery = "UPDATE cart SET status = 'Order Successfully😁' WHERE id = ?";
                 PreparedStatement updatePs = connection.prepareStatement(updateCartQuery);
                 updatePs.setInt(1, cartId);
                 updatePs.executeUpdate();

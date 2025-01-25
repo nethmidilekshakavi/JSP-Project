@@ -32,6 +32,7 @@ public class CartServlet extends HttpServlet {
             int qty = Integer.parseInt(req.getParameter("qty"));
             String selectedSize = req.getParameter("selectedSize");
             selectedSize = (selectedSize != null) ? selectedSize : "N/A";
+            String status = "Order Success";
 
             Timestamp time = Timestamp.valueOf(LocalDateTime.now());
             double total = productPrice * qty;
@@ -48,8 +49,8 @@ public class CartServlet extends HttpServlet {
                 }
             }
 
-            String sql = "INSERT INTO cart (user_id, product_id, quantity, added_at, image_url, price, total, product_Size) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO cart (user_id, product_id, quantity, added_at, image_url, price, total, product_Size,status) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
 
             try (Connection connection = dataSource.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -61,6 +62,7 @@ public class CartServlet extends HttpServlet {
                 preparedStatement.setDouble(6, productPrice);
                 preparedStatement.setDouble(7, total);
                 preparedStatement.setString(8, selectedSize);
+                preparedStatement.setString(9, status);
 
                 System.out.println(uid + " " + productId + " " + qty + " " + time + " " + imageFileName + " " + productPrice + " " + total + " " + selectedSize);
 
