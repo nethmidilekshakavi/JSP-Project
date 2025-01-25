@@ -158,9 +158,10 @@
             <td>
                 <form action="deleteCart" method="post">
                     <input type="hidden" name="cart_id" value="<%= rs.getInt("id") %>">
-                    <button type="submit" class="remove-item">Remove</button>
+                    <button type="submit" class="remove-item" style="background-color: #bd2130; color: white; font-style: italic;">Remove</button>
                 </form>
             </td>
+
 
         </tr>
         <%

@@ -1,7 +1,6 @@
 package com.example.lk.ijse.Bo;
 
 
-import com.example.lk.ijse.Bo.impl.CartBoImpl;
 import com.example.lk.ijse.Bo.impl.CategoryBoImpl;
 import com.example.lk.ijse.Bo.impl.ProductBoImpl;
 import com.example.lk.ijse.Bo.impl.userBoImpl;
@@ -29,8 +28,7 @@ public class BOFactory {
                 return new CategoryBoImpl();
             case PRODUCT:
                 return new ProductBoImpl();
-            case CART:
-                return new CartBoImpl();
+
 
         }
         return null;

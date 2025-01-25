@@ -1,7 +1,6 @@
 package com.example.lk.ijse;
 import com.example.lk.ijse.Bo.BOFactory;
 import com.example.lk.ijse.Bo.custom.userBo;
-import com.example.lk.ijse.Entity.Cart;
 import com.example.lk.ijse.Entity.users;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,8 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(urlPatterns = "/admin-save")
 public class AdminServlet extends HttpServlet {

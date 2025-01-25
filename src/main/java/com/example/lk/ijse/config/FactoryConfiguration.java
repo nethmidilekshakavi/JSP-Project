@@ -1,7 +1,6 @@
 package com.example.lk.ijse.config;
 
 
-import com.example.lk.ijse.Entity.Cart;
 import com.example.lk.ijse.Entity.categories;
 import com.example.lk.ijse.Entity.products;
 import com.example.lk.ijse.Entity.users;
@@ -27,7 +26,6 @@ public class FactoryConfiguration {
             configuration.addAnnotatedClass(users.class);
             configuration.addAnnotatedClass(categories.class);
             configuration.addAnnotatedClass(products.class);
-            configuration.addAnnotatedClass(Cart.class);
 
 
             sessionFactory = configuration.buildSessionFactory();
