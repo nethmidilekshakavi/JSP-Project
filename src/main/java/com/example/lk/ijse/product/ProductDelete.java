@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 @WebServlet(urlPatterns = "/product-Delete")
 public class ProductDelete extends HttpServlet {
@@ -21,39 +22,52 @@ public class ProductDelete extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int id = Integer.parseInt(req.getParameter("Pid"));
-
+        int productId = Integer.parseInt(req.getParameter("Pid"));
 
         try {
-            // Get database connection from the DataSource
             Connection connection = dataSource.getConnection();
 
-            // SQL query to update category details
-            String sql = "DELETE FROM products WHERE product_id = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            // Start transaction
+            connection.setAutoCommit(false);
 
-            // Set parameters for the prepared statement
-
-            preparedStatement.setInt(1, id);
-
-            // Execute update and check the number of affected rows
-            int effectdRowCount = preparedStatement.executeUpdate();
-
-            if (effectdRowCount > 0){
-                resp.sendRedirect(
-                        "ProductDelete.jsp?message=Product Delete successfully"
-                );
-            }else {
-                resp.sendRedirect(
-                        "ProductDelete.jsp?error=fail to Delete Unsuccessfully"
-                );
+            // Delete from order_details
+            String deleteOrderDetailsQuery = "DELETE FROM order_details WHERE product_id = ?";
+            try (PreparedStatement ps1 = connection.prepareStatement(deleteOrderDetailsQuery)) {
+                ps1.setInt(1, productId);
+                ps1.executeUpdate();
             }
 
-        } catch (Exception e) {
-            // Log the exception and redirect with an error message
-            e.printStackTrace();  // For debugging
-            resp.sendRedirect("ProductDelete.jsp?error=An error occurred while deleting the category");
-        }
+            // Delete from orders (if needed)
+            String deleteOrdersQuery = "DELETE FROM orders WHERE order_id IN (SELECT order_id FROM order_details WHERE product_id = ?)";
+            try (PreparedStatement ps2 = connection.prepareStatement(deleteOrdersQuery)) {
+                ps2.setInt(1, productId);
+                ps2.executeUpdate();
+            }
 
+            // Delete from cart
+            String deleteCartQuery = "DELETE FROM cart WHERE product_id = ?";
+            try (PreparedStatement ps3 = connection.prepareStatement(deleteCartQuery)) {
+                ps3.setInt(1, productId);
+                ps3.executeUpdate();
+            }
+
+            // Delete from products
+            String deleteProductQuery = "DELETE FROM products WHERE product_id = ?";
+            try (PreparedStatement ps4 = connection.prepareStatement(deleteProductQuery)) {
+                ps4.setInt(1, productId);
+                int affectedRowCount = ps4.executeUpdate();
+
+                if (affectedRowCount > 0) {
+                    connection.commit();
+                    resp.sendRedirect("ProductDelete.jsp?message=Product deleted successfully");
+                } else {
+                    connection.rollback();
+                    resp.sendRedirect("ProductDelete.jsp?error=Failed to delete product");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            resp.sendRedirect("ProductDelete.jsp?error=An error occurred while deleting the product");
+        }
     }
 }
