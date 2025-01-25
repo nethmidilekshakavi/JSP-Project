@@ -1,77 +1,12 @@
 <%@ page import="java.sql.*" %>
+<%@ page import="com.example.lk.ijse.LoginServlet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Product List</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: 30px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            font-size: 2em;
-        }
-        .no-data {
-            color: #777;
-            font-size: 1.2em;
-            text-align: center;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-            font-size: 1.1em;
-        }
-        th {
-            background-color: #9b59b6;
-            color: white;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        tr:hover {
-            background-color: #ddd;
-        }
-        img {
-            cursor: pointer;
-            width: 100px;
-            height: auto;
-        }
-        .order-btn {
-            background-color: #28a745;
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .order-btn:hover {
-            background-color: #218838;
-        }
-        @media screen and (max-width: 600px) {
-            table, th, td {
-                font-size: 0.9em;
-            }
-        }
+        /* your existing styles */
     </style>
 </head>
 <body>
@@ -96,14 +31,19 @@
 
         <%
             try {
-                // Database connection
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
-                Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM cart");
+                // Check if user_id is in session
+                int uid = LoginServlet.useriD;
+{
+                    // User is logged in, proceed with the query
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jsp_project", "root", "1234");
+                    String query = "SELECT * FROM cart WHERE user_id = ?";
+                    PreparedStatement ps = con.prepareStatement(query);
+                    ps.setInt(1, uid);
+                    ResultSet rs = ps.executeQuery();
 
-                if (rs.next()) {
-                    do {
+                    if (rs.next()) {
+                        do {
         %>
         <tr>
             <form action="OrderServlet" method="post" enctype="multipart/form-data">
@@ -123,18 +63,19 @@
         } else {
         %>
         <tr>
-            <td colspan="10" class="no-data">No Products available.</td>
+            <td colspan="9" class="no-data">No Products available.</td>
         </tr>
         <%
+                }
+                rs.close();
+                ps.close();
+                con.close();
             }
-            rs.close();
-            stmt.close();
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         %>
         <tr>
-            <td colspan="10" class="text-danger text-center">Error fetching products.</td>
+            <td colspan="9" class="text-danger text-center">Error fetching products.</td>
         </tr>
         <%
             }
