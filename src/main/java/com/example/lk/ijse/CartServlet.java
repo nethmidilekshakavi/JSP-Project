@@ -66,7 +66,7 @@ public class CartServlet extends HttpServlet {
 
                 int affectedRowCount = preparedStatement.executeUpdate();
                 if (affectedRowCount > 0) {
-                    resp.sendRedirect("OrderTable.jsp?message=Product%20saved%20successfully");
+                    resp.sendRedirect("OrderTable.jsp=Product saved successfully");
                 } else {
                     resp.sendRedirect("Cart.jsp?error=Failed to save Product");
                 }

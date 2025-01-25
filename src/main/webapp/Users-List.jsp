@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="css/CategoryUpdatePage.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
-    /* Basic styling for the page */
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
@@ -44,7 +43,6 @@
       text-align: center;
     }
 
-    /* Table styling */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -72,24 +70,27 @@
       background-color: #ddd;
     }
 
-    .update-password-form {
-      text-align: center;
-      margin-top: 20px;
+    .btn-delete {
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #fff;
+      background-color: #dc3545;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .update-password-form input {
-      margin-bottom: 10px;
+    .btn-delete:hover {
+      background-color: #c82333;
+      transform: scale(1.05);
     }
 
-    /* Responsiveness */
-    @media screen and (max-width: 600px) {
-      table, th, td {
-        font-size: 0.9em;
-      }
+    .btn-delete:active {
+      background-color: #bd2130;
+      transform: scale(1);
     }
-
-
-    .btn-delete { padding: 10px 20px; font-size: 1em; color: #fff; background-color: #dc3545; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); } .btn-delete:hover { background-color: #c82333; transform: scale(1.05); } .btn-delete:active { background-color: #bd2130; transform: scale(1); }
 
     .toggle-button {
       padding: 10px 20px;
@@ -104,17 +105,29 @@
     }
 
     .toggle-button.active {
-      background-color: #4caf50; /* Green for active */
+      background-color: #4caf50;
       color: white;
     }
 
     .toggle-button:hover {
-      background-color: #555; /* Hover effect */
+      background-color: #555;
       color: #f1f1f1;
     }
 
+    .update-password-form {
+      text-align: center;
+      margin-top: 20px;
+    }
 
+    .update-password-form input {
+      margin-bottom: 10px;
+    }
 
+    @media screen and (max-width: 600px) {
+      table, th, td {
+        font-size: 0.9em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -122,7 +135,6 @@
   String msg = request.getParameter("message");
   String error = request.getParameter("error");
 %>
-
 <% if (msg != null) { %>
 <script>
   Swal.fire({
@@ -134,7 +146,6 @@
   });
 </script>
 <% } %>
-
 <% if (error != null) { %>
 <script>
   Swal.fire({
@@ -176,7 +187,7 @@
       <td>
         <form action="user-delete" method="post" style="display:inline;">
           <input type="hidden" name="id" value="<%= rs.getInt("user_id") %>">
-          <button type="submit" class="toggle-button" onclick="confirmDelete(<%= rs.getInt("user_id") %>)">Delete</button>
+          <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this user? This action cannot be undone.');">Delete</button>
         </form>
       </td>
     </tr>
@@ -202,8 +213,9 @@
 <script src="js/jquery-3.7.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>
-
-
+  function confirmDelete(userId) {
+    return confirm('Are you sure you want to delete this user? This action cannot be undone.');
+  }
 
 </script>
 </body>

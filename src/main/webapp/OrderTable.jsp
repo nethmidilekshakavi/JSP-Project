@@ -152,12 +152,8 @@
                 <td><input type="hidden" name="product_size" value="<%= rs.getString("product_Size") %>"><%= rs.getString("product_Size") %></td>
                 <td><button type="submit" class="order-btn">Order Now</button></td>
                 <td><input type="hidden" name="status" value="<%= rs.getString("status") %>"><%= rs.getString("status") %></td>
-
             </form>
 
-            <form action="user-delete">
-                <td><input type="hidden" name="user_id" value="<%= rs.getInt("user_id") %>"><%= uid %></td>
-            </form>
         </tr>
         <%
             } while (rs.next());
