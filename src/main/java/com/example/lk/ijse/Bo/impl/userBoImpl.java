@@ -13,7 +13,7 @@ public class userBoImpl implements userBo {
 
     @Override
     public boolean saveAdmin(users entity) throws IOException {
-        return adminDao.save(new users(entity.getId(),entity.getUsername(),entity.getPassword(),entity.getEmail(),entity.getName(),entity.getRole(),entity.getCarts()));
+        return adminDao.save(new users(entity.getId(),entity.getUsername(),entity.getPassword(),entity.getEmail(),entity.getName(),entity.getRole()));
     }
 
 

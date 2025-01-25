@@ -46,9 +46,9 @@
                         do {
         %>
         <tr>
-            <form action="OrderServlet" method="post" enctype="multipart/form-data">
+            <form action="OrderServlet" method="post">
                 <td><input type="hidden" name="cart_id" value="<%= rs.getInt("cart_id") %>"><%= rs.getInt("cart_id") %></td>
-                <td><input type="hidden" name="user_id" value="<%= rs.getInt("user_id") %>"><%= rs.getInt("user_id") %></td>
+                <td><input type="hidden" name="user_id" value="<%= rs.getInt("user_id") %>"><%= uid %></td>
                 <td><input type="hidden" name="product_id" value="<%= rs.getInt("product_id") %>"><%= rs.getInt("product_id") %></td>
                 <td><input type="hidden" name="quantity" value="<%= rs.getInt("quantity") %>"><%= rs.getInt("quantity") %></td>
                 <td><input type="hidden" name="price" value="<%= rs.getString("price") %>"><%= rs.getString("price") %></td>

@@ -20,8 +20,8 @@ public class users {
     private String email;
     private String name;
     private String role;
-
+/*
     // Correctly mapped to the Cart entity
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
-    private List<Cart> carts = new ArrayList<>();
+    private List<Cart> carts = new ArrayList<>();*/
 }

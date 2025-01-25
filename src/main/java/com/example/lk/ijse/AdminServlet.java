@@ -16,8 +16,6 @@ import java.util.List;
 public class AdminServlet extends HttpServlet {
 
 
-
-
     userBo userbo = (userBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
 
     @Override
@@ -30,11 +28,11 @@ public class AdminServlet extends HttpServlet {
         String password = req.getParameter("adminEmail");
         String username = req.getParameter("username");
         String role = "Customer";
-        List<Cart> list = new ArrayList<>();
 
 
 
-            users users = new users(id,name,email,password,username,role,list);
+
+            users users = new users(id,name,email,password,username,role);
 
 
             boolean s = false;
