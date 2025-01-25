@@ -131,20 +131,18 @@
 <body>
 <div class="container">
     <%
-
         String productName = request.getParameter("productName");
         String productDescription = request.getParameter("productDescription");
         String productImage = request.getParameter("productImage");
         double productPrice = Double.parseDouble(request.getParameter("productPrice"));
         int productId = Integer.parseInt(request.getParameter("productId"));
         int stock_quantity = Integer.parseInt(request.getParameter("stock_quantity"));
-
     %>
     <h1><%= productName %></h1>
     <div class="product-display">
         <img src="img/<%= productImage %>" alt="<%= productName %>">
         <div class="product-details">
-            <p class="price">Rs.<%= productPrice %></p>
+            <p class="price">Price per unit: Rs.<%= productPrice %></p>
             <div class="sizes">
                 <h3>Available Sizes</h3>
                 <select id="sizeSelect" onchange="updateSelectedSize()">
@@ -155,49 +153,64 @@
                 </select>
             </div>
 
-            <script>
-                function updateSelectedSize() {
-                    const selectedSize = document.getElementById("sizeSelect").value;
-                    document.getElementById("hiddenSize").value = selectedSize;
-                }
-            </script>
+            <p style="font-size: 12px" class="price">Stock Quantity: <%= stock_quantity %></p>
+            <p style="font-size: 12px" class="price">Product ID: <%= productId %></p>
 
-            <p style="font-size: 12px" class="price">Stock Quantity :<%= stock_quantity %></p>
-            <p style="font-size: 12px" class="price">Product ID :<%= productId %></p>
             <label class="qty-label">QTY</label>
-            <input type="number" class="qty-input" name="qty" value="1" min="1" max="<%= stock_quantity %>">
-            <br>
+            <input
+                    type="number"
+                    class="qty-input"
+                    id="quantityInput"
+                    name="qty"
+                    value="1"
+                    min="1"
+                    max="<%= stock_quantity %>"
+                    oninput="updateTotalPrice(<%= productPrice %>)">
+
+            <p class="price">Total: Rs.<span id="totalPrice"><%= productPrice %></span></p>
+
             <form action="cartSave" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="productId" value="<%= productId %>">
                 <input type="hidden" name="productName" value="<%= productName %>">
                 <input type="hidden" name="stock_quantity" value="<%= stock_quantity %>">
                 <input type="hidden" name="productDescription" value="<%= productDescription %>">
-                <input type="hidden" name="productPrice" value="<%= productPrice%>">
+                <input type="hidden" name="productPrice" value="<%= productPrice %>">
                 <input type="hidden" name="productImage" value="<%= productImage %>">
                 <input type="hidden" name="selectedSize" id="hiddenSize">
-                <input type="hidden" name="qty">
-                <button type="submit" class="add-to-cart" onclick="setSelectedSize()">Add to Cart</button>
+                <input type="hidden" name="qty" id="hiddenQty">
+                <button type="submit" class="add-to-cart" onclick="setFormValues()">Add to Cart</button>
             </form>
+
             <button class="remove-item">Remove</button>
             <div class="description">
                 <p><%= productDescription %></p>
             </div>
-
         </div>
     </div>
-
-
-
-
 </div>
 
 <script>
-    function setSelectedSize() {
+    // Function to update the selected size
+    function updateSelectedSize() {
         const selectedSize = document.getElementById("sizeSelect").value;
-        document.getElementById("hiddenSize").value = document.getElementById("sizeSelect").value;
+        document.getElementById("hiddenSize").value = selectedSize;
+    }
 
+    // Function to update the total price based on the quantity
+    function updateTotalPrice(pricePerUnit) {
+        const quantity = document.getElementById("quantityInput").value;
+        const totalPrice = pricePerUnit * quantity;
+        document.getElementById("totalPrice").innerText = totalPrice.toFixed(2);
+    }
+
+    // Function to set hidden form values before submission
+    function setFormValues() {
+        const quantity = document.getElementById("quantityInput").value;
+        document.getElementById("hiddenQty").value = quantity;
+        updateSelectedSize();
     }
 </script>
+
 
 </body>
 </html>
