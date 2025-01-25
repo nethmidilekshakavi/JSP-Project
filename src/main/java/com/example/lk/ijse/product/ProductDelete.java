@@ -37,7 +37,7 @@ public class ProductDelete extends HttpServlet {
                 ps1.executeUpdate();
             }
 
-            // Delete from orders (if needed)
+            // Delete from orders
             String deleteOrdersQuery = "DELETE FROM orders WHERE order_id IN (SELECT order_id FROM order_details WHERE product_id = ?)";
             try (PreparedStatement ps2 = connection.prepareStatement(deleteOrdersQuery)) {
                 ps2.setInt(1, productId);
@@ -65,6 +65,7 @@ public class ProductDelete extends HttpServlet {
                     resp.sendRedirect("ProductDelete.jsp?error=Failed to delete product");
                 }
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
             resp.sendRedirect("ProductDelete.jsp?error=An error occurred while deleting the product");

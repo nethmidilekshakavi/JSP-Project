@@ -37,6 +37,7 @@ public class OrderServlet extends HttpServlet {
             String orderSql = "INSERT INTO orders (user_id, order_date, total, size, status, product_id, qty) VALUES (?, ?, ?, ?, ?, ?, ?)";
             String cartUpdateSql = "UPDATE cart SET status = 'Order Successfully😁' WHERE id = ?";
             String orderDetailsSql = "INSERT INTO order_details (order_id, user_id, product_id, qty, order_date) VALUES (?, ?, ?, ?, ?)";
+            String productUpdateSql = "UPDATE products SET stock_quantity = stock_quantity - ? WHERE product_id = ?";  // Update product quantity
 
             connection = dataSource.getConnection();
             connection.setAutoCommit(false); // Start transaction
@@ -74,6 +75,13 @@ public class OrderServlet extends HttpServlet {
                         orderDetailsPs.setInt(4, qty);
                         orderDetailsPs.setTimestamp(5, time);
                         orderDetailsPs.executeUpdate();
+                    }
+
+                    // Update the product quantity in `products` table
+                    try (PreparedStatement productPs = connection.prepareStatement(productUpdateSql)) {
+                        productPs.setInt(1, qty);  // Subtract the ordered quantity
+                        productPs.setInt(2, pid);
+                        productPs.executeUpdate();
                     }
 
                     connection.commit(); // Commit the transaction
