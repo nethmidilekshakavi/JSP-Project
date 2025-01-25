@@ -25,46 +25,51 @@ public class OrderServlet extends HttpServlet {
     @Resource(name = "jdbc/pool")
     private DataSource dataSource;
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try {
-            int oid = 0;
+            // Get the data from the form
             int uid = Integer.parseInt(req.getParameter("user_id"));
+            int cartId = Integer.parseInt(req.getParameter("cart_id"));
             double total = Double.parseDouble(req.getParameter("total"));
             String selectedSize = req.getParameter("product_size");
             Timestamp time = Timestamp.valueOf(req.getParameter("added_at"));
+            String status = "Order Success!";
 
+            // SQL query to insert the order
+            String sql = "INSERT INTO orders (user_id, order_date, total, size, status) VALUES (?, ?, ?, ?, ?)";
 
-
-
-            String sql = "INSERT INTO orders (order_id ,user_id,order_date,total,status) " +
-                    "VALUES (?, ?, ?, ? ,?)";
-
+            // Connect to the database and execute the query
             try (Connection connection = dataSource.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setInt(1,oid);
-                preparedStatement.setInt(2, uid);
-                preparedStatement.setTimestamp(3, time);
-                preparedStatement.setDouble(4, total);
-                preparedStatement.setString(5, selectedSize);
+                preparedStatement.setInt(1, uid);
+                preparedStatement.setTimestamp(2, time);
+                preparedStatement.setDouble(3, total);
+                preparedStatement.setString(4, selectedSize);
+                preparedStatement.setString(5, status);
 
-
-                System.out.println(uid + " " + " "  + " " + time + " "  + " " + " " + total + " " + selectedSize);
-
+                // Execute the insert statement
                 int affectedRowCount = preparedStatement.executeUpdate();
+
+                // Update cart table status to 'success'
+                String updateCartQuery = "UPDATE cart SET status = 'Order Successfully😁' WHERE cart_id = ?";
+                PreparedStatement updatePs = connection.prepareStatement(updateCartQuery);
+                updatePs.setInt(1, cartId);
+                updatePs.executeUpdate();
+
+                // Check if the row was inserted successfully
                 if (affectedRowCount > 0) {
-                    resp.sendRedirect("OrderTable.jsp?message=Product saved successfully");
+                    resp.sendRedirect("OrderTable.jsp?message=Order placed successfully");
                 } else {
-                    resp.sendRedirect("OrderTable.jsp?error=Failed to save Product");
+                    resp.sendRedirect("OrderTable.jsp?error=Failed to place the order");
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
             resp.sendRedirect("Cart.jsp?error=An error occurred while processing the request.");
         }
-    }
 
 
     }
+}
 
