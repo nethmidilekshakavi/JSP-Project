@@ -1,8 +1,4 @@
 package com.example.lk.ijse.Category;
-
-import com.example.lk.ijse.Bo.BOFactory;
-import com.example.lk.ijse.Bo.custom.CategoryBo;
-import com.example.lk.ijse.Entity.categories;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,34 +10,45 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 @WebServlet(urlPatterns = "/category-delete")
 public class CategoryDelete extends HttpServlet {
 
-    CategoryBo categoryBo = (CategoryBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CATEGORY);
+
+    @Resource(name = "jdbc/pool")
+    private DataSource dataSource;
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int id = Integer.parseInt(req.getParameter("Cid"));
 
-        boolean s = false;
-
         try {
+            Connection connection = dataSource.getConnection();
 
-            s = categoryBo.deleteCategory(id);
+            // Start transaction
+            connection.setAutoCommit(false);
 
-        } catch (Exception e) {
+            String deleteProductQuery = "DELETE FROM categories WHERE category_id = ?";
+            try (PreparedStatement ps4 = connection.prepareStatement(deleteProductQuery)) {
+                ps4.setInt(1, id);
+                int affectedRowCount = ps4.executeUpdate();
+
+                if (affectedRowCount > 0) {
+                    connection.commit();
+                    resp.sendRedirect("CategoryList.jsp?message=Category deleted successfully");
+                } else {
+                    connection.rollback();
+                    resp.sendRedirect("CategoryList.jsp?error=Failed to delete product");
+                }
+            }
+
+        } catch (SQLException e) {
             e.printStackTrace();
+            resp.sendRedirect("CategoryList.jsp?error=An error occurred while deleting the product");
         }
-
-
-        if (s) {
-            resp.sendRedirect("CategoryDelete.jsp?message=Category saved successfully");
-        } else {
-            resp.sendRedirect("CategoryDelete.jsp?error=Failed to save category");
-        }
-
     }
     }
 

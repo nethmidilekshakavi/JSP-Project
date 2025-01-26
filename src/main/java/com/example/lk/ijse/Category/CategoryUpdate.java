@@ -18,34 +18,42 @@ import java.sql.PreparedStatement;
 @WebServlet(urlPatterns = "/category-update")
 public class CategoryUpdate extends HttpServlet {
 
-    CategoryBo categoryBo = (CategoryBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CATEGORY);
+    @Resource(name = "jdbc/pool")
+    private DataSource dataSource;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int id = Integer.parseInt(req.getParameter("Cid"));
-        String name = req.getParameter("Cname");
+        String name = req.getParameter("name");
         String desc = req.getParameter("Cdesc");
 
 
-        categories categories = new categories(id, name, desc);
+        try (Connection connection = dataSource.getConnection()) {  // Use try-with-resources for auto-closing
+
+            // SQL query to update product details
+            String sql = "UPDATE categories SET category_name = ?, description = ? WHERE category_id = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+                // Set parameters for the prepared statement
+                preparedStatement.setString(1, name);
+                preparedStatement.setString(2, desc);
+                preparedStatement.setInt(3, id);
 
 
-        boolean s = false;
 
+                int affectedRowCount = preparedStatement.executeUpdate();
 
-        try {
-
-            s = categoryBo.updateCategory(categories);
-
+                if (affectedRowCount > 0) {
+                    resp.sendRedirect("CatorgoryUpdate.jsp?message=Product updated successfully");
+                } else {
+                    resp.sendRedirect("CatorgoryUpdate.jsp?error=Failed to update product");
+                }
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            // Log the exception and redirect with an error message
+            e.printStackTrace();  // For debugging
+            resp.sendRedirect("CatorgoryUpdate.jsp?error=An error occurred while updating the product");
         }
-
-        if (s) {
-            resp.sendRedirect("CatorgoryUpdate.jsp?message=Category saved successfully");
-        } else {
-            resp.sendRedirect("CatorgoryUpdate.jsp?error=Failed to save category");
-        }
-
     }
 }

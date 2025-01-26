@@ -38,7 +38,7 @@
 <% } %>
 
 <div class="form-container">
-    <h2>Admin Registration</h2>
+    <h2>User Registration</h2>
     <form action="admin-save" method="POST" id="form">
         <div class="form-group">
             <label for="fullName">Full Name</label>

@@ -52,7 +52,7 @@
   <input type="text" id="categoryId" name="Cid" required><br><br>
 
   <label for="categoryName">Category Name:</label>
-  <input type="text" id="categoryName" name="Cname" required><br><br>
+  <input type="text" id="categoryName" name="name" required><br><br>
 
   <label for="categoryDescription">Description:</label>
   <input type="text" id="categoryDescription" name="Cdesc" required><br><br>

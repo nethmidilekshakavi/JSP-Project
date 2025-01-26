@@ -70,6 +70,39 @@
         font-size: 0.9em;
       }
     }
+    .btn-delete {
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #fff;
+      background-color: #dc3545;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-delete:hover {
+      background-color: #c82333;
+      transform: scale(1.05);
+    }
+
+    .btn-delete:active {
+      background-color: #bd2130;
+      transform: scale(1);
+    }
+
+    .toggle-button {
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      background-color: #f44336;
+      color: white;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -81,6 +114,7 @@
       <th>Category ID</th>
       <th>Category Name</th>
       <th>Description</th>
+      <th>Action</th>
 
     </tr>
     </thead>
@@ -98,6 +132,12 @@
       <td><%= rs.getInt("category_id") %></td>
       <td><%= rs.getString("category_name") %></td>
       <td><%= rs.getString("description") %></td>
+      <td>
+        <form action="category-delete" method="post" style="display:inline;">
+          <input type="hidden" name="Cid" value="<%= rs.getInt("category_id") %>">
+          <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this Category? This action cannot be undone.');">Delete</button>
+        </form>
+      </td>
     </tr>
     <%
       } while (rs.next());
@@ -119,5 +159,8 @@
   </table>
 </div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>  function confirmDelete(userId) {
+  return confirm('Are you sure you want to delete this category? This action cannot be undone.');
+}</script>
 </body>
 </html>

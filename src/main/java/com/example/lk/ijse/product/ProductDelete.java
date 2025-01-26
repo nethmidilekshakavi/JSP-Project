@@ -1,12 +1,10 @@
 package com.example.lk.ijse.product;
-
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
@@ -22,7 +20,7 @@ public class ProductDelete extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int productId = Integer.parseInt(req.getParameter("Pid"));
+        int productId = Integer.parseInt(req.getParameter("id"));
 
         try {
             Connection connection = dataSource.getConnection();
@@ -59,16 +57,16 @@ public class ProductDelete extends HttpServlet {
 
                 if (affectedRowCount > 0) {
                     connection.commit();
-                    resp.sendRedirect("ProductDelete.jsp?message=Product deleted successfully");
+                    resp.sendRedirect("ProductList.jsp?message=Product deleted successfully");
                 } else {
                     connection.rollback();
-                    resp.sendRedirect("ProductDelete.jsp?error=Failed to delete product");
+                    resp.sendRedirect("ProductList.jsp?error=Failed to delete product");
                 }
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            resp.sendRedirect("ProductDelete.jsp?error=An error occurred while deleting the product");
+            resp.sendRedirect("ProductList.jsp?error=An error occurred while deleting the product");
         }
     }
 }

@@ -44,9 +44,9 @@ public class AdminServlet extends HttpServlet {
 
 
             if (s) {
-                resp.sendRedirect("Admin.jsp?message=Admin saved successfully");
+                resp.sendRedirect("Admin.jsp?message=User saved successfully");
             } else {
-                resp.sendRedirect("Admin.jsp?error=Failed to save admin");
+                resp.sendRedirect("Admin.jsp?error=Failed to save User");
             }
 
 

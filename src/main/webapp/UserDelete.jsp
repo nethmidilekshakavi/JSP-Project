@@ -52,10 +52,12 @@
   <label for="password">Enter Your  Password:</label>
   <input type="text" id="password" name="password" required><br><br>
 
-  <button type="submit" style="background-color: red" >Delete Your Account</button>
+  <button type="submit" style="background-color: red"  onclick="return confirm('Are you sure you want to delete this Account? This action cannot be undone.');">Delete Your Account</button>
 </form>
 
 
-
+<script>  function confirmDelete(userId) {
+  return confirm('Are you sure you want to delete this Account? This action cannot be undone.');
+}</script>
 </body>
 </html>

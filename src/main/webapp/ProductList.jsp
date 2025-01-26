@@ -61,6 +61,39 @@
         font-size: 0.9em;
       }
     }
+    .btn-delete {
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #fff;
+      background-color: #dc3545;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-delete:hover {
+      background-color: #c82333;
+      transform: scale(1.05);
+    }
+
+    .btn-delete:active {
+      background-color: #bd2130;
+      transform: scale(1);
+    }
+
+    .toggle-button {
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      background-color: #f44336;
+      color: white;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -77,6 +110,7 @@
       <th>Stock Quantity</th>
       <th>Category ID</th>
       <th>Image</th>
+      <th>Action</th>
     </tr>
     </thead>
     <tbody>
@@ -106,6 +140,12 @@
         <% } else { %>
         No image available
         <% } %>
+      </td>
+      <td>
+        <form action="product-Delete" method="post" style="display:inline;">
+          <input type="hidden" name="id" value="<%= rs.getInt("product_id") %>">
+          <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to delete this Product? This action cannot be undone.');">Delete</button>
+        </form>
       </td>
     </tr>
     <%
@@ -140,6 +180,8 @@
     popup.document.write(`<img src="${imageSrc}" style="width:100%;height:auto;">`);
   }
 </script>
-
+<script>  function confirmDelete(userId) {
+  return confirm('Are you sure you want to delete this Product? This action cannot be undone.');
+}</script>
 </body>
 </html>

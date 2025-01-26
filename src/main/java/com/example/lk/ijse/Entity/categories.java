@@ -15,10 +15,9 @@ import java.util.List;
 public class categories {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int category_id;
 
-    private String Category_name;
+    private String category_name;
 
     private String desc;
 
