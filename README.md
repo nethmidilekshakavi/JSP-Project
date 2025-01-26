@@ -65,7 +65,7 @@ This project is a fully functional e-commerce web application developed using Ja
 ---
 
 ## Demonstration Video
-Watch the full demonstration here: [YouTube Link](https://example.com)
+Watch the full demonstration here: [YouTube Link](https://youtu.be/Ybc35mQjU1k?si=zhl9wnzRfii9IhZu)
 
 ---
 
