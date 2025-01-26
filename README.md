@@ -40,10 +40,27 @@ This project is a fully functional e-commerce web application developed using Ja
 ---
 
 ## Screenshots
-- **Home Page**: 
-- **Product List**: 
-- **Admin Dashboard**: 
-- **Cart Management**: 
+- **Login Page**:
+
+![Login Page](src/main/webapp/screenshots/login.png)
+
+- **Home Page**:
+
+![Home Page](src/main/webapp/screenshots/img.png)
+
+- **Product List**:
+
+![Product List](src/main/webapp/screenshots/img_1.png)
+
+- **Admin Dashboard**:
+
+![Admin Dashboard](src/main/webapp/screenshots/img_2.png)
+
+- **Cart Management**:
+
+![Cart Management](src/main/webapp/screenshots/img_3.png)
+
+![Cart Management](src/main/webapp/screenshots/img_4.png)
 
 ---
 
