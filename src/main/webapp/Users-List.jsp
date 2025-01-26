@@ -213,6 +213,7 @@
 <script src="js/jquery-3.7.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>
+
   function confirmDelete(userId) {
     return confirm('Are you sure you want to delete this user? This action cannot be undone.');
   }
