@@ -148,7 +148,7 @@
 <body>
 
 <div class="container">
-  <h3>Our Bags Collection</h3>
+  <h3>Our Bags Collection 👜</h3>
   <div class="row">
     <%
       try {

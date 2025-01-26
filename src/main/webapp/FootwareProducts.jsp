@@ -80,7 +80,7 @@
 <body>
 
 <div class="container">
-    <h3>Our Fashion Collection</h3>
+    <h3>Our shoes Collection👠</h3>
     <div class="row">
         <%
             try {

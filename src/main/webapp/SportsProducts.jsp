@@ -140,7 +140,7 @@
 <body>
 
 <div class="container">
-  <h3>Our Fashion Collection</h3>
+  <h3>Our Sports Item Collection 🤾‍♂️</h3>
   <div class="row">
     <%
       try {
